@@ -22,13 +22,13 @@ func _ready() -> void:
 
 
 func generate_world(tile_map_layer: WorldTileMapLayer) -> void:
-	var minerals = []
+	var tile_resources = []
 	var weights = []
-	var number_of_minerals: int = 0
-	if tile_map_layer.variable_mineral_resource_list:
-		minerals = tile_map_layer.variable_mineral_resource_list.minerals
-		weights = minerals.map(func(mineral): return mineral.percent_chance_of_spawn)
-		number_of_minerals = minerals.size()
+	var number_of_tile_resources: int = 0
+	if tile_map_layer.variable_tile_resource_list:
+		weights = tile_map_layer.variable_tile_resource_list.get_tile_resource_percentage_weight_list()
+		tile_resources = tile_map_layer.variable_tile_resource_list.get_tile_resource_list()
+		number_of_tile_resources = tile_resources.size()
 		weights.push_back(1)
 	
 	for x in num_tiles_wide:
@@ -37,14 +37,14 @@ func generate_world(tile_map_layer: WorldTileMapLayer) -> void:
 			# If a tile is predefined, do not randomly generate
 			if tile_map_layer.get_cell_tile_data(coords) != null:
 				continue
-			if number_of_minerals == 0:
+			if number_of_tile_resources == 0:
 				tile_map_layer.set_cell(coords, 0, tile_map_layer.base_tile_metadata.atlas_coordinates, 0)
 				continue
 
 			var index = rng.rand_weighted(weights)
-			if(index < number_of_minerals):
-				tile_map_layer.set_cell(coords, 0, minerals.get(index).atlas_coordinates, 0)
+			if(index < number_of_tile_resources):
+				tile_map_layer.set_cell(coords, 0, tile_resources.get(index).atlas_coordinates, 0)
 			else:
-				tile_map_layer.set_cell(coords, 0, tile_map_layer.base_tile_metadata.atlas_coordinates, 0)
+				tile_map_layer.set_cell(coords, 0, tile_map_layer.base_tile_resource.atlas_coordinates, 0)
 				
 			
