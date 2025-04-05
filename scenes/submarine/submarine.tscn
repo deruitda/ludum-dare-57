@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://rcwc7cd67g8x" path="res://scenes/core/velocity_component.tscn" id="6_efdjn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_77ovh"]
-radius = 32.1403
+radius = 27.0185
 
 [node name="sub_body" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component")]
 collision_mask = 194
@@ -27,5 +27,5 @@ shape = SubResource("CircleShape2D_77ovh")
 [node name="VelocityComponent" parent="." instance=ExtResource("6_efdjn")]
 
 [node name="Drill" parent="." instance=ExtResource("4_tnxgy")]
-position = Vector2(-32, 0)
+position = Vector2(-25, 0)
 rotation = -1.5708

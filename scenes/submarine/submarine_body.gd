@@ -15,6 +15,26 @@ func _physics_process(delta: float):
 	velocity_component.do_character_move(self)
 
 func apply_rotation() -> void:
+	var normal_x = velocity.x
+	if normal_x < 0:
+		normal_x = normal_x * -1
+		
+	var normal_y = velocity.y
+	if normal_y < 0:
+		normal_y = normal_y * -1
+		
+	if normal_y > normal_x:
+		if velocity.y > 0:
+			rotation_degrees = -90.0
+		else:
+			rotation_degrees = 90.0
+	elif normal_y < normal_y:
+		if velocity.x > 0:
+			rotation_degrees = 180.0
+		else:
+			rotation_degrees = 0.0
+		
+		
 	var left_right_vector = Helpers.get_left_right_input_from_vector(direction_input)
 	if left_right_vector == Vector2.LEFT:
 		rotation_degrees = 0.0
