@@ -1,6 +1,5 @@
 extends CharacterBody2D
 @export var speed = 400
-@export var drill: DrillPosition
 @export var velocity_component: VelocityComponent
 
 @onready var direction_input: Vector2 = Vector2.ZERO
@@ -15,21 +14,21 @@ func _physics_process(delta: float):
 	velocity_component.do_character_move(self)
 
 func apply_rotation() -> void:
-	var normal_x = velocity.x
+	var normal_x = direction_input.x
 	if normal_x < 0:
 		normal_x = normal_x * -1
 		
-	var normal_y = velocity.y
+	var normal_y = direction_input.y
 	if normal_y < 0:
 		normal_y = normal_y * -1
 		
 	if normal_y > normal_x:
-		if velocity.y > 0:
+		if direction_input.y > 0:
 			rotation_degrees = -90.0
 		else:
 			rotation_degrees = 90.0
 	elif normal_y < normal_y:
-		if velocity.x > 0:
+		if direction_input.x > 0:
 			rotation_degrees = 180.0
 		else:
 			rotation_degrees = 0.0
