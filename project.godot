@@ -18,7 +18,11 @@ config/icon="res://icon.svg"
 [autoload]
 
 SignalBus="*res://global/signal_bus.gd"
-Hud="*res://scenes/hud/hud.gd"
+GameState="*res://global/game_state.gd"
+
+[debug]
+
+gdscript/warnings/unused_signal=0
 
 [input]
 

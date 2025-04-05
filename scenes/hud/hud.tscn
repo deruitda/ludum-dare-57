@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://y7i0qucf3p8i"]
+[gd_scene load_steps=12 format=3 uid="uid://y7i0qucf3p8i"]
 
 [ext_resource type="Texture2D" uid="uid://bdu3xay1kbw8b" path="res://assets/png_files/orb_ship.png" id="1_48c2t"]
 [ext_resource type="Texture2D" uid="uid://bkrttxk3o4ob1" path="res://assets/png_files/radar_ping_gold01.png" id="2_cgeww"]
 [ext_resource type="Texture2D" uid="uid://2k0jwb3kgvy2" path="res://assets/png_files/radar_ping_green01.png" id="3_c45xl"]
+[ext_resource type="Script" uid="uid://dv0b0igbo624" path="res://scenes/hud/hud.gd" id="4_0bx4p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0bx4p"]
 bg_color = Color(0, 0.179451, 0.31905, 0.784314)
@@ -49,6 +50,7 @@ border_width_bottom = 4
 border_color = Color(0, 0, 0, 1)
 
 [node name="Hud" type="CanvasLayer"]
+script = ExtResource("4_0bx4p")
 
 [node name="DepthProgressBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
@@ -289,7 +291,7 @@ theme_override_colors/default_color = Color(0.623616, 1, 0.5945, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/normal_font_size = 28
-text = "$1000
+text = "$0
 "
 scroll_active = false
 vertical_alignment = 1
@@ -329,3 +331,28 @@ mouse_force_pass_scroll_events = false
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("3_c45xl")
 stretch_mode = 0
+
+[node name="TempButtonsContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 12
+
+[node name="AddMaterialButton" type="Button" parent="MarginContainer/TempButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Add Material 0"
+script = ExtResource("4_0bx4p")
+
+[node name="GetPaidButton" type="Button" parent="MarginContainer/TempButtonsContainer"]
+layout_mode = 2
+text = "+$1"
+script = ExtResource("4_0bx4p")
+
+[node name="SellCargoButton" type="Button" parent="MarginContainer/TempButtonsContainer"]
+layout_mode = 2
+text = "Sell Cargo"
+
+[connection signal="pressed" from="MarginContainer/TempButtonsContainer/AddMaterialButton" to="." method="_on_add_material_button_pressed"]
+[connection signal="pressed" from="MarginContainer/TempButtonsContainer/GetPaidButton" to="MarginContainer/TempButtonsContainer/GetPaidButton" method="_on_get_paid_pressed"]
+[connection signal="pressed" from="MarginContainer/TempButtonsContainer/SellCargoButton" to="." method="_on_sell_cargo_button_pressed"]
