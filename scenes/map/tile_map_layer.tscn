@@ -1,29 +1,29 @@
 [gd_scene load_steps=12 format=4 uid="uid://btknplgeb70by"]
 
 [ext_resource type="Script" uid="uid://dqt7xrchrxbs4" path="res://scenes/map/map_generator_component.gd" id="1_bthto"]
-[ext_resource type="TileSet" uid="uid://b31timckohuyk" path="res://scenes/map/minerals/tile_map_layer.tres" id="1_d6qiv"]
+[ext_resource type="TileSet" uid="uid://b31timckohuyk" path="res://scenes/map/tile_resource/tile_map_layer.tres" id="1_d6qiv"]
 [ext_resource type="Script" uid="uid://cfj54igp1nk16" path="res://scenes/map/tile_map_layer.gd" id="2_ne56t"]
-[ext_resource type="Resource" uid="uid://ddv73pvyli3gs" path="res://scenes/minerals/dirt.tres" id="3_gsati"]
-[ext_resource type="Script" uid="uid://csumtewo3g8r6" path="res://scenes/map/minerals/variable_mineral_resource.gd" id="4_d6qiv"]
-[ext_resource type="Resource" uid="uid://b76rsc71db2gl" path="res://scenes/minerals/rock.tres" id="5_gsati"]
-[ext_resource type="Script" uid="uid://dq5ymjjof67y1" path="res://scenes/map/minerals/variable_mineral_resource_list.gd" id="5_qgpub"]
-[ext_resource type="Resource" uid="uid://c44hk3trh8alv" path="res://scenes/minerals/water.tres" id="6_iwege"]
+[ext_resource type="Resource" uid="uid://ddv73pvyli3gs" path="res://scenes/map/tiles/dirt.tres" id="3_gsati"]
+[ext_resource type="Script" uid="uid://csumtewo3g8r6" path="res://scenes/map/tile_resource/variable_tile_resource.gd" id="4_d6qiv"]
+[ext_resource type="Resource" uid="uid://b76rsc71db2gl" path="res://scenes/map/tiles/rock.tres" id="5_gsati"]
+[ext_resource type="Script" uid="uid://dq5ymjjof67y1" path="res://scenes/map/tile_resource/variable_tile_resource_list.gd" id="5_qgpub"]
+[ext_resource type="Resource" uid="uid://c44hk3trh8alv" path="res://scenes/map/tiles/water.tres" id="6_iwege"]
 
 [sub_resource type="Resource" id="Resource_gsati"]
 script = ExtResource("4_d6qiv")
 percent_chance_of_spawn = 0.1
-mineral_resource = ExtResource("5_gsati")
-metadata/_custom_type_script = "uid://csumtewo3g8r6"
-
-[sub_resource type="Resource" id="Resource_d6qiv"]
-script = ExtResource("4_d6qiv")
-percent_chance_of_spawn = 0.15
-mineral_resource = ExtResource("6_iwege")
+tile_resource = ExtResource("5_gsati")
 metadata/_custom_type_script = "uid://csumtewo3g8r6"
 
 [sub_resource type="Resource" id="Resource_iwege"]
+script = ExtResource("4_d6qiv")
+percent_chance_of_spawn = 0.3
+tile_resource = ExtResource("6_iwege")
+metadata/_custom_type_script = "uid://csumtewo3g8r6"
+
+[sub_resource type="Resource" id="Resource_d6qiv"]
 script = ExtResource("5_qgpub")
-minerals = Array[ExtResource("4_d6qiv")]([SubResource("Resource_gsati"), SubResource("Resource_d6qiv")])
+variable_tile_resources = Array[ExtResource("4_d6qiv")]([SubResource("Resource_gsati"), SubResource("Resource_iwege")])
 metadata/_custom_type_script = "uid://dq5ymjjof67y1"
 
 [node name="Map" type="Node"]
@@ -33,8 +33,8 @@ tile_map_data = PackedByteArray("AAD4/wAAAAADAAAAAAD4/wEAAAADAAAAAAD4/wIAAAADAAA
 tile_set = ExtResource("1_d6qiv")
 script = ExtResource("2_ne56t")
 world_generator_component = NodePath("WorldGenerator")
-base_tile_metadata = ExtResource("3_gsati")
-variable_mineral_resource_list = SubResource("Resource_iwege")
+base_tile_resource = ExtResource("3_gsati")
+variable_tile_resource_list = SubResource("Resource_d6qiv")
 
 [node name="WorldGenerator" type="Node" parent="DrillingTileMapLayer"]
 script = ExtResource("1_bthto")

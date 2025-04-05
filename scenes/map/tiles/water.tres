@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="MineralResource" load_steps=2 format=3 uid="uid://c44hk3trh8alv"]
 
-[ext_resource type="Script" uid="uid://joiabccf67iw" path="res://scenes/map/minerals/mineral_resource.gd" id="1_b7vey"]
+[ext_resource type="Script" uid="uid://joiabccf67iw" path="res://scenes/map/tile_resource/tile_resource.gd" id="1_b7vey"]
 
 [resource]
 script = ExtResource("1_b7vey")

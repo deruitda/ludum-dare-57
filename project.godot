@@ -44,11 +44,13 @@ move_down={
 
 [layer_names]
 
-2d_physics/layer_1="Player"
-2d_physics/layer_2="Dirt"
-2d_physics/layer_3="Water"
-2d_physics/layer_7="Rock"
-2d_physics/layer_8="Bedrock"
+2d_physics/layer_1="player"
+2d_physics/layer_2="dirt"
+2d_physics/layer_3="water"
+2d_physics/layer_4="drillable"
+2d_physics/layer_5="valuable_resource"
+2d_physics/layer_7="rock"
+2d_physics/layer_8="bedrock"
 
 [rendering]
 
