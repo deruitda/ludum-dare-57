@@ -6,6 +6,8 @@ class_name WorldTileMapLayer
 @export var base_tile_resource: TileResource
 @export var variable_tile_resource_list: VariableTileResourceList
 
+@export var drilled_tile_space: TileResource
+
 func _ready() -> void:
 	world_generator_component.generate_world(self)
 
@@ -19,3 +21,8 @@ func get_tile_resource_from_rid(rid: RID) -> TileResource:
 	var tile_resource = tileData.get_custom_data("tile_resource")
 		
 	return tile_resource
+
+func drill_tile(rid: RID) -> void:
+	var coords = self.get_coords_for_body_rid(rid)
+	set_tile_resource(drilled_tile_space, coords)
+	

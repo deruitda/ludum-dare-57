@@ -33,6 +33,7 @@ script = ExtResource("2_ne56t")
 world_generator_component = NodePath("WorldGenerator")
 base_tile_resource = ExtResource("3_gsati")
 variable_tile_resource_list = SubResource("Resource_d6qiv")
+drilled_tile_space = ExtResource("6_iwege")
 
 [node name="WorldGenerator" type="Node" parent="."]
 script = ExtResource("1_bthto")
