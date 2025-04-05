@@ -1,22 +1,21 @@
 [gd_scene load_steps=5 format=3 uid="uid://cws16jfeq8cd2"]
 
-[ext_resource type="Texture2D" uid="uid://glalm16a8onw" path="res://scenes/submarine/sub-temp.webp" id="1_ds6i3"]
+[ext_resource type="Texture2D" uid="uid://bdu3xay1kbw8b" path="res://assets/png_files/orb_ship.png" id="2_77ovh"]
 [ext_resource type="Script" uid="uid://d1v1uwdcnmi7d" path="res://scenes/submarine/submarine_body.gd" id="2_tnxgy"]
 [ext_resource type="PackedScene" uid="uid://cpi5qsqbo0r0x" path="res://scenes/radar/radar.tscn" id="3_77ovh"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oatge"]
-size = Vector2(79, 77)
+[sub_resource type="CircleShape2D" id="CircleShape2D_77ovh"]
+radius = 32.1403
 
 [node name="sub_body" type="CharacterBody2D"]
 collision_mask = 194
 script = ExtResource("2_tnxgy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.0394613, 0.0513333)
-texture = ExtResource("1_ds6i3")
+texture = ExtResource("2_77ovh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_oatge")
+shape = SubResource("CircleShape2D_77ovh")
 
 [node name="Submarine" type="Node2D" parent="."]
 
