@@ -1,8 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://bjpr3sd05vw6e"]
+[gd_scene load_steps=4 format=3 uid="uid://cwirtyyxaaml4"]
 
 [ext_resource type="PackedScene" uid="uid://cws16jfeq8cd2" path="res://scenes/submarine/submarine.tscn" id="1_0fkoo"]
+[ext_resource type="PackedScene" uid="uid://bjdqy7cj7yro6" path="res://scenes/radar/pingable.tscn" id="2_5ll32"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0fkoo"]
 
 [node name="Danny-test" type="Node2D"]
 
 [node name="Submarine" parent="." instance=ExtResource("1_0fkoo")]
-position = Vector2(-1, 0)
+position = Vector2(94, 186)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(701, 154)
+collision_layer = 16
+collision_mask = 0
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_0fkoo")
+
+[node name="Pingable" parent="RigidBody2D" instance=ExtResource("2_5ll32")]
