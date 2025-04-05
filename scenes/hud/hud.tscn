@@ -1,0 +1,331 @@
+[gd_scene load_steps=11 format=3 uid="uid://y7i0qucf3p8i"]
+
+[ext_resource type="Texture2D" uid="uid://bdu3xay1kbw8b" path="res://assets/png_files/orb_ship.png" id="1_48c2t"]
+[ext_resource type="Texture2D" uid="uid://bkrttxk3o4ob1" path="res://assets/png_files/radar_ping_gold01.png" id="2_cgeww"]
+[ext_resource type="Texture2D" uid="uid://2k0jwb3kgvy2" path="res://assets/png_files/radar_ping_green01.png" id="3_c45xl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0bx4p"]
+bg_color = Color(0, 0.179451, 0.31905, 0.784314)
+border_width_right = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mgtrf"]
+bg_color = Color(0, 0.480457, 0.197984, 1)
+border_width_right = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_48c2t"]
+line_spacing = -3.0
+font_size = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cgeww"]
+bg_color = Color(0.432225, 0.014049, 2.40654e-08, 0.784314)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c45xl"]
+bg_color = Color(0.999856, 0.30991, 0.270574, 1)
+border_width_left = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6kolt"]
+bg_color = Color(0.346118, 0.229818, 0.00102788, 0.85098)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48c2t"]
+bg_color = Color(0.736395, 0.577792, 0, 1)
+border_width_left = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[node name="Hud" type="CanvasLayer"]
+
+[node name="DepthProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 36.0
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_0bx4p")
+theme_override_styles/fill = SubResource("StyleBoxFlat_mgtrf")
+value = 90.0
+fill_mode = 3
+show_percentage = false
+
+[node name="ZoneOneLimitLine" type="ColorRect" parent="DepthProgressBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.33
+anchor_bottom = 0.33
+offset_right = 32.0
+offset_bottom = 4.0
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ZoneOneLabelContainer" type="VBoxContainer" parent="DepthProgressBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.183
+anchor_right = 1.0
+anchor_bottom = 0.183
+offset_top = -26.0
+offset_right = -4.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -7
+
+[node name="ZoneLabel" type="RichTextLabel" parent="DepthProgressBar/ZoneOneLabelContainer"]
+clip_contents = false
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 10
+text = "ZONE"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="ZoneNumberLabel" type="Label" parent="DepthProgressBar/ZoneOneLabelContainer"]
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_48c2t")
+horizontal_alignment = 1
+
+[node name="ZoneTwoLimitLine" type="ColorRect" parent="DepthProgressBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.66
+anchor_bottom = 0.66
+offset_right = 32.0
+offset_bottom = 4.0
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ZoneTwoLabelContainer2" type="VBoxContainer" parent="DepthProgressBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -26.0
+offset_right = -4.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -7
+
+[node name="ZoneLabel" type="RichTextLabel" parent="DepthProgressBar/ZoneTwoLabelContainer2"]
+clip_contents = false
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 10
+text = "ZONE"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="ZoneNumberLabel" type="Label" parent="DepthProgressBar/ZoneTwoLabelContainer2"]
+layout_mode = 2
+text = "2"
+label_settings = SubResource("LabelSettings_48c2t")
+horizontal_alignment = 1
+
+[node name="ZoneThreeLabelContainer" type="VBoxContainer" parent="DepthProgressBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.83
+anchor_right = 1.0
+anchor_bottom = 0.83
+offset_top = -26.0
+offset_right = -4.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -7
+
+[node name="ZoneLabel" type="RichTextLabel" parent="DepthProgressBar/ZoneThreeLabelContainer"]
+clip_contents = false
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 10
+text = "ZONE"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="ZoneNumberLabel" type="Label" parent="DepthProgressBar/ZoneThreeLabelContainer"]
+layout_mode = 2
+text = "3"
+label_settings = SubResource("LabelSettings_48c2t")
+horizontal_alignment = 1
+
+[node name="SubProgressIcon" type="TextureRect" parent="DepthProgressBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.3
+anchor_right = 0.5
+anchor_bottom = 0.3
+offset_left = -24.0
+offset_top = -1.52588e-05
+offset_right = 40.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_48c2t")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 72
+theme_override_constants/margin_top = 36
+theme_override_constants/margin_right = 36
+theme_override_constants/margin_bottom = 36
+
+[node name="Center Left" type="MarginContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(72, 312)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_top = 72
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Center Left"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="HullIntegrityProgressBar" type="ProgressBar" parent="MarginContainer/Center Left/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_cgeww")
+theme_override_styles/fill = SubResource("StyleBoxFlat_c45xl")
+value = 26.0
+fill_mode = 3
+show_percentage = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/Center Left/HBoxContainer/HullIntegrityProgressBar"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = 3.0
+offset_right = 20.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/line_separation = -4
+theme_override_font_sizes/normal_font_size = 11
+text = "Hull
+Integrity"
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="PowerProgressBar" type="ProgressBar" parent="MarginContainer/Center Left/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_6kolt")
+theme_override_styles/fill = SubResource("StyleBoxFlat_48c2t")
+value = 58.0
+fill_mode = 3
+show_percentage = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/Center Left/HBoxContainer/PowerProgressBar"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = 3.0
+offset_right = 32.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_font_sizes/normal_font_size = 11
+text = "Power"
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="Top Left" type="Control" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="CollectedMoneyRichText" type="RichTextLabel" parent="MarginContainer/Top Left"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 40.0
+theme_override_colors/default_color = Color(0.623616, 1, 0.5945, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 28
+text = "$1000
+"
+scroll_active = false
+vertical_alignment = 1
+drag_and_drop_selection_enabled = false
+
+[node name="Container" type="Control" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+
+[node name="PauseButton" type="TextureButton" parent="MarginContainer/Container"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_bottom = 64.0
+grow_horizontal = 0
+mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("2_cgeww")
+stretch_mode = 0
+
+[node name="PlayButton" type="TextureButton" parent="MarginContainer/Container"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_bottom = 64.0
+grow_horizontal = 0
+mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("3_c45xl")
+stretch_mode = 0

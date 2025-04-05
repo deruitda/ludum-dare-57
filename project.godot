@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="ludum-dare-57"
-run/main_scene="uid://s0ba74cuy8uh"
+run/main_scene="uid://di5u2cu2ham0d"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 SignalBus="*res://global/signal_bus.gd"
+Hud="*res://scenes/hud/hud.gd"
 
 [input]
 
