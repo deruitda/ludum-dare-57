@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://btknplgeb70by"]
+[gd_scene load_steps=17 format=3 uid="uid://btknplgeb70by"]
 
 [ext_resource type="Texture2D" uid="uid://dm3eldaf5cek1" path="res://Assets/PNG Files/TileSet.png" id="1_bkldo"]
 [ext_resource type="Script" uid="uid://dqt7xrchrxbs4" path="res://scenes/map/map_generator_component.gd" id="1_bthto"]
@@ -6,6 +6,26 @@
 [ext_resource type="Script" uid="uid://joiabccf67iw" path="res://scenes/map/minerals/mineral_resource.gd" id="3_be0b0"]
 [ext_resource type="Script" uid="uid://csumtewo3g8r6" path="res://scenes/map/minerals/variable_mineral_resource.gd" id="4_d6qiv"]
 [ext_resource type="Script" uid="uid://dq5ymjjof67y1" path="res://scenes/map/minerals/variable_mineral_resource_list.gd" id="5_qgpub"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d6qiv"]
+texture = ExtResource("1_bkldo")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:0/0 = 0
+3:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_d6qiv"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 4
+sources/0 = SubResource("TileSetAtlasSource_d6qiv")
+
+[sub_resource type="Resource" id="Resource_nas3b"]
+script = ExtResource("3_be0b0")
+atlas_coordinates = Vector2(2, 0)
+metadata/_custom_type_script = "uid://joiabccf67iw"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ne56t"]
 texture = ExtResource("1_bkldo")
@@ -57,48 +77,61 @@ metadata/_custom_type_script = "uid://joiabccf67iw"
 [node name="Map" type="Node"]
 
 [node name="WaterTileMapLayer" type="TileMapLayer" parent="." node_paths=PackedStringArray("world_generator_component")]
+tile_set = SubResource("TileSet_d6qiv")
+script = ExtResource("2_ne56t")
+world_generator_component = NodePath("WaterGenerator")
+base_tile_metadata = SubResource("Resource_nas3b")
+metadata/_custom_type_script = "uid://cfj54igp1nk16"
+
+[node name="WaterGenerator" type="Node" parent="WaterTileMapLayer"]
+script = ExtResource("1_bthto")
+num_tiles_wide = 200
+num_tiles_deep = 200
+metadata/_custom_type_script = "uid://dqt7xrchrxbs4"
+
+[node name="DrillingTileMapLayer" type="TileMapLayer" parent="WaterTileMapLayer" node_paths=PackedStringArray("world_generator_component")]
 tile_set = SubResource("TileSet_be0b0")
 script = ExtResource("2_ne56t")
 world_generator_component = NodePath("WorldGenerator")
 base_tile_metadata = SubResource("Resource_qgpub")
 variable_mineral_resource_list = SubResource("Resource_iwege")
 
-[node name="WorldGenerator" type="Node" parent="WaterTileMapLayer"]
+[node name="WorldGenerator" type="Node" parent="WaterTileMapLayer/DrillingTileMapLayer"]
 script = ExtResource("1_bthto")
 num_tiles_wide = 10
 num_tiles_deep = 50
 
-[node name="Bedrock Left" type="TileMapLayer" parent="." node_paths=PackedStringArray("world_generator_component")]
+[node name="Bedrock Left" type="TileMapLayer" parent="WaterTileMapLayer" node_paths=PackedStringArray("world_generator_component")]
 tile_set = SubResource("TileSet_be0b0")
 script = ExtResource("2_ne56t")
 world_generator_component = NodePath("WorldGenerator")
 base_tile_metadata = SubResource("Resource_kties")
 
-[node name="WorldGenerator" type="Node" parent="Bedrock Left"]
+[node name="WorldGenerator" type="Node" parent="WaterTileMapLayer/Bedrock Left"]
 script = ExtResource("1_bthto")
 num_tiles_wide = 10
 num_tiles_deep = 50
 root_coordinates = Vector2(-10, 0)
 
-[node name="Bedrock Right" type="TileMapLayer" parent="." node_paths=PackedStringArray("world_generator_component")]
+[node name="Bedrock Right" type="TileMapLayer" parent="WaterTileMapLayer" node_paths=PackedStringArray("world_generator_component")]
 tile_set = SubResource("TileSet_be0b0")
 script = ExtResource("2_ne56t")
 world_generator_component = NodePath("WorldGenerator")
 base_tile_metadata = SubResource("Resource_kties")
 
-[node name="WorldGenerator" type="Node" parent="Bedrock Right"]
+[node name="WorldGenerator" type="Node" parent="WaterTileMapLayer/Bedrock Right"]
 script = ExtResource("1_bthto")
 num_tiles_wide = 10
 num_tiles_deep = 50
 root_coordinates = Vector2(10, 0)
 
-[node name="Bedrock Bottom" type="TileMapLayer" parent="." node_paths=PackedStringArray("world_generator_component")]
+[node name="Bedrock Bottom" type="TileMapLayer" parent="WaterTileMapLayer" node_paths=PackedStringArray("world_generator_component")]
 tile_set = SubResource("TileSet_be0b0")
 script = ExtResource("2_ne56t")
 world_generator_component = NodePath("WorldGenerator")
 base_tile_metadata = SubResource("Resource_kties")
 
-[node name="WorldGenerator" type="Node" parent="Bedrock Bottom"]
+[node name="WorldGenerator" type="Node" parent="WaterTileMapLayer/Bedrock Bottom"]
 script = ExtResource("1_bthto")
 num_tiles_wide = 70
 num_tiles_deep = 10
