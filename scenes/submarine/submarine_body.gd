@@ -1,6 +1,7 @@
 extends CharacterBody2D
 @export var speed = 400
 @export var velocity_component: VelocityComponent
+@export var edge_detector: EdgeDetector
 
 @onready var direction_input: Vector2 = Vector2.ZERO
 
@@ -12,6 +13,8 @@ func _physics_process(delta: float):
 	
 	velocity_component.apply_move(direction_input, delta)
 	velocity_component.do_character_move(self)
+
+
 
 func apply_rotation() -> void:
 	var normal_x = direction_input.x
@@ -43,3 +46,20 @@ func apply_rotation() -> void:
 func _ready() -> void:
 	pass # Replace with function body.
 	
+
+
+func _on_down_ray_cast_2d_on_collision() -> void:
+	velocity_component.apply_collision(Vector2.DOWN)
+	pass # Replace with function body.
+
+func _on_left_ray_cast_2d_on_collision() -> void:
+	velocity_component.apply_collision(Vector2.LEFT)
+	pass # Replace with function body.
+
+func _on_right_ray_cast_2d_on_collision() -> void:
+	velocity_component.apply_collision(Vector2.RIGHT)
+	pass # Replace with function body.
+
+func _on_up_ray_cast_2d_on_collision() -> void:
+	velocity_component.apply_collision(Vector2.UP)
+	pass # Replace with function body.
