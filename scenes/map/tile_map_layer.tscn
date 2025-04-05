@@ -38,5 +38,3 @@ variable_tile_resource_list = SubResource("Resource_d6qiv")
 
 [node name="WorldGenerator" type="Node" parent="DrillingTileMapLayer"]
 script = ExtResource("1_bthto")
-num_tiles_wide = 44
-num_tiles_deep = 200
