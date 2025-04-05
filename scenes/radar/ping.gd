@@ -1,11 +1,12 @@
 extends Node2D
-class_name Pingable
+class_name Ping
 
 @export var ping_time: int = 5
 
 @onready var light: PointLight2D = $PointLight2D
 @onready var timer: Timer = $Timer
-func ping():
+
+func _ready() -> void:
 	start_ping()
 
 func _on_timer_timeout() -> void:
@@ -16,4 +17,4 @@ func start_ping():
 	light.enabled = true
 	
 func stop_ping():
-	light.enabled = false
+	self.queue_free()
