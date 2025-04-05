@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://btknplgeb70by"]
+[gd_scene load_steps=12 format=3 uid="uid://btknplgeb70by"]
 
 [ext_resource type="Texture2D" uid="uid://dm3eldaf5cek1" path="res://Assets/PNG Files/TileSet.png" id="1_bkldo"]
 [ext_resource type="Script" uid="uid://dqt7xrchrxbs4" path="res://scenes/map/map_generator_component.gd" id="1_bthto"]
 [ext_resource type="Script" uid="uid://cfj54igp1nk16" path="res://scenes/map/tile_map_layer.gd" id="2_ne56t"]
-[ext_resource type="Script" uid="uid://joiabccf67iw" path="res://scenes/map/mineral_resource.gd" id="3_be0b0"]
+[ext_resource type="Script" uid="uid://joiabccf67iw" path="res://scenes/map/minerals/mineral_resource.gd" id="3_be0b0"]
+[ext_resource type="Script" uid="uid://csumtewo3g8r6" path="res://scenes/map/minerals/variable_mineral_resource.gd" id="4_d6qiv"]
+[ext_resource type="Script" uid="uid://dq5ymjjof67y1" path="res://scenes/map/minerals/variable_mineral_resource_list.gd" id="5_qgpub"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ne56t"]
 texture = ExtResource("1_bkldo")
@@ -28,14 +30,25 @@ sources/0 = SubResource("TileSetAtlasSource_ne56t")
 [sub_resource type="Resource" id="Resource_kties"]
 script = ExtResource("3_be0b0")
 atlas_coordinates = Vector2(1, 0)
-depth_start = 0
 metadata/_custom_type_script = "uid://joiabccf67iw"
+
+[sub_resource type="Resource" id="Resource_gsati"]
+script = ExtResource("4_d6qiv")
+percent_chance_of_spawn = 0.1
+atlas_coordinates = Vector2(0, 0)
+metadata/_custom_type_script = "uid://csumtewo3g8r6"
+
+[sub_resource type="Resource" id="Resource_iwege"]
+script = ExtResource("5_qgpub")
+minerals = Array[ExtResource("4_d6qiv")]([SubResource("Resource_gsati")])
+metadata/_custom_type_script = "uid://dq5ymjjof67y1"
 
 [node name="WaterTileMapLayer" type="TileMapLayer" node_paths=PackedStringArray("world_generator_component")]
 tile_set = SubResource("TileSet_be0b0")
 script = ExtResource("2_ne56t")
 world_generator_component = NodePath("WorldGenerator")
 base_tile_metadata = SubResource("Resource_kties")
+variable_mineral_resource_list = SubResource("Resource_iwege")
 
 [node name="WorldGenerator" type="Node" parent="."]
 script = ExtResource("1_bthto")
