@@ -14,14 +14,15 @@ config/name="ludum-dare-57"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SignalBus="*res://global/signal_bus.gd"
+
 [layer_names]
 
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Dirt"
 2d_physics/layer_8="Bedrock"
-[autoload]
-
-SignalBus="*res://global/signal_bus.gd"
 
 [rendering]
 
