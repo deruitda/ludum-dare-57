@@ -17,12 +17,9 @@ func _init() -> void:
 		for y in num_tiles_deep:
 			grid[x].append(-1)
 
-func generate_world(tile_map_layer: TileMapLayer) -> void:
+func generate_world(tile_map_layer: WorldTileMapLayer) -> void:
 	for x in num_tiles_wide:
 		for y in num_tiles_deep:
 			var coords = Vector2(x, y)
-			var rock_coords = Vector2(0,0)
-			var dirt_coords = Vector2(1, 0)
-			tile_map_layer.set_cell(coords, 0, dirt_coords, 0)
-			print(tile_map_layer.get_cell_tile_data(coords))
+			tile_map_layer.set_cell(coords, 0, tile_map_layer.base_tile_metadata.atlas_coordinates, 0)
 			
