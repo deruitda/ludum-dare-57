@@ -10,11 +10,16 @@ max_radius = 700.0
 increment = 5.0
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_fyqjv")
+debug_color = Color(0.967241, 0, 0.475498, 0.42)
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

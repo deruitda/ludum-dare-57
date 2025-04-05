@@ -29,3 +29,8 @@ func _ready() -> void:
 
 func _on_timer_timeout() -> void:
 	is_scanning = true
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is Pingable:
+		pass # Replace with function body.
