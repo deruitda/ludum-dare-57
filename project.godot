@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 SignalBus="*res://global/signal_bus.gd"
 MapManager="*res://scenes/map/map_manager.gd"
 AudioController="*res://scenes/core/audio_controller.tscn"
+Helpers="*res://global/helpers.gd"
 
 [input]
 
@@ -51,6 +52,7 @@ move_down={
 2d_physics/layer_3="water"
 2d_physics/layer_4="drillable"
 2d_physics/layer_5="valuable_resource"
+2d_physics/layer_6="drill"
 2d_physics/layer_7="rock"
 2d_physics/layer_8="bedrock"
 
