@@ -5,7 +5,7 @@ signal add_money_collected(moneyPaid: int)
 signal money_collected_updated()
 
 # Cargo Signals
-signal add_cargo()
+signal add_cargo(tile_resource: ValuableTileResource)
 signal cargo_updated()
 signal cargo_at_max_capacity()
 signal sell_cargo()
