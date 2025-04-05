@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_lmrbr")
-name = "dirt"
-atlas_coordinates = Vector2(1, 0)
+name = "valuable_2"
+atlas_coordinates = Vector2(5, 0)
 metadata/_custom_type_script = "uid://joiabccf67iw"

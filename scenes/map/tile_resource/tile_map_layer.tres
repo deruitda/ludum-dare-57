@@ -41,6 +41,7 @@ physics_layer_1/collision_layer = 128
 physics_layer_2/collision_layer = 64
 physics_layer_3/collision_layer = 4
 physics_layer_4/collision_layer = 24
+physics_layer_4/collision_mask = 0
 custom_data_layer_0/name = "tile_resource"
 custom_data_layer_0/type = 24
 sources/0 = SubResource("TileSetAtlasSource_qgpub")
