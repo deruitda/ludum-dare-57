@@ -1,13 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://b24h6fsmki6hk"]
+[gd_scene load_steps=3 format=3 uid="uid://c1phtnxwwn1iq"]
 
-[ext_resource type="PackedScene" uid="uid://cws16jfeq8cd2" path="res://scenes/submarine/submarine.tscn" id="1_5a7up"]
-[ext_resource type="PackedScene" uid="uid://btknplgeb70by" path="res://scenes/map/tile_map_layer.tscn" id="1_l7ppg"]
+[ext_resource type="PackedScene" uid="uid://btknplgeb70by" path="res://scenes/map/tile_map_layer.tscn" id="1_klbtm"]
+[ext_resource type="PackedScene" uid="uid://cws16jfeq8cd2" path="res://scenes/submarine/submarine.tscn" id="2_c0tux"]
 
 [node name="Andrew-test" type="Node2D"]
 
-[node name="Map" parent="." instance=ExtResource("1_l7ppg")]
+[node name="Map" parent="." instance=ExtResource("1_klbtm")]
 
-[node name="Submarine" parent="Map" instance=ExtResource("1_5a7up")]
+[node name="Submarine" parent="Map" instance=ExtResource("2_c0tux")]
 position = Vector2(1408, 40)
 
 [node name="Camera2D" type="Camera2D" parent="Map/Submarine"]
