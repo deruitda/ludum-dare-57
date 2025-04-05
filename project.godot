@@ -14,6 +14,10 @@ config/name="ludum-dare-57"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SignalBus="*res://global/signal_bus.gd"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
