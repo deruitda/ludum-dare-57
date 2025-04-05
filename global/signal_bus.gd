@@ -1,3 +1,5 @@
+extends Node
+
 # Money Collected Signals
 signal add_money_collected(moneyPaid: int)
 signal money_collected_updated()
