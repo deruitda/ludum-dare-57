@@ -1,23 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwirtyyxaaml4"]
+[gd_scene load_steps=3 format=3 uid="uid://b5atiwqbkwy7i"]
 
-[ext_resource type="PackedScene" uid="uid://cws16jfeq8cd2" path="res://scenes/submarine/submarine.tscn" id="1_0fkoo"]
-[ext_resource type="PackedScene" uid="uid://bjdqy7cj7yro6" path="res://scenes/radar/pingable.tscn" id="2_5ll32"]
+[ext_resource type="PackedScene" uid="uid://btknplgeb70by" path="res://scenes/map/tile_map_layer.tscn" id="1_157af"]
+[ext_resource type="PackedScene" uid="uid://cws16jfeq8cd2" path="res://scenes/submarine/submarine.tscn" id="2_5qryq"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0fkoo"]
+[node name="Main" type="Node2D"]
 
-[node name="Danny-test" type="Node2D"]
+[node name="Map" parent="." instance=ExtResource("1_157af")]
 
-[node name="Submarine" parent="." instance=ExtResource("1_0fkoo")]
-position = Vector2(94, 186)
+[node name="Submarine" parent="Map" instance=ExtResource("2_5qryq")]
+position = Vector2(1408, 40)
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-position = Vector2(701, 154)
-collision_layer = 16
-collision_mask = 0
-gravity_scale = 0.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(1, 0)
-shape = SubResource("RectangleShape2D_0fkoo")
-
-[node name="Pingable" parent="RigidBody2D" instance=ExtResource("2_5ll32")]
+[node name="Camera2D" type="Camera2D" parent="Map/Submarine"]
