@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MineralResource" load_steps=2 format=3 uid="uid://b76rsc71db2gl"]
+
+[ext_resource type="Script" uid="uid://joiabccf67iw" path="res://scenes/map/minerals/mineral_resource.gd" id="1_iar5l"]
+
+[resource]
+script = ExtResource("1_iar5l")
+name = "rock"
+atlas_coordinates = Vector2(0, 0)
+metadata/_custom_type_script = "uid://joiabccf67iw"

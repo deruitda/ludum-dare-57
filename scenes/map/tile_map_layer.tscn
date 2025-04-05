@@ -1,27 +1,24 @@
-[gd_scene load_steps=11 format=4 uid="uid://btknplgeb70by"]
+[gd_scene load_steps=12 format=4 uid="uid://btknplgeb70by"]
 
 [ext_resource type="Script" uid="uid://dqt7xrchrxbs4" path="res://scenes/map/map_generator_component.gd" id="1_bthto"]
 [ext_resource type="TileSet" uid="uid://b31timckohuyk" path="res://scenes/map/minerals/tile_map_layer.tres" id="1_d6qiv"]
 [ext_resource type="Script" uid="uid://cfj54igp1nk16" path="res://scenes/map/tile_map_layer.gd" id="2_ne56t"]
-[ext_resource type="Script" uid="uid://joiabccf67iw" path="res://scenes/map/minerals/mineral_resource.gd" id="3_be0b0"]
+[ext_resource type="Resource" uid="uid://ddv73pvyli3gs" path="res://scenes/minerals/dirt.tres" id="3_gsati"]
 [ext_resource type="Script" uid="uid://csumtewo3g8r6" path="res://scenes/map/minerals/variable_mineral_resource.gd" id="4_d6qiv"]
+[ext_resource type="Resource" uid="uid://b76rsc71db2gl" path="res://scenes/minerals/rock.tres" id="5_gsati"]
 [ext_resource type="Script" uid="uid://dq5ymjjof67y1" path="res://scenes/map/minerals/variable_mineral_resource_list.gd" id="5_qgpub"]
-
-[sub_resource type="Resource" id="Resource_qgpub"]
-script = ExtResource("3_be0b0")
-atlas_coordinates = Vector2(1, 0)
-metadata/_custom_type_script = "uid://joiabccf67iw"
+[ext_resource type="Resource" uid="uid://c44hk3trh8alv" path="res://scenes/minerals/water.tres" id="6_iwege"]
 
 [sub_resource type="Resource" id="Resource_gsati"]
 script = ExtResource("4_d6qiv")
 percent_chance_of_spawn = 0.1
-atlas_coordinates = Vector2(0, 0)
+mineral_resource = ExtResource("5_gsati")
 metadata/_custom_type_script = "uid://csumtewo3g8r6"
 
 [sub_resource type="Resource" id="Resource_d6qiv"]
 script = ExtResource("4_d6qiv")
 percent_chance_of_spawn = 0.15
-atlas_coordinates = Vector2(2, 0)
+mineral_resource = ExtResource("6_iwege")
 metadata/_custom_type_script = "uid://csumtewo3g8r6"
 
 [sub_resource type="Resource" id="Resource_iwege"]
@@ -36,7 +33,7 @@ tile_map_data = PackedByteArray("AAD4/wAAAAADAAAAAAD4/wEAAAADAAAAAAD4/wIAAAADAAA
 tile_set = ExtResource("1_d6qiv")
 script = ExtResource("2_ne56t")
 world_generator_component = NodePath("WorldGenerator")
-base_tile_metadata = SubResource("Resource_qgpub")
+base_tile_metadata = ExtResource("3_gsati")
 variable_mineral_resource_list = SubResource("Resource_iwege")
 
 [node name="WorldGenerator" type="Node" parent="DrillingTileMapLayer"]

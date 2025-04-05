@@ -26,8 +26,9 @@ func generate_world(tile_map_layer: WorldTileMapLayer) -> void:
 	var weights = []
 	var number_of_minerals: int = 0
 	if tile_map_layer.variable_mineral_resource_list:
-		minerals = tile_map_layer.variable_mineral_resource_list.minerals
-		weights = minerals.map(func(mineral): return mineral.percent_chance_of_spawn)
+		var variable_mineral_resources = tile_map_layer.variable_mineral_resource_list.minerals
+		weights = variable_mineral_resources.map(func(variable_mineral_resource): return variable_mineral_resource.percent_chance_of_spawn)
+		minerals = variable_mineral_resources.map(func(variable_mineral_resource): return variable_mineral_resource.mineral_resource)
 		number_of_minerals = minerals.size()
 		weights.push_back(1)
 	
