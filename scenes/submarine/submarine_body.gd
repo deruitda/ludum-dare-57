@@ -2,6 +2,7 @@ extends CharacterBody2D
 @export var speed = 400
 @export var velocity_component: VelocityComponent
 @export var edge_detector: EdgeDetector
+@export var hull: Hull
 
 @onready var direction_input: Vector2 = Vector2.ZERO
 

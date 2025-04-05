@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cnxnqgebtduim"]
+
+[ext_resource type="Script" uid="uid://ccqnu1nqw7xs8" path="res://scenes/submarine/hull/hull_resource.gd" id="1_dnqpw"]
+
+[resource]
+script = ExtResource("1_dnqpw")
+integrity = 0.0

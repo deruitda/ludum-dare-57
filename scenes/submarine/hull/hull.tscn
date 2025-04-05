@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhafbx5nnqcyq"]
+
+[ext_resource type="Script" uid="uid://cjsgrwt4iro8m" path="res://scenes/submarine/hull/hull.gd" id="1_b6yom"]
+[ext_resource type="Resource" uid="uid://bef84krj3d14a" path="res://scenes/submarine/hull/hulls/default_hull.tres" id="2_2q6fy"]
+
+[node name="Hull" type="Node2D"]
+script = ExtResource("1_b6yom")
+hull_resource = ExtResource("2_2q6fy")

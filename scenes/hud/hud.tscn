@@ -218,7 +218,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/background = SubResource("StyleBoxFlat_cgeww")
 theme_override_styles/fill = SubResource("StyleBoxFlat_c45xl")
-value = 26.0
+value = 100.0
 fill_mode = 3
 show_percentage = false
 
