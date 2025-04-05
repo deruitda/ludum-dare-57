@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://kds00okft8db" path="res://scenes/submarine/drill.gd" id="1_xmfwo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xmfwo"]
-size = Vector2(18, 18)
+size = Vector2(44, 18)
 
 [node name="Drill" type="Node2D"]
 script = ExtResource("1_xmfwo")
