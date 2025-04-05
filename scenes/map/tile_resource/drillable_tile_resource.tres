@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="TileResource" load_steps=2 format=3 uid="uid://w7yy5wfq0vr3"]
+
+[ext_resource type="Script" uid="uid://joiabccf67iw" path="res://scenes/map/tile_resource/tile_resource.gd" id="1_4tmwv"]
+
+[resource]
+script = ExtResource("1_4tmwv")
+name = ""
+atlas_coordinates = Vector2(0, 0)
+metadata/_custom_type_script = "uid://joiabccf67iw"
