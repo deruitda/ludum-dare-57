@@ -12,3 +12,10 @@ func _ready() -> void:
 func set_tile_resource(tile_resource: TileResource, coords: Vector2) -> void:
 	var atlas_coords = tile_resource.atlas_coordinates
 	self.set_cell(coords, 0, tile_resource.atlas_coordinates, 0)
+
+func get_tile_resource_from_rid(rid: RID) -> TileResource:
+	var coords = self.get_coords_for_body_rid(rid)
+	var tileData = self.get_cell_tile_data(coords)
+	var tile_resource = tileData.get_custom_data("tile_resource")
+		
+	return tile_resource

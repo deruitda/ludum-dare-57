@@ -31,6 +31,10 @@ func _on_timer_timeout() -> void:
 	is_scanning = true
 
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body is Pingable:
-		pass # Replace with function body.
+func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	if !body is WorldTileMapLayer:
+		pass
+	
+	var coords = body.get_coords_for_body_rid(body_rid)
+	var tile_resource = body.get_tile_resource_from_rid(body_rid)
+	SignalBus.resource_pinged.emit(coords, tile_resource)
