@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cws16jfeq8cd2"]
+
+[ext_resource type="Texture2D" uid="uid://glalm16a8onw" path="res://scenes/submarine/sub-temp.webp" id="1_ds6i3"]
+[ext_resource type="Script" uid="uid://d1v1uwdcnmi7d" path="res://scenes/submarine/submarine_body.gd" id="2_tnxgy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oatge"]
+size = Vector2(79, 77)
+
+[node name="Submarine" type="Node2D"]
+
+[node name="sub_body" type="CharacterBody2D" parent="."]
+script = ExtResource("2_tnxgy")
+
+[node name="Sprite2D" type="Sprite2D" parent="sub_body"]
+position = Vector2(40.1916, 38.5)
+scale = Vector2(0.0394613, 0.0513333)
+texture = ExtResource("1_ds6i3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sub_body"]
+position = Vector2(40.5, 38.5)
+shape = SubResource("RectangleShape2D_oatge")

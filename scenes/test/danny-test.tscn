@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjpr3sd05vw6e"]
+
+[ext_resource type="PackedScene" uid="uid://cws16jfeq8cd2" path="res://scenes/submarine/submarine.tscn" id="1_0fkoo"]
+
+[node name="Danny-test" type="Node2D"]
+
+[node name="Submarine" parent="." instance=ExtResource("1_0fkoo")]
+position = Vector2(-1, 0)
