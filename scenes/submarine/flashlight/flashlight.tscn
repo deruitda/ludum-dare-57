@@ -126,9 +126,10 @@ rotation = 3.14159
 color = Color(0.554724, 0.614032, 1, 1)
 energy = 1.89
 shadow_enabled = true
+shadow_item_cull_mask = 1024
 texture = ExtResource("2_txavb")
-offset = Vector2(476.945, 0)
-texture_scale = 1.8
+offset = Vector2(716.84, 5.64)
+texture_scale = 2.73
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_o35b1")
