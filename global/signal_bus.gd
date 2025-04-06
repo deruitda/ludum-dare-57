@@ -10,13 +10,25 @@ signal cargo_updated()
 signal cargo_at_max_capacity()
 signal sell_cargo()
 
-# Player Signals
-signal player_health_changed(new_health_value: int)
+# Hull Signals
+signal hull_health_updated(hull: Hull)
+signal hull_destroyed()
 
 # Resources
-signal submarine_destroyed()
 signal resource_pinged(coords: Vector2, tile_resource: TileResource)
 
-#Status Signals
+# Status Signals
 signal set_current_depth(depth: float)
 signal set_normalized_depth_percentage(depth: float)
+
+#Battery Signals
+signal battery_updated(battery: Battery)
+signal submarine_lost_power()
+
+# Shop Signals
+signal close_shop()
+signal open_shop()
+signal player_entered_shop_area()
+signal player_exited_shop_area()
+signal purchase_upgrade(shop_item_resource: ShopItemResource)
+signal purchase_completed(updated_shop_item_resource: ShopItemResource)

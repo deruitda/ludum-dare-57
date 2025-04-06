@@ -1,8 +1,11 @@
-[gd_resource type="Resource" script_class="HullResource" load_steps=2 format=3 uid="uid://bi71cms3b1ptx"]
+[gd_resource type="Resource" script_class="HullResource" load_steps=3 format=3 uid="uid://bi71cms3b1ptx"]
 
 [ext_resource type="Script" uid="uid://ccqnu1nqw7xs8" path="res://scenes/submarine/hull/hull_resource.gd" id="1_qffpm"]
+[ext_resource type="Resource" uid="uid://deohy8pv6vau6" path="res://scenes/submarine/hull/hulls/hull_zone_2.tres" id="2_8qdjl"]
 
 [resource]
 script = ExtResource("1_qffpm")
 max_depth_percentage_for_full_integrity = 1.0
+unlocked_by_upgrade_resource = ExtResource("2_8qdjl")
+is_purchased = false
 metadata/_custom_type_script = "uid://ccqnu1nqw7xs8"

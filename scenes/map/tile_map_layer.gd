@@ -4,7 +4,7 @@ class_name WorldTileMapLayer
 @export var num_tiles_deep: int = 300 
 @export var world_generator_component: WorldGeneratorComponent
 @export var base_tile_resource: TileResource
-@export var variable_tile_resource_list: VariableTileResourceList
+@export var zone_resource_list_layers: Array[ZoneResourceListLayer]
 
 @export var drilled_tile_space: TileResource
 

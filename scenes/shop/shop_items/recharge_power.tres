@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ShopItemResource" load_steps=2 format=3 uid="uid://wat7m0b4ias4"]
+
+[ext_resource type="Script" uid="uid://dq388fj72n7ck" path="res://scenes/shop/shop_items/shop_item.gd" id="2_f6nau"]
+
+[resource]
+script = ExtResource("2_f6nau")
+price = 0
+tooltip = "CHAAARGE"

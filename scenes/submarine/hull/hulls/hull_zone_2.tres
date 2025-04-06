@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_reyo7")
 max_depth_percentage_for_full_integrity = 0.667
+is_unlocked = false
 metadata/_custom_type_script = "uid://ccqnu1nqw7xs8"

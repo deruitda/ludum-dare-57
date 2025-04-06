@@ -13,6 +13,19 @@ class_name Hull
 
 signal hull_destroyed
 
+func _ready() -> void:
+	SignalBus.purchase_completed.connect(_shop_item_purchased)
+
+
+func _physics_process(delta: float) -> void:
+	update_depth(GameState.depth, delta)
+
+
+func _shop_item_purchased(shop_item_resource: ShopItemResource):
+	if shop_item_resource.item_resource is HullResource:
+		upgrade_hull(shop_item_resource.item_resource)
+
+
 func update_depth(depth: float, delta: float) -> void:
 	var percentage_depth = depth / (GameState.TOTAL_DEPTH / GameState.PIXEL_SIZE)
 	
@@ -42,24 +55,32 @@ func update_depth(depth: float, delta: float) -> void:
 			decay_health_pulse_timer.stop()
 
 
-func remove_health_by_decay_rate(decay_rate: float) -> void:
+func remove_health(amount: float) -> void:
 		# Subtract from health
-		health -= decay_rate
+		var _health = health - amount
+		set_health(_health)
 
-		# Clamp so health doesn't go negative
-		health = max(health, 0.0)
-		
-		SignalBus.player_health_changed.emit(health)
-		
-		if health <= 0 and not is_destroyed:
-			is_destroyed = true
-			SignalBus.submarine_destroyed.emit()
-			hull_destroyed.emit()
-
-
+func set_health(_health: float):
+	health = max(min(_health, hull_resource.max_health), 0.0)
+	SignalBus.hull_health_updated.emit(self)
+	
+	if health == 0.0 and not is_destroyed:
+		is_destroyed = true
+		SignalBus.submarine_destroyed.emit()
+		hull_destroyed.emit()
+	
 func _on_decay_health_pulse_timer_timeout() -> void:
-	remove_health_by_decay_rate(decaying_potential_health_loss)
+	remove_health(decaying_potential_health_loss)
 	decaying_potential_health_loss = 0.0
 
+func repair_hull():
+	set_health(hull_resource.max_health)
+	
+
 func upgrade_hull(new_hull_resource: HullResource) -> void:
+	print("upgrading")
 	hull_resource = new_hull_resource
+	repair_hull()
+	
+func get_hull_health_percentage() -> float:
+	return health / hull_resource.max_health

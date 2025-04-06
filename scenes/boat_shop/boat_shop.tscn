@@ -1,0 +1,117 @@
+[gd_scene load_steps=17 format=3 uid="uid://cwaak0mkvaijg"]
+
+[ext_resource type="Script" uid="uid://w7kfyo0fwf7g" path="res://scenes/boat_shop/boat_shop.gd" id="1_7jtu6"]
+[ext_resource type="Texture2D" uid="uid://bk8un2lnf53r8" path="res://assets/png_files/surface_ship01.png" id="2_lvddt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evv60"]
+atlas = ExtResource("2_lvddt")
+region = Rect2(0, 0, 640, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83yoy"]
+atlas = ExtResource("2_lvddt")
+region = Rect2(645, 0, 640, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otxdn"]
+atlas = ExtResource("2_lvddt")
+region = Rect2(1290, 0, 640, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbtc0"]
+atlas = ExtResource("2_lvddt")
+region = Rect2(1935, 0, 640, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80egu"]
+atlas = ExtResource("2_lvddt")
+region = Rect2(2580, 0, 640, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3v31s"]
+atlas = ExtResource("2_lvddt")
+region = Rect2(3225, 0, 640, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6babk"]
+atlas = ExtResource("2_lvddt")
+region = Rect2(3870, 0, 640, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7bemo"]
+atlas = ExtResource("2_lvddt")
+region = Rect2(4515, 0, 640, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xxil"]
+atlas = ExtResource("2_lvddt")
+region = Rect2(5160, 0, 640, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2a7p"]
+atlas = ExtResource("2_lvddt")
+region = Rect2(5805, 0, 640, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_apide"]
+atlas = ExtResource("2_lvddt")
+region = Rect2(6450, 0, 640, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbscr"]
+atlas = ExtResource("2_lvddt")
+region = Rect2(7095, 0, 640, 384)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hmasf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evv60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83yoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otxdn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbtc0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80egu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3v31s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6babk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7bemo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xxil")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2a7p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_apide")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mbscr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hbei0"]
+size = Vector2(640, 192)
+
+[node name="BoatShop" type="Node2D"]
+script = ExtResource("1_7jtu6")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hmasf")
+autoplay = "default"
+frame_progress = 0.010723
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, 215)
+collision_layer = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_hbei0")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
