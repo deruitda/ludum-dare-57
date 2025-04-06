@@ -15,6 +15,8 @@ func _on_hull_health_updated(hull: Hull):
 	elif new_value > value:
 		flash_progress_bar(INCREMENT_FLASH_COLOR)
 	
+	value = new_value * 100.0
+	
 func flash_progress_bar(_flash_color: Color):
 	if tween:
 		return

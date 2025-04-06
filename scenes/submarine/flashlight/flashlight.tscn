@@ -123,6 +123,7 @@ script = ExtResource("1_f3xsa")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 rotation = 3.14159
+enabled = false
 color = Color(0.554724, 0.614032, 1, 1)
 energy = 1.89
 shadow_enabled = true
@@ -133,7 +134,7 @@ texture_scale = 2.73
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_o35b1")
-animation = &"close"
+animation = &"open"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_ueyfn")

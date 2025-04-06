@@ -7,7 +7,7 @@ var current_cargo_value: int = 0
 @export var is_shop_opened: bool = false
 var is_player_in_shop_area: bool = false
 
-var depth = 0.0
+var depth: float = 0.0
 
 const TOTAL_DEPTH: float = 11800.0
 const PIXEL_SIZE: int = 64
