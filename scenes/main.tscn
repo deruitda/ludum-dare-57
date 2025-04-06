@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d201f6lfjqx1v" path="res://scenes/hud/ping_pointer/ping_pointer.tscn" id="2_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://ng3xa25mlxkb" path="res://scenes/shop/shop.tscn" id="3_choun"]
 [ext_resource type="PackedScene" uid="uid://ce0kl0dk0xdtq" path="res://scenes/core/audio_controller.tscn" id="3_sugp2"]
-[ext_resource type="Script" path="res://scenes/map/tile_resource/zone_resource_list_layer.gd" id="3_tefeu"]
+[ext_resource type="Script" uid="uid://b0wmy2qe6hygq" path="res://scenes/map/tile_resource/zone_resource_list_layer.gd" id="3_tefeu"]
 [ext_resource type="Resource" uid="uid://v3xrbcr0u4i6" path="res://scenes/map/zone_resource_list_layers/zone_1_resource_list_layer.tres" id="4_o6xl0"]
 [ext_resource type="Resource" uid="uid://cljheb83ftod6" path="res://scenes/map/zone_resource_list_layers/zone_2_resource_list_layer.tres" id="5_o6xl0"]
 [ext_resource type="Resource" uid="uid://5woomv2ypgi3" path="res://scenes/map/zone_resource_list_layers/zone_3_resource_list_layer.tres" id="6_tipki"]
@@ -35,7 +35,7 @@ zone_resource_list_layers = Array[ExtResource("3_tefeu")]([ExtResource("4_o6xl0"
 position = Vector2(3876, 62)
 
 [node name="Submarine" parent="Map" instance=ExtResource("2_sugp2")]
-position = Vector2(3877, 8)
+position = Vector2(2165, 1354)
 
 [node name="Camera2D" type="Camera2D" parent="Map/Submarine"]
 

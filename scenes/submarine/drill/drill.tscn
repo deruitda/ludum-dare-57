@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://f231crs35mvv"]
+[gd_scene load_steps=6 format=3 uid="uid://f231crs35mvv"]
 
 [ext_resource type="Texture2D" uid="uid://bqngpq1j0yl5m" path="res://assets/png_files/drill01.png" id="1_vu58k"]
 [ext_resource type="Script" uid="uid://kds00okft8db" path="res://scenes/submarine/drill/drill.gd" id="1_xmfwo"]
 [ext_resource type="PackedScene" uid="uid://ca1meki1cy0e6" path="res://scenes/submarine/power_consumption_component.tscn" id="3_yx7yl"]
+[ext_resource type="Script" uid="uid://cut54ox6u58st" path="res://scenes/submarine/ray_cast_collider.gd" id="4_ejuc6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xmfwo"]
 size = Vector2(44, 18)
@@ -29,6 +30,17 @@ texture = ExtResource("1_vu58k")
 [node name="DrillTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="DrillRayCast" type="RayCast2D" parent="."]
+rotation = 3.14159
+target_position = Vector2(1.74846e-06, 20)
+collision_mask = 8
+script = ExtResource("4_ejuc6")
+metadata/_custom_type_script = "uid://cut54ox6u58st"
+
 [connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
 [connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]
 [connection signal="body_shape_exited" from="Area2D" to="." method="_on_area_2d_body_shape_exited"]
+[connection signal="child_entered_tree" from="DrillRayCast" to="." method="_on_area_2d_body_shape_entered"]
+[connection signal="child_exiting_tree" from="DrillRayCast" to="." method="_on_area_2d_body_shape_exited"]
+[connection signal="on_collision" from="DrillRayCast" to="." method="_on_collision"]
+[connection signal="on_collision_exit" from="DrillRayCast" to="." method="_on_collision_exit"]

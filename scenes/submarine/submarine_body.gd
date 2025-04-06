@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var velocity_component: VelocityComponent
 @export var edge_detector: EdgeDetector
 @export var hull: Hull
+@export var drill: Drill
 
 @onready var current_depth: float
 @onready var direction_input: Vector2 = Vector2.ZERO
@@ -18,6 +19,8 @@ func _process(delta: float) -> void:
 	SignalBus.set_current_depth.emit(current_depth)
 
 func _physics_process(delta: float):
+	drill.set_current_input_direction(direction_input)
+	
 	move_to_center_component.set_current_position_value(global_position)
 	move_to_center_component.set_current_velocity(velocity)
 	move_to_center_component.set_current_input_direction(direction_input)
@@ -29,7 +32,6 @@ func _physics_process(delta: float):
 	if move_to_center_component.is_currently_centering:
 		var move_to_center_velocity: Vector2 = move_to_center_component.get_velocity_to_center()
 		velocity_component.set_velocity(move_to_center_velocity)
-		print("move")
 	else:
 		#print("move by input")
 		velocity_component.apply_move(direction_input, delta)
