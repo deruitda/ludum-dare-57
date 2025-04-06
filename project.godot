@@ -28,6 +28,11 @@ PingSpawner="*res://global/ping_spawner.gd"
 
 gdscript/warnings/unused_signal=0
 
+[display]
+
+window/size/viewport_width=1600
+window/size/viewport_height=900
+
 [input]
 
 move_right={

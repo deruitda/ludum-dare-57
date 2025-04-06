@@ -6,6 +6,7 @@ extends Node2D
 @export var cooldown_time: int = 5
 @onready var timer: Timer = $Timer
 @onready var circle_collider: CollisionShape2D = $Area2D/CollisionShape2D
+@onready var area2d : Area2D = $Area2D
 @onready var circle_drawer: CircleDrawer = $CircleDrawer
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -35,6 +36,7 @@ func _physics_process(delta):
 		else:
 			is_scanning = false
 			circle_drawer.visible = false
+			area2d.monitoring = false
 			animated_sprite.play("end_scan")
 
 		current_rad = new_rad
@@ -46,6 +48,7 @@ func start_scan():
 	animated_sprite.play("begin_scan")
 	is_scanning = true
 	circle_drawer.visible = true
+	area2d.monitoring = true
 
 
 func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
