@@ -12,6 +12,8 @@ func _ready() -> void:
 func _shop_item_purchased(shop_item_resource: ShopItemResource):
 	if shop_item_resource.item_resource is BatteryResource:
 		upgrade_battery(shop_item_resource.item_resource)
+	elif shop_item_resource.item_resource is RechargeBatteryResource:
+		fully_charge_battery()
 
 func has_enough_power_for(potential_power_amount: float) -> bool:
 	return current_power_level > potential_power_amount
