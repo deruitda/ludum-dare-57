@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cws16jfeq8cd2"]
+[gd_scene load_steps=10 format=3 uid="uid://cws16jfeq8cd2"]
 
 [ext_resource type="Texture2D" uid="uid://bdu3xay1kbw8b" path="res://assets/png_files/orb_ship.png" id="2_77ovh"]
 [ext_resource type="Script" uid="uid://d1v1uwdcnmi7d" path="res://scenes/submarine/submarine_body.gd" id="2_tnxgy"]
@@ -7,8 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://rcwc7cd67g8x" path="res://scenes/core/velocity_component.tscn" id="6_efdjn"]
 [ext_resource type="Script" uid="uid://bh4sbf1janobf" path="res://scenes/submarine/edge_detector.gd" id="6_qooq6"]
 [ext_resource type="Script" uid="uid://cut54ox6u58st" path="res://scenes/submarine/ray_cast_collider.gd" id="7_qooq6"]
-[ext_resource type="Script" uid="uid://cjsgrwt4iro8m" path="res://scenes/submarine/hull/hull.gd" id="8_myfyj"]
-[ext_resource type="Resource" uid="uid://bef84krj3d14a" path="res://scenes/submarine/hull/hulls/default_hull.tres" id="9_roe7p"]
+[ext_resource type="PackedScene" uid="uid://pec3axhf51j6" path="res://scenes/submarine/hull.tscn" id="8_myfyj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_77ovh"]
 radius = 27.0185
@@ -64,10 +63,8 @@ target_position = Vector2(0, 32)
 collision_mask = 203
 script = ExtResource("7_qooq6")
 
-[node name="Hull" type="Node2D" parent="."]
-script = ExtResource("8_myfyj")
-hull_resource = ExtResource("9_roe7p")
-metadata/_custom_type_script = "uid://cjsgrwt4iro8m"
+[node name="Hull" parent="." instance=ExtResource("8_myfyj")]
+position = Vector2(1, 0)
 
 [connection signal="on_collision" from="EdgeDetector/DownRayCast2D" to="." method="_on_down_ray_cast_2d_on_collision"]
 [connection signal="on_collision" from="EdgeDetector/LeftRayCast2D" to="." method="_on_left_ray_cast_2d_on_collision"]
