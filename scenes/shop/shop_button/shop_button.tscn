@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://cy1wj7klhfd73"]
+
+[ext_resource type="StyleBox" uid="uid://bagtovoit5acb" path="res://scenes/shop/shop_button/shop_button_styles.tres" id="1_3dyx3"]
+[ext_resource type="Script" uid="uid://dptm0n782qvlu" path="res://scenes/shop/shop_button/shop_button.gd" id="1_gukhv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fygic"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 22.0
+bg_color = Color(0, 0, 0, 0.294118)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3dyx3"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 22.0
+bg_color = Color(0, 0, 0, 0.603922)
+
+[node name="ShopButton" type="Button"]
+custom_minimum_size = Vector2(0, 64)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/disabled = SubResource("StyleBoxFlat_fygic")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3dyx3")
+theme_override_styles/pressed = ExtResource("1_3dyx3")
+theme_override_styles/normal = ExtResource("1_3dyx3")
+text = "Level 2"
+script = ExtResource("1_gukhv")
+
+[node name="PriceLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -29.0
+offset_right = 20.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+text = "$100"
+horizontal_alignment = 1
+justification_flags = 162
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
