@@ -5,23 +5,20 @@ class_name DepthProgressBar
 
 func _ready() -> void:
 	SignalBus.set_current_depth.connect(_update_current_depth)
-	modulate = get_health_color()
+	modulate = get_health_color(1.0)
 	
 
 func _update_current_depth(current_depth: float) -> void:
-	var val = current_depth / (GameState.TOTAL_DEPTH / 64)
+	var val = current_depth / (GameState.TOTAL_DEPTH / GameState.PIXEL_SIZE)
 	sub_progress_icon.anchor_bottom = val
 	sub_progress_icon.anchor_top = val
-	value = 100 - val
 	
-	modulate = get_health_color()
+	modulate = get_health_color(val)
 
-func get_health_color() -> Color:
-	# Clamp to 0.0 - 1.0
-	var percent = clamp(value, 0.0, 1.0)
+func get_health_color(percentage: float) -> Color:
 
-	var red = Color(1, 0, 0)     # Full red
-	var green = Color(0, 1, 0)   # Full green
+	var red = Color.RED    # Full red
+	var green = Color.GREEN # Full greens
 
 	# Lerp from red to green (low health = red, high health = green)
-	return red.lerp(green, percent)
+	return green.lerp(red, percentage)

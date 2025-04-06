@@ -1,0 +1,147 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpfs0tttr5k67"]
+
+[ext_resource type="Script" uid="uid://bvw8jkav6mqff" path="res://scenes/hud/depth_progress_bar.gd" id="1_7v8fm"]
+[ext_resource type="Texture2D" uid="uid://bdu3xay1kbw8b" path="res://assets/png_files/orb_ship.png" id="2_mdbr7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0bx4p"]
+bg_color = Color(0, 0.179451, 0.31905, 0.784314)
+border_width_right = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_48c2t"]
+line_spacing = -3.0
+font_size = 32
+
+[node name="DepthProgressBar" type="ProgressBar"]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 36.0
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_0bx4p")
+value = 90.0
+fill_mode = 3
+show_percentage = false
+script = ExtResource("1_7v8fm")
+
+[node name="ZoneOneLimitLine" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.33
+anchor_bottom = 0.33
+offset_right = 32.0
+offset_bottom = 4.0
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ZoneOneLabelContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.183
+anchor_right = 1.0
+anchor_bottom = 0.183
+offset_top = -26.0
+offset_right = -4.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -7
+
+[node name="ZoneLabel" type="RichTextLabel" parent="ZoneOneLabelContainer"]
+clip_contents = false
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 10
+text = "ZONE"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="ZoneNumberLabel" type="Label" parent="ZoneOneLabelContainer"]
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_48c2t")
+horizontal_alignment = 1
+
+[node name="ZoneTwoLimitLine" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.66
+anchor_bottom = 0.66
+offset_right = 32.0
+offset_bottom = 4.0
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ZoneTwoLabelContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -26.0
+offset_right = -4.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -7
+
+[node name="ZoneLabel" type="RichTextLabel" parent="ZoneTwoLabelContainer2"]
+clip_contents = false
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 10
+text = "ZONE"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="ZoneNumberLabel" type="Label" parent="ZoneTwoLabelContainer2"]
+layout_mode = 2
+text = "2"
+label_settings = SubResource("LabelSettings_48c2t")
+horizontal_alignment = 1
+
+[node name="ZoneThreeLabelContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.83
+anchor_right = 1.0
+anchor_bottom = 0.83
+offset_top = -26.0
+offset_right = -4.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -7
+
+[node name="ZoneLabel" type="RichTextLabel" parent="ZoneThreeLabelContainer"]
+clip_contents = false
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 10
+text = "ZONE"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="ZoneNumberLabel" type="Label" parent="ZoneThreeLabelContainer"]
+layout_mode = 2
+text = "3"
+label_settings = SubResource("LabelSettings_48c2t")
+horizontal_alignment = 1
+
+[node name="SubProgressIcon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -16.0
+offset_top = -14.0
+offset_right = 25.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_mdbr7")
+expand_mode = 1
