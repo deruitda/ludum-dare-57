@@ -88,7 +88,7 @@ position = Vector2(1, 0)
 position = Vector2(0, -42)
 scale = Vector2(0.402774, 0.406502)
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="JetLight" type="PointLight2D" parent="."]
 position = Vector2(15, -2)
 scale = Vector2(2.54075, 2.418)
 color = Color(0.775884, 0.381681, 0.210567, 1)
