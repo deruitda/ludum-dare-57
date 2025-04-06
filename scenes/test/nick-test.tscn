@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://di5u2cu2ham0d"]
+
+[ext_resource type="PackedScene" uid="uid://btknplgeb70by" path="res://scenes/map/tile_map_layer.tscn" id="1_wr3ja"]
+[ext_resource type="PackedScene" uid="uid://cws16jfeq8cd2" path="res://scenes/submarine/submarine.tscn" id="2_8i3i1"]
+[ext_resource type="PackedScene" uid="uid://y7i0qucf3p8i" path="res://scenes/hud/hud.tscn" id="3_vx07x"]
+
+[node name="NickTest" type="Node2D"]
+
+[node name="Hud" parent="." instance=ExtResource("3_vx07x")]
+
+[node name="Map" parent="." instance=ExtResource("1_wr3ja")]
+
+[node name="Submarine" parent="Map" instance=ExtResource("2_8i3i1")]
+position = Vector2(1408, 40)
+
+[node name="Camera2D" type="Camera2D" parent="Map/Submarine"]

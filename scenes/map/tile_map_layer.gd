@@ -19,8 +19,14 @@ func get_tile_resource_from_rid(rid: RID) -> TileResource:
 	var coords = self.get_coords_for_body_rid(rid)
 	var tileData = self.get_cell_tile_data(coords)
 	var tile_resource = tileData.get_custom_data("tile_resource")
-		
+	
 	return tile_resource
+	
+func get_tile_global_position(rid: RID) -> Vector2:
+	var coords = self.get_coords_for_body_rid(rid)
+	var global_coords = map_to_local(coords)
+	
+	return global_coords
 
 func drill_tile(rid: RID) -> void:
 	var coords = self.get_coords_for_body_rid(rid)
