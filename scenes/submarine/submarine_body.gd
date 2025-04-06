@@ -35,6 +35,7 @@ func _physics_process(delta: float):
 		for edge_direction in edge_directions:
 			velocity_component.set_collision_direction(edge_direction)
 			if edge_directions.size() > 0:
+				print("edge directions")
 				move_to_center_component.set_must_move_to_center()
 			
 		move_to_center_component.set_current_input_direction(direction_input)
