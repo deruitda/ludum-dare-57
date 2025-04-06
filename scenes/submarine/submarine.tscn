@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://bh4sbf1janobf" path="res://scenes/submarine/edge_detector.gd" id="6_qooq6"]
 [ext_resource type="Script" uid="uid://cut54ox6u58st" path="res://scenes/submarine/ray_cast_collider.gd" id="7_qooq6"]
 [ext_resource type="PackedScene" uid="uid://pec3axhf51j6" path="res://scenes/submarine/hull.tscn" id="8_myfyj"]
-[ext_resource type="PackedScene" uid="uid://c4my6omyv1qkl" path="res://scenes/submarine/battery.tscn" id="9_roe7p"]
+[ext_resource type="PackedScene" uid="uid://c4my6omyv1qkl" path="res://scenes/submarine/battery/battery.tscn" id="9_roe7p"]
 [ext_resource type="PackedScene" uid="uid://chdm7yhy0aeyf" path="res://scenes/submarine/flashlight/flashlight.tscn" id="11_8xtpu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_77ovh"]

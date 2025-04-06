@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="BatteryResource" load_steps=2 format=3 uid="uid://1mta5feokkdv"]
+
+[ext_resource type="Script" uid="uid://lplghhp5ejtj" path="res://scenes/submarine/battery/battery_resource.gd" id="1_bbswo"]
+
+[resource]
+script = ExtResource("1_bbswo")
+max_power_level = 200.0
+metadata/_custom_type_script = "uid://lplghhp5ejtj"

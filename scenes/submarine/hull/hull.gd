@@ -55,8 +55,8 @@ func remove_health(amount: float) -> void:
 		set_health(_health)
 
 func set_health(_health: float):
-	health = max(_health, 0.0)
-	SignalBus.player_health_changed.emit(health)
+	health = max(min(_health, hull_resource.max_health), 0.0)
+	SignalBus.hull_health_updated.emit(self)
 	
 	if health == 0.0 and not is_destroyed:
 		is_destroyed = true
@@ -75,3 +75,6 @@ func upgrade_hull(new_hull_resource: HullResource) -> void:
 	print("upgrading")
 	hull_resource = new_hull_resource
 	repair_hull()
+	
+func get_hull_health_percentage() -> float:
+	return health / hull_resource.max_health
