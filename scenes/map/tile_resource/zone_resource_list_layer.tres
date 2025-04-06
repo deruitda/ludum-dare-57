@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://drwpjxmca51sf"]
+
+[ext_resource type="Script" uid="uid://b0wmy2qe6hygq" path="res://scenes/map/tile_resource/zone_resource_list_layer.gd" id="1_ro0yj"]
+
+[resource]
+script = ExtResource("1_ro0yj")

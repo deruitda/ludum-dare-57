@@ -22,10 +22,16 @@ GameState="*res://global/game_state.gd"
 MapManager="*res://scenes/map/map_manager.gd"
 AudioController="*res://scenes/core/audio_controller.tscn"
 Helpers="*res://global/helpers.gd"
+PingSpawner="*res://global/ping_spawner.gd"
 
 [debug]
 
 gdscript/warnings/unused_signal=0
+
+[display]
+
+window/size/viewport_width=1600
+window/size/viewport_height=900
 
 [input]
 
