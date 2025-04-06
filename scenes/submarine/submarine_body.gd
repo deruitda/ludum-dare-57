@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var current_depth: float
 @onready var direction_input: Vector2 = Vector2.ZERO
 @onready var jet_light: PointLight2D = $JetLight
+@onready var battery: Battery = $Battery
 
 var min_light_energy = 1.0
 var max_light_energy = 5.0
@@ -26,11 +27,13 @@ func _physics_process(delta: float):
 	velocity_component.do_character_move(self)
 
 func _ready() -> void:
-	SignalBus.connect("hull_destroyed", do_respawn)
+	SignalBus.hull_destroyed.connect(do_respawn)
+	SignalBus.submarine_lost_power.connect(do_respawn)
 
 func do_respawn():
 	if checkpoint:
 		hull.repair_hull()
+		battery.fully_charge_battery()
 		global_position = checkpoint.get_spawn_position()
 
 func modulate_jet_light():

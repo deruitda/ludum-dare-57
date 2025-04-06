@@ -21,7 +21,14 @@ func _ready() -> void:
 	SignalBus.open_shop.connect(_on_open_shop)
 	SignalBus.player_entered_shop_area.connect(_on_player_entered_shop_area)
 	SignalBus.player_exited_shop_area.connect(_on_player_exited_shop_area)
+	SignalBus.hull_destroyed.connect(die)
+	SignalBus.submarine_lost_power.connect(die)
 	
+func die():
+	current_cargo_value = 0
+	current_cargo_weight = 0	
+	SignalBus.cargo_updated.emit()
+
 func update_depth(new_depth: float):
 	depth = new_depth
 	
