@@ -7,5 +7,16 @@ func _ready() -> void:
 	
 func spawn_ping(coords: Vector2, tile_resource: TileResource):
 	var instance = ping_scene.instantiate() as Ping
+	
+	if tile_resource.name == "valuable_1":
+		instance.light_color = Color.SEA_GREEN
+	
+	if tile_resource.name == "valuable_2":
+		instance.light_color = Color.DODGER_BLUE
+	
+	if tile_resource.name == "valuable_3":
+		instance.light_color = Color.GOLD
+	
 	instance.global_position = coords
+		
 	get_tree().root.add_child(instance)

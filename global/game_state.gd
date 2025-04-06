@@ -7,7 +7,7 @@ var current_cargo_value: int = 0
 @export var is_shop_opened: bool = false
 var is_player_in_shop_area: bool = false
 
-var depth = 0.0
+var depth: float = 0.0
 
 const TOTAL_DEPTH: float = 11800.0
 const PIXEL_SIZE: int = 64
@@ -54,9 +54,10 @@ func _on_sell_cargo() -> void:
 
 func _on_purchase_upgrade(shop_item_resource: ShopItemResource) -> void:
 	assert(money_collected >= shop_item_resource.price)
+	assert(shop_item_resource.item_resource != null)
 	money_collected -= shop_item_resource.price
 	# If the purchase is an "unlockable" item, unlock it
-	if shop_item_resource.item_resource and shop_item_resource.item_resource.is_unlocked == false:
+	if shop_item_resource.item_resource is UpgradeResource and !shop_item_resource.item_resource.is_unlocked:
 		shop_item_resource.item_resource.is_unlocked = true
 	SignalBus.money_collected_updated.emit()
 	SignalBus.purchase_completed.emit(shop_item_resource)
