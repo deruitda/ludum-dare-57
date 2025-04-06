@@ -42,18 +42,15 @@ func get_could_move_to_center_based_on_inputs() -> bool:
 
 func start_timer() -> void:
 	if move_to_center_countdown_timer.paused or move_to_center_countdown_timer.is_stopped():
-		#print("starting timer")
 		move_to_center_countdown_timer.start()
 	else:
 		pass
-		#print ("start timer is  paused")
 		
 	
 
 func cancel_timer() -> void:
 	if not move_to_center_countdown_timer.paused or not move_to_center_countdown_timer.is_stopped():
 		move_to_center_countdown_timer.stop()
-		#print("cancelling timer")
 
 func is_in_center(_position: Vector2):
 	return get_closest_center(_position) == _position
@@ -111,7 +108,6 @@ func get_closest_center(_position: Vector2) -> Vector2:
 
 
 func _on_move_to_center_countdown_timer_timeout() -> void:
-	#print ("timeout")
 	must_move_to_center = true
 	is_currently_centering = true
 	move_to_center_countdown_timer.stop()
