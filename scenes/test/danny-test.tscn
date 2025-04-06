@@ -37,7 +37,7 @@ script = ExtResource("1_k4cvv")
 [node name="Hud" parent="." instance=ExtResource("2_yx7kf")]
 
 [node name="PingPointer" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_54w7i")]
-player = NodePath("../Map/Submarine")
+player = NodePath("../Submarine")
 
 [node name="Shop" parent="." instance=ExtResource("4_p1q2r")]
 unique_name_in_owner = true
@@ -52,15 +52,9 @@ zone_resource_list_layers = Array[ExtResource("6_p1s3k")]([ExtResource("7_48fa4"
 [node name="BoatShop" parent="Map" instance=ExtResource("10_x042y")]
 position = Vector2(3898, -216)
 
-[node name="Submarine" parent="Map" instance=ExtResource("11_punmr")]
-position = Vector2(3877, 8)
-
-[node name="Camera2D" type="Camera2D" parent="Map/Submarine"]
-
-[node name="audio_controller" parent="Map/Submarine" instance=ExtResource("12_rnfd7")]
-position = Vector2(-1408, -40)
-
 [node name="water" type="PointLight2D" parent="."]
+show_behind_parent = true
+z_index = 1
 position = Vector2(3921, 4943)
 scale = Vector2(10.5978, 8.12165)
 color = Color(0.741271, 0.62541, 0.560087, 1)
@@ -71,10 +65,21 @@ range_z_max = -1
 texture = SubResource("GradientTexture2D_6nhnn")
 
 [node name="rock-subtract" type="PointLight2D" parent="."]
-position = Vector2(3260, 8251)
+show_behind_parent = true
+z_index = -1
+position = Vector2(3255, 8209)
 scale = Vector2(11.6677, 8.20904)
 energy = 1.03
 blend_mode = 2
 range_z_min = 0
 range_z_max = 0
 texture = SubResource("GradientTexture2D_ovew5")
+
+[node name="Submarine" parent="." instance=ExtResource("11_punmr")]
+visibility_layer = 3
+position = Vector2(3228, 114)
+
+[node name="Camera2D" type="Camera2D" parent="Submarine"]
+
+[node name="audio_controller" parent="Submarine" instance=ExtResource("12_rnfd7")]
+position = Vector2(-1408, -40)

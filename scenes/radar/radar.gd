@@ -13,6 +13,7 @@ extends Node2D
 @onready var area2d : Area2D = $Area2D
 @onready var circle_drawer: CircleDrawer = $CircleDrawer
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var light: PointLight2D = $PointLight2D2
 
 var is_scanning = false
 var is_cooling_down = false
@@ -41,6 +42,7 @@ func _physics_process(delta):
 			is_scanning = false
 			circle_drawer.visible = false
 			area2d.monitoring = false
+			light.enabled = false
 			animated_sprite.play("end_scan")
 
 		current_rad = new_rad
@@ -69,3 +71,13 @@ func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_inde
 	var coords = body.get_tile_global_position(body_rid)
 	var tile_resource = body.get_tile_resource_from_rid(body_rid)
 	SignalBus.resource_pinged.emit(coords, tile_resource)
+
+func _on_animated_sprite_2d_animation_looped() -> void:
+	print("loop")
+
+func _on_animated_sprite_2d_frame_changed() -> void:
+		if animated_sprite.animation == "blink":
+			if animated_sprite.frame == 0:
+				light.enabled = true
+			else:
+				light.enabled = false

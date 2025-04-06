@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cpi5qsqbo0r0x"]
+[gd_scene load_steps=39 format=3 uid="uid://cpi5qsqbo0r0x"]
 
 [ext_resource type="Script" uid="uid://cxlkesrm3r21" path="res://scenes/radar/radar.gd" id="1_fsxrm"]
 [ext_resource type="Script" uid="uid://c72o8vscbnl8a" path="res://scenes/radar/circle_drawer.gd" id="2_fyqjv"]
@@ -235,6 +235,16 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_ho7nn"]
+offsets = PackedFloat32Array(0, 0.826241)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ge0mp"]
+gradient = SubResource("Gradient_ho7nn")
+fill = 1
+fill_from = Vector2(0.507123, 0.509971)
+fill_to = Vector2(0, 0.962963)
+
 [node name="Radar" type="Node2D"]
 script = ExtResource("1_fsxrm")
 max_radius = 1000.0
@@ -254,12 +264,24 @@ script = ExtResource("2_fyqjv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_s2ejy")
-animation = &"begin_scan"
+animation = &"blink"
 
 [node name="PowerConsumptionComponent" type="Node" parent="."]
 script = ExtResource("4_ho7nn")
 power_consumption_per_use = 5.0
 metadata/_custom_type_script = "uid://c7thp3o46sxrj"
 
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+light_mask = 3
+z_index = 2
+position = Vector2(1, 2)
+scale = Vector2(4.92, 4.04)
+enabled = false
+color = Color(0.779225, 0, 0.173762, 0.835294)
+energy = 0.81
+texture = SubResource("GradientTexture2D_ge0mp")
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
