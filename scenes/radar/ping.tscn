@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bjdqy7cj7yro6"]
 
-[ext_resource type="Script" uid="uid://4i5hdw8u381c" path="res://scenes/radar/ping.gd" id="1_l8n85"]
+[ext_resource type="Script" path="res://scenes/radar/ping.gd" id="1_l8n85"]
 [ext_resource type="Texture2D" uid="uid://cmd0ml68w37hp" path="res://scenes/radar/ping.png" id="2_1gwnw"]
 
 [node name="Ping" type="Node2D"]

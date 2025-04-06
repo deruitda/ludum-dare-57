@@ -26,7 +26,7 @@ func _unhandled_input(event):
 		if event.pressed and event.keycode == KEY_R and !is_scanning and !animated_sprite.is_playing():
 			start_scan()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	if is_scanning:
 		
@@ -66,7 +66,7 @@ func start_scan():
 func reject_scan_for_lack_of_power() -> void:
 	pass
 
-func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	if !body is WorldTileMapLayer:
 		pass
 	

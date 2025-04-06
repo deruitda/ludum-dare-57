@@ -66,6 +66,7 @@ move_down={
 2d_physics/layer_6="drill"
 2d_physics/layer_7="rock"
 2d_physics/layer_8="bedrock"
+2d_physics/layer_9="shop"
 
 [rendering]
 

@@ -50,7 +50,7 @@ num_tiles_deep = 200
 zone_resource_list_layers = Array[ExtResource("6_6qnuo")]([ExtResource("7_g5njp"), ExtResource("8_82res"), ExtResource("9_2ocyq")])
 
 [node name="BoatShop" parent="Map" instance=ExtResource("10_gads5")]
-position = Vector2(3898, -216)
+position = Vector2(3496, -192)
 
 [node name="water" type="PointLight2D" parent="."]
 show_behind_parent = true
