@@ -131,7 +131,6 @@ rotation = 3.14159
 scale = Vector2(1, 1.08)
 target_position = Vector2(-8.87314e-05, 32.4074)
 collision_mask = 8
-hit_from_inside = true
 script = ExtResource("4_ejuc6")
 metadata/_custom_type_script = "uid://cut54ox6u58st"
 

@@ -37,7 +37,6 @@ func _physics_process(delta: float):
 		
 			if edge_directions.size() > 0:
 				move_to_center_component.set_must_move_to_center()
-		move_to_center_component.set_current_input_direction(direction_input)
 	
 	hull.update_depth(current_depth, delta)
 	GameState.update_depth(current_depth)
