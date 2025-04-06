@@ -6,8 +6,11 @@ class_name VelocityComponent
 @onready var velocity: Vector2
 @onready var current_rotation: float = 0.0
 @onready var drag_resistance: float = 800.0
-func set_rotation(rotation: float) -> void:
-	current_rotation = rotation
+func set_current_rotation(_rotation: float) -> void:
+	current_rotation = _rotation
+
+func set_velocity(_velocity: Vector2) -> void:
+	velocity = _velocity
 
 func apply_move(direction: Vector2, delta: float) -> void:
 	var acceleration_metric = acceleration

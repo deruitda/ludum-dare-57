@@ -1,5 +1,8 @@
 extends CharacterBody2D
 @export var speed = 400
+
+@export var move_to_center_component: MoveToCenterComponent
+
 @export var velocity_component: VelocityComponent
 @export var edge_detector: EdgeDetector
 @export var hull: Hull
@@ -11,17 +14,25 @@ extends CharacterBody2D
 func _process(delta: float) -> void:
 	direction_input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	current_depth = global_position.y / GameState.PIXEL_SIZE
+	
 	SignalBus.set_current_depth.emit(current_depth)
 
 func _physics_process(delta: float):
+	move_to_center_component.set_current_position_value(global_position)
+	move_to_center_component.set_current_velocity(velocity)
+	move_to_center_component.set_current_input_direction(direction_input)
+	
 	hull.update_depth(current_depth, delta)
-	
 	apply_rotation()
+	velocity_component.set_current_rotation(rotation_degrees)
 	
-	velocity_component.apply_move(direction_input, delta)
+	if move_to_center_component.is_currently_centering:
+		var move_to_center_velocity: Vector2 = move_to_center_component.get_velocity_to_center()
+		velocity_component.set_velocity(move_to_center_velocity)
+	else:
+		velocity_component.apply_move(direction_input, delta)
+	
 	velocity_component.do_character_move(self)
-
-
 
 func apply_rotation() -> void:
 	var normal_x = direction_input.x
