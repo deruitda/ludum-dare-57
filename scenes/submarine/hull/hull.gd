@@ -3,13 +3,11 @@ class_name Hull
 
 @export var hull_resource: HullResource
 @export var QUADRATIC_MULTIPLIER: float = 0.01
-@export var PIXEL_SIZE: int = 64
 @onready var health: float = 100
 
 signal hull_destroyed
 
-func _physics_process(delta: float) -> void:
-	var depth: float = global_position.y / PIXEL_SIZE
+func update_depth(depth: float, delta: float) -> void:
 	if depth > hull_resource.max_depth_for_full_integrity:
 		var over_depth = depth - hull_resource.max_depth_for_full_integrity
 		var decay_rate = pow(over_depth, 2) * delta * QUADRATIC_MULTIPLIER
