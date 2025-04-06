@@ -8,7 +8,8 @@ class_name DepthProgressBar
 
 func _ready() -> void:
 	SignalBus.set_current_depth.connect(_update_current_depth)
-	modulate = get_health_color()
+	SignalBus.set_normalized_depth_percentage.connect(_update_normalized_depth_percentage_color)
+	modulate = get_health_color(0.0)
 	
 
 func _update_current_depth(current_depth: float) -> void:
@@ -17,11 +18,11 @@ func _update_current_depth(current_depth: float) -> void:
 	sub_progress_icon.anchor_top = val
 	value = 100 - (val * 100)
 	
-	modulate = get_health_color()
-
-func get_health_color() -> Color:
-	var percent = value / 100.0
-
-
+func _update_normalized_depth_percentage_color(normalized_depth_percentage: float) -> void:
+	modulate = get_health_color(normalized_depth_percentage)
+	
+	
+func get_health_color(percentage: float) -> Color:
+	print(percentage)
 	# Lerp from red to green (low health = red, high health = green)
-	return UNHEALTHY_COLOR.lerp(HEALTHY_COLOR, percent)
+	return HEALTHY_COLOR.lerp(UNHEALTHY_COLOR, percentage)
