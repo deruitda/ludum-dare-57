@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cws16jfeq8cd2"]
+[gd_scene load_steps=15 format=3 uid="uid://cws16jfeq8cd2"]
 
 [ext_resource type="Texture2D" uid="uid://bdu3xay1kbw8b" path="res://assets/png_files/orb_ship.png" id="2_77ovh"]
 [ext_resource type="Script" uid="uid://d1v1uwdcnmi7d" path="res://scenes/submarine/submarine_body.gd" id="2_tnxgy"]
@@ -14,6 +14,15 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_77ovh"]
 radius = 27.0185
+
+[sub_resource type="Gradient" id="Gradient_8xtpu"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wr4gp"]
+gradient = SubResource("Gradient_8xtpu")
+fill = 1
+fill_from = Vector2(0.51567, 0.527066)
+fill_to = Vector2(0.831909, 0.245014)
 
 [node name="sub_body" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "edge_detector", "hull")]
 collision_mask = 218
@@ -31,7 +40,8 @@ shape = SubResource("CircleShape2D_77ovh")
 [node name="Submarine" type="Node2D" parent="."]
 
 [node name="Radar" parent="." node_paths=PackedStringArray("battery") instance=ExtResource("3_77ovh")]
-position = Vector2(1, -58)
+position = Vector2(37, -48)
+rotation = 0.509362
 battery = NodePath("../Battery")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("6_efdjn")]
@@ -75,9 +85,15 @@ position = Vector2(1, 0)
 [node name="Battery" parent="." instance=ExtResource("9_roe7p")]
 
 [node name="Flashlight" parent="." instance=ExtResource("11_8xtpu")]
-position = Vector2(-1, -51)
-rotation = 3.11052
+position = Vector2(0, -42)
 scale = Vector2(0.402774, 0.406502)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(15, -2)
+scale = Vector2(2.54075, 2.418)
+color = Color(0.775884, 0.381681, 0.210567, 1)
+energy = 2.73
+texture = SubResource("GradientTexture2D_wr4gp")
 
 [connection signal="on_collision" from="EdgeDetector/DownRayCast2D" to="." method="_on_down_ray_cast_2d_on_collision"]
 [connection signal="on_collision" from="EdgeDetector/LeftRayCast2D" to="." method="_on_left_ray_cast_2d_on_collision"]
