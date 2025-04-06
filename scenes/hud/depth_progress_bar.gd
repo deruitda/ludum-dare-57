@@ -1,6 +1,9 @@
 extends ProgressBar
 class_name DepthProgressBar
 
+@export var HEALTHY_COLOR: Color = Color.GREEN
+@export var UNHEALTHY_COLOR: Color = Color.RED
+
 @onready var sub_progress_icon: TextureRect = $SubProgressIcon
 
 func _ready() -> void:
@@ -19,8 +22,6 @@ func _update_current_depth(current_depth: float) -> void:
 func get_health_color() -> Color:
 	var percent = value / 100.0
 
-	var red = Color(1, 0, 0)     # Full red
-	var green = Color(0, 1, 0)   # Full green
 
 	# Lerp from red to green (low health = red, high health = green)
-	return red.lerp(green, percent)
+	return UNHEALTHY_COLOR.lerp(HEALTHY_COLOR, percent)
