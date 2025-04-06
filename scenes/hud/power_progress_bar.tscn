@@ -49,8 +49,3 @@ text = "Power"
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
-
-[node name="FlashTimer" type="Timer" parent="."]
-wait_time = 0.8
-
-[connection signal="timeout" from="FlashTimer" to="." method="_on_flash_timer_timeout"]
