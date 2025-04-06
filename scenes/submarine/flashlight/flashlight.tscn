@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://chdm7yhy0aeyf"]
+
+[ext_resource type="Texture2D" uid="uid://ddkpfclpnvdt3" path="res://assets/png_files/flashlight01.png" id="1_3q4c5"]
+[ext_resource type="Texture2D" uid="uid://dcrgetdsnr3rx" path="res://scenes/submarine/flashlight/flashlight_light_texture.png" id="2_txavb"]
+[ext_resource type="Texture2D" uid="uid://1ge0w2hp7shc" path="res://icon.svg" id="3_e5wvx"]
+
+[node name="Flashlight" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3q4c5")
+flip_h = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(882, -3.8147e-05)
+rotation = 0.785398
+scale = Vector2(2.68, 2.68)
+color = Color(0.907971, 0.790015, 0.587261, 1)
+energy = 1.05
+texture = ExtResource("2_txavb")
+texture_scale = 1.8
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(256, 13)
+scale = Vector2(-3.51649, 3.11145)
+texture = ExtResource("3_e5wvx")
