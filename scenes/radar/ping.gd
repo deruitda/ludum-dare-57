@@ -4,6 +4,7 @@ class_name Ping
 @export var ping_time: int = 5
 @onready var light: PointLight2D = $PointLight2D
 @onready var timer: Timer = $Timer
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 var light_color: Color = Color.WHITE
 
@@ -17,6 +18,7 @@ func start_ping():
 	timer.start(ping_time)
 	light.color = light_color
 	light.enabled = true
+	audio_stream_player_2d.play()
 	
 func stop_ping():
 	self.queue_free()

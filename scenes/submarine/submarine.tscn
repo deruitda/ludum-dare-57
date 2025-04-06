@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cws16jfeq8cd2"]
+[gd_scene load_steps=14 format=3 uid="uid://cws16jfeq8cd2"]
 
 [ext_resource type="Texture2D" uid="uid://bdu3xay1kbw8b" path="res://assets/png_files/orb_ship.png" id="2_77ovh"]
 [ext_resource type="Script" uid="uid://d1v1uwdcnmi7d" path="res://scenes/submarine/submarine_body.gd" id="2_tnxgy"]
@@ -10,26 +10,21 @@
 [ext_resource type="Script" uid="uid://cut54ox6u58st" path="res://scenes/submarine/ray_cast_collider.gd" id="7_qooq6"]
 [ext_resource type="PackedScene" uid="uid://pec3axhf51j6" path="res://scenes/submarine/hull.tscn" id="8_myfyj"]
 [ext_resource type="PackedScene" uid="uid://c4my6omyv1qkl" path="res://scenes/submarine/battery/battery.tscn" id="9_roe7p"]
-[ext_resource type="PackedScene" uid="uid://chdm7yhy0aeyf" path="res://scenes/submarine/flashlight/flashlight.tscn" id="11_8xtpu"]
+[ext_resource type="Script" uid="uid://b6lu3wcrtuet7" path="res://scenes/submarine/move_to_center_component.gd" id="11_8xtpu"]
+[ext_resource type="PackedScene" uid="uid://chdm7yhy0aeyf" path="res://scenes/submarine/flashlight/flashlight.tscn" id="12_wr4gp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_77ovh"]
 radius = 27.0185
 
-[sub_resource type="Gradient" id="Gradient_8xtpu"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_wr4gp"]
-gradient = SubResource("Gradient_8xtpu")
-fill = 1
-fill_from = Vector2(0.51567, 0.527066)
-fill_to = Vector2(0.831909, 0.245014)
-
-[node name="sub_body" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "edge_detector", "hull")]
+[node name="sub_body" type="CharacterBody2D" node_paths=PackedStringArray("move_to_center_component", "velocity_component", "edge_detector", "hull", "drill")]
+scale = Vector2(0.8, 0.8)
 collision_mask = 218
 script = ExtResource("2_tnxgy")
+move_to_center_component = NodePath("MoveToCenterComponent")
 velocity_component = NodePath("VelocityComponent")
 edge_detector = NodePath("EdgeDetector")
 hull = NodePath("Hull")
+drill = NodePath("Drill")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_77ovh")
@@ -40,8 +35,8 @@ shape = SubResource("CircleShape2D_77ovh")
 [node name="Submarine" type="Node2D" parent="."]
 
 [node name="Radar" parent="." node_paths=PackedStringArray("battery") instance=ExtResource("3_77ovh")]
-position = Vector2(37, -48)
-rotation = 0.509362
+position = Vector2(35, -50)
+rotation = 0.396715
 battery = NodePath("../Battery")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("6_efdjn")]
@@ -56,15 +51,12 @@ drill_resource = ExtResource("6_641nr")
 [node name="EdgeDetector" type="Node2D" parent="."]
 script = ExtResource("6_qooq6")
 
-[node name="DownRayCast2D" type="RayCast2D" parent="EdgeDetector"]
-target_position = Vector2(0, 32)
-collision_mask = 203
-script = ExtResource("7_qooq6")
-
 [node name="LeftRayCast2D" type="RayCast2D" parent="EdgeDetector"]
 rotation = 1.5708
+scale = Vector2(1.00002, 0.918267)
 target_position = Vector2(0, 32)
-collision_mask = 203
+collision_mask = 202
+hit_from_inside = true
 script = ExtResource("7_qooq6")
 
 [node name="RightRayCast2D" type="RayCast2D" parent="EdgeDetector"]
@@ -79,24 +71,28 @@ target_position = Vector2(0, 32)
 collision_mask = 203
 script = ExtResource("7_qooq6")
 
+[node name="DownRayCast2D" type="RayCast2D" parent="EdgeDetector"]
+target_position = Vector2(0, 32)
+collision_mask = 203
+script = ExtResource("7_qooq6")
+
 [node name="Hull" parent="." instance=ExtResource("8_myfyj")]
 position = Vector2(1, 0)
 
 [node name="Battery" parent="." instance=ExtResource("9_roe7p")]
 
-[node name="Flashlight" parent="." node_paths=PackedStringArray("battery") instance=ExtResource("11_8xtpu")]
-position = Vector2(0, -42)
-scale = Vector2(0.402774, 0.406502)
+[node name="MoveToCenterComponent" type="Node" parent="." node_paths=PackedStringArray("move_to_center_countdown_timer")]
+script = ExtResource("11_8xtpu")
+move_to_center_speed = 200
+move_to_center_velocity_threshold = 0.02
+move_to_center_countdown_timer = NodePath("MoveToCenterCountdownTimer")
+
+[node name="MoveToCenterCountdownTimer" type="Timer" parent="MoveToCenterComponent"]
+wait_time = 0.3
+one_shot = true
+
+[node name="Flashlight" parent="." node_paths=PackedStringArray("battery") instance=ExtResource("12_wr4gp")]
+position = Vector2(1.25, -60)
 battery = NodePath("../Battery")
 
-[node name="JetLight" type="PointLight2D" parent="."]
-position = Vector2(15, -2)
-scale = Vector2(2.54075, 2.418)
-color = Color(0.775884, 0.381681, 0.210567, 1)
-energy = 2.73
-texture = SubResource("GradientTexture2D_wr4gp")
-
-[connection signal="on_collision" from="EdgeDetector/DownRayCast2D" to="." method="_on_down_ray_cast_2d_on_collision"]
-[connection signal="on_collision" from="EdgeDetector/LeftRayCast2D" to="." method="_on_left_ray_cast_2d_on_collision"]
-[connection signal="on_collision" from="EdgeDetector/RightRayCast2D" to="." method="_on_right_ray_cast_2d_on_collision"]
-[connection signal="on_collision" from="EdgeDetector/UpRayCast2D" to="." method="_on_up_ray_cast_2d_on_collision"]
+[connection signal="timeout" from="MoveToCenterComponent/MoveToCenterCountdownTimer" to="MoveToCenterComponent" method="_on_move_to_center_countdown_timer_timeout"]
