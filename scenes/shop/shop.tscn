@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ng3xa25mlxkb"]
+[gd_scene load_steps=12 format=3 uid="uid://ng3xa25mlxkb"]
 
 [ext_resource type="Script" uid="uid://d48c851g4ll6" path="res://scenes/shop/shop.gd" id="1_100s2"]
 [ext_resource type="PackedScene" uid="uid://cy1wj7klhfd73" path="res://scenes/shop/shop_button/shop_button.tscn" id="2_qaxay"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://wat7m0b4ias4" path="res://scenes/shop/shop_items/recharge_power.tres" id="6_ptf86"]
 [ext_resource type="Resource" uid="uid://crlc6yobu7bau" path="res://scenes/shop/shop_items/battery_upgrade_extended.tres" id="6_xcdpw"]
 [ext_resource type="Resource" uid="uid://c7vo8imaw6ari" path="res://scenes/shop/shop_items/battery_upgrade_extended_2.tres" id="7_tp26b"]
+[ext_resource type="Resource" uid="uid://co2umhba5ghsu" path="res://scenes/shop/shop_items/repair_hull.tres" id="9_tp26b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_100s2"]
 content_margin_left = 12.0
@@ -48,9 +49,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -300.0
-offset_top = -210.0
+offset_top = -247.0
 offset_right = 300.0
-offset_bottom = 210.0
+offset_bottom = 247.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.71347, 0.600358, 0.401854, 1)
@@ -109,6 +110,7 @@ theme_override_constants/separation = 24
 [node name="HullUpgradesVBoxContainer" type="VBoxContainer" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 12
 
 [node name="CategoryLabel" type="Label" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/HullUpgradesVBoxContainer"]
 layout_mode = 2
@@ -138,6 +140,7 @@ shop_item_resource = ExtResource("5_ctpgp")
 [node name="BatteryUpgradesVBoxContainer2" type="VBoxContainer" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 12
 
 [node name="CategoryLabel" type="Label" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/BatteryUpgradesVBoxContainer2"]
 layout_mode = 2
@@ -157,6 +160,7 @@ shop_item_resource = ExtResource("7_tp26b")
 [node name="FlashlightUpgradesVBoxContainer2" type="VBoxContainer" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 12
 
 [node name="CategoryLabel" type="Label" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/FlashlightUpgradesVBoxContainer2"]
 layout_mode = 2
@@ -176,6 +180,7 @@ text = "Level 3"
 [node name="RadarUpgradesVBoxContainer3" type="VBoxContainer" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 12
 
 [node name="CategoryLabel" type="Label" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/RadarUpgradesVBoxContainer3"]
 layout_mode = 2
@@ -195,6 +200,7 @@ text = "Level 3"
 [node name="DrillUpgradesVBoxContainer4" type="VBoxContainer" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 12
 
 [node name="CategoryLabel" type="Label" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/DrillUpgradesVBoxContainer4"]
 layout_mode = 2
@@ -211,10 +217,26 @@ custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 text = "Level 3"
 
+[node name="MaintenanceSubtitle" type="RichTextLabel" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+text = "Maintenance"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
 [node name="ShopActionsContainer" type="HBoxContainer" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
+theme_override_constants/separation = 12
+
+[node name="RepairHullButton" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopActionsContainer" instance=ExtResource("2_qaxay")]
+layout_mode = 2
+text = "Repair Hull"
+shop_item_resource = ExtResource("9_tp26b")
 
 [node name="RechargePowerButton" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopActionsContainer" instance=ExtResource("2_qaxay")]
 layout_mode = 2
