@@ -4,13 +4,16 @@ class_name ShopButton
 @onready var price_label = %PriceLabel
 
 @export var shop_item_resource: ShopItemResource
+var battery: Battery
 var hull: Hull
 var full_integrity_string = "Full Integrity"
+var full_charge_string = "Full Charge"
 
 func _ready():
 	SignalBus.money_collected_updated.connect(_on_money_collected_updated)
 	SignalBus.purchase_completed.connect(_on_purchase_completed)
 	SignalBus.hull_health_updated.connect(_on_hull_health_updated)
+	SignalBus.battery_updated.connect(_on_battery_updated)
 	
 	set_price_label_text()	
 	set_price_label_color()
@@ -33,8 +36,11 @@ func _on_purchase_completed(purchased_shop_item_resource: ShopItemResource):
 # Enable or disable the Repair Hull button based on the hull health
 func _on_hull_health_updated(_hull: Hull):
 	hull = _hull
-	if shop_item_resource.item_resource is RepairHullResource:
-		set_button_disabled_conditionally()
+	set_button_disabled_conditionally()
+
+func _on_battery_updated(_battery: Battery):
+	battery = _battery
+	set_button_disabled_conditionally()
 
 # Return true if the item can only be purchased once and is already unlocked
 func has_shop_item_already_been_purchased() -> bool:
@@ -61,6 +67,17 @@ func is_player_unable_to_purchase_item() -> bool:
 			return true
 			
 		if price_label.text == full_integrity_string:
+			set_price_label_text()
+		return is_player_unable_to_afford_item()
+	
+	if shop_item_resource.item_resource is RechargeBatteryResource:
+		# If battery is new or fully charged, button is disabled
+		if (battery == null or battery.current_power_level >= battery.battery_resource.max_power_level):
+			if price_label.text != full_charge_string:
+				price_label.text = full_charge_string
+			return true
+			
+		if price_label.text == full_charge_string:
 			set_price_label_text()
 		return is_player_unable_to_afford_item()
 
