@@ -39,14 +39,3 @@ func do_character_move(character_body: CharacterBody2D):
 	
 	character_body.velocity = velocity
 	character_body.move_and_slide()
-
-func apply_collision(collision_direction: Vector2):
-	if collision_direction.x > 0 and velocity.x > 0:
-		velocity.x = 0
-	elif collision_direction.x < 0 and velocity.x < 0:
-		velocity.x = 0
-		
-	if collision_direction.y > 0 and velocity.y > 0:
-		velocity.y = 0
-	elif collision_direction.y < 0 and velocity.y < 0:
-		velocity.y = 0

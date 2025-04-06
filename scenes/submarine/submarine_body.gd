@@ -34,10 +34,9 @@ func _physics_process(delta: float):
 		var edge_directions: Array[Vector2] = edge_detector.get_edge_directions()
 		for edge_direction in edge_directions:
 			velocity_component.set_collision_direction(edge_direction)
+		
 			if edge_directions.size() > 0:
-				print("edge directions")
 				move_to_center_component.set_must_move_to_center()
-			
 		move_to_center_component.set_current_input_direction(direction_input)
 	
 	hull.update_depth(current_depth, delta)
@@ -55,7 +54,8 @@ func _physics_process(delta: float):
 	velocity_component.do_character_move(self)
 
 func modulate_jet_light():
-	var current_energy = jet_light.energy
+	pass
+	#var current_energy = jet_light.energy
 
 func apply_rotation() -> void:
 	var normal_x = direction_input.x
@@ -94,19 +94,3 @@ func _on_drilling_started() -> void:
 
 func _on_drilling_aborted() -> void:
 	pass
-
-func _on_down_ray_cast_2d_on_collision() -> void:
-	velocity_component.apply_collision(Vector2.DOWN)
-	pass # Replace with function body.
-
-func _on_left_ray_cast_2d_on_collision() -> void:
-	velocity_component.apply_collision(Vector2.LEFT)
-	pass # Replace with function body.
-
-func _on_right_ray_cast_2d_on_collision() -> void:
-	velocity_component.apply_collision(Vector2.RIGHT)
-	pass # Replace with function body.
-
-func _on_up_ray_cast_2d_on_collision() -> void:
-	velocity_component.apply_collision(Vector2.UP)
-	pass # Replace with function body.
