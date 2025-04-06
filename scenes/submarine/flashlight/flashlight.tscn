@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cu7flfsg780ii" path="res://scenes/submarine/flashlight/flashlight.gd" id="1_f3xsa"]
 [ext_resource type="Texture2D" uid="uid://dcrgetdsnr3rx" path="res://scenes/submarine/flashlight/flashlight_light_texture.png" id="2_txavb"]
-[ext_resource type="Texture2D" uid="uid://1ge0w2hp7shc" path="res://icon.svg" id="3_e5wvx"]
 [ext_resource type="Texture2D" uid="uid://bdpfwse68koed" path="res://scenes/submarine/flashlight/flashlight_close_animation.png" id="3_pxniy"]
 [ext_resource type="Texture2D" uid="uid://xydxecgca1gj" path="res://scenes/submarine/flashlight/flashlight_animation.png" id="4_f3xsa"]
 [ext_resource type="AudioStream" uid="uid://div4n4x24jeij" path="res://assets/audio/sfx/radar_arm.wav" id="6_ueyfn"]
+[ext_resource type="Script" uid="uid://c7thp3o46sxrj" path="res://scenes/submarine/power_consumption_component.gd" id="7_n3aan"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ueyfn"]
 atlas = ExtResource("3_pxniy")
@@ -122,29 +122,27 @@ animations = [{
 script = ExtResource("1_f3xsa")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(-893, 8.99997)
-rotation = -2.3719
-scale = Vector2(2.68, 2.68)
-enabled = false
+rotation = 3.14159
 color = Color(0.554724, 0.614032, 1, 1)
 energy = 1.89
+shadow_enabled = true
 texture = ExtResource("2_txavb")
+offset = Vector2(476.945, 0)
 texture_scale = 1.8
-
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(256, 13)
-scale = Vector2(-3.51649, 3.11145)
-texture = ExtResource("3_e5wvx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_o35b1")
-animation = &"open"
+animation = &"close"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_ueyfn")
 volume_db = 4.06
 bus = &"Radar Arm"
+
+[node name="PowerConsumptionComponent" type="Node" parent="."]
+script = ExtResource("7_n3aan")
+power_consumption_per_use = 0.555
+metadata/_custom_type_script = "uid://c7thp3o46sxrj"
 
 [connection signal="animation_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_changed"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
