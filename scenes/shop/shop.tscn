@@ -233,6 +233,11 @@ size_flags_horizontal = 4
 size_flags_vertical = 10
 theme_override_constants/separation = 12
 
+[node name="RepairHullButton" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopActionsContainer" instance=ExtResource("2_qaxay")]
+layout_mode = 2
+text = "Repair Hull"
+shop_item_resource = ExtResource("9_tp26b")
+
 [node name="RechargePowerButton" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopActionsContainer" instance=ExtResource("2_qaxay")]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -240,11 +245,6 @@ size_flags_vertical = 4
 tooltip_text = "Survive Zone 2"
 text = "Recharge Power"
 shop_item_resource = ExtResource("6_ptf86")
-
-[node name="RepairHullButton" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopActionsContainer" instance=ExtResource("2_qaxay")]
-layout_mode = 2
-text = "Repair Hull"
-shop_item_resource = ExtResource("9_tp26b")
 
 [connection signal="pressed" from="ShopContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/SellCargoButton" to="." method="_on_sell_cargo_button_pressed"]
 [connection signal="pressed" from="ShopContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/CloseShopButton" to="." method="_on_close_shop_button_pressed"]
