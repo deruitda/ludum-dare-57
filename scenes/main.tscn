@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://ba37xei3d3pef"]
+[gd_scene load_steps=18 format=4 uid="uid://ba37xei3d3pef"]
 
 [ext_resource type="Script" uid="uid://bjtv52svxk5hf" path="res://scenes/main.gd" id="1_25pwl"]
 [ext_resource type="PackedScene" uid="uid://y7i0qucf3p8i" path="res://scenes/hud/hud.tscn" id="2_gt6bt"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cwaak0mkvaijg" path="res://scenes/boat_shop/boat_shop.tscn" id="10_gads5"]
 [ext_resource type="PackedScene" uid="uid://cws16jfeq8cd2" path="res://scenes/submarine/submarine.tscn" id="11_r5pac"]
 [ext_resource type="PackedScene" uid="uid://ce0kl0dk0xdtq" path="res://scenes/core/audio_controller.tscn" id="12_1jpr6"]
+[ext_resource type="PackedScene" uid="uid://b545gpw6lx5g8" path="res://scenes/core/checkpoint.tscn" id="13_trceg"]
 
 [sub_resource type="Gradient" id="Gradient_sclgi"]
 
@@ -77,11 +78,15 @@ z_index = -1
 position = Vector2(4066, -627)
 scale = Vector2(3.92, 3.92)
 
-[node name="Submarine" parent="." instance=ExtResource("11_r5pac")]
+[node name="Submarine" parent="." node_paths=PackedStringArray("checkpoint") instance=ExtResource("11_r5pac")]
 visibility_layer = 3
-position = Vector2(4241, 29)
+position = Vector2(4223, 19)
+checkpoint = NodePath("../Checkpoint")
 
 [node name="Camera2D" type="Camera2D" parent="Submarine"]
 
 [node name="audio_controller" parent="Submarine" instance=ExtResource("12_1jpr6")]
 position = Vector2(-1408, -40)
+
+[node name="Checkpoint" parent="." instance=ExtResource("13_trceg")]
+position = Vector2(4168, 20)

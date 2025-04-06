@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var velocity_component: VelocityComponent
 @export var edge_detector: EdgeDetector
 @export var hull: Hull
+@export var checkpoint: Checkpoint
 
 @onready var current_depth: float
 @onready var direction_input: Vector2 = Vector2.ZERO
@@ -23,6 +24,14 @@ func _physics_process(delta: float):
 	
 	velocity_component.apply_move(direction_input, delta)
 	velocity_component.do_character_move(self)
+
+func _ready() -> void:
+	SignalBus.connect("hull_destroyed", do_respawn)
+
+func do_respawn():
+	if checkpoint:
+		hull.repair_hull()
+		global_position = checkpoint.get_spawn_position()
 
 func modulate_jet_light():
 	var current_energy = jet_light.energy
@@ -53,11 +62,7 @@ func apply_rotation() -> void:
 		rotation_degrees = 0.0
 	elif left_right_vector == Vector2.RIGHT:
 		rotation_degrees = 180.0
-
-func _ready() -> void:
-	pass # Replace with function body.
 	
-
 
 func _on_down_ray_cast_2d_on_collision() -> void:
 	velocity_component.apply_collision(Vector2.DOWN)
