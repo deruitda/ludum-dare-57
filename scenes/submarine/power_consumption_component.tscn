@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca1meki1cy0e6"]
+
+[ext_resource type="Script" uid="uid://c7thp3o46sxrj" path="res://scenes/submarine/power_consumption_component.gd" id="1_g25qw"]
+
+[node name="PowerConsumptionComponent" type="Node"]
+script = ExtResource("1_g25qw")
