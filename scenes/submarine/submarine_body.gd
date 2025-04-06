@@ -1,9 +1,13 @@
 extends CharacterBody2D
 @export var speed = 400
+
+@export var move_to_center_component: MoveToCenterComponent
+
 @export var velocity_component: VelocityComponent
 @export var edge_detector: EdgeDetector
 @export var hull: Hull
 @export var checkpoint: Checkpoint
+@export var drill: Drill
 
 @onready var current_depth: float
 @onready var direction_input: Vector2 = Vector2.ZERO
@@ -16,19 +20,40 @@ var max_light_energy = 5.0
 func _process(delta: float) -> void:
 	direction_input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	current_depth = global_position.y / GameState.PIXEL_SIZE
+	
 	SignalBus.set_current_depth.emit(current_depth)
 
 func _physics_process(delta: float):
+	drill.set_current_input_direction(direction_input)
+	
+	move_to_center_component.set_current_position_value(global_position)
+	move_to_center_component.set_current_velocity(velocity)
+	
+	if drill.is_actively_drilling:
+		move_to_center_component.set_current_input_direction(Vector2.ZERO)
+		move_to_center_component.set_must_move_to_center()
+	else:
+		var edge_directions: Array[Vector2] = edge_detector.get_edge_directions()
+		for edge_direction in edge_directions:
+			velocity_component.set_collision_direction(edge_direction)
+		
+			if edge_directions.size() > 0:
+				move_to_center_component.set_must_move_to_center()
+		move_to_center_component.set_current_input_direction(direction_input)
+	
+	hull.update_depth(current_depth, delta)
 	GameState.update_depth(current_depth)
 	modulate_jet_light()
 	apply_rotation()
+	velocity_component.set_current_rotation(rotation_degrees)
 	
-	velocity_component.apply_move(direction_input, delta)
+	if move_to_center_component.is_currently_centering:
+		var move_to_center_velocity: Vector2 = move_to_center_component.get_velocity_to_center()
+		velocity_component.set_velocity(move_to_center_velocity)
+	elif not drill.is_actively_drilling:
+		velocity_component.apply_move(direction_input, delta)
+	
 	velocity_component.do_character_move(self)
-
-func _ready() -> void:
-	SignalBus.hull_destroyed.connect(do_respawn)
-	SignalBus.submarine_lost_power.connect(do_respawn)
 
 func do_respawn():
 	if checkpoint:
@@ -37,7 +62,8 @@ func do_respawn():
 		global_position = checkpoint.get_spawn_position()
 
 func modulate_jet_light():
-	var current_energy = jet_light.energy
+	pass
+	#var current_energy = jet_light.energy
 
 func apply_rotation() -> void:
 	var normal_x = direction_input.x
@@ -65,7 +91,15 @@ func apply_rotation() -> void:
 		rotation_degrees = 0.0
 	elif left_right_vector == Vector2.RIGHT:
 		rotation_degrees = 180.0
+
+func _ready() -> void:
+	drill._on_drilling_aborted.connect(_on_drilling_aborted)
+	drill._on_drilling_started.connect(_on_drilling_started)
+	SignalBus.hull_destroyed.connect(do_respawn)
+	SignalBus.submarine_lost_power.connect(do_respawn)
 	
+func _on_drilling_started() -> void:
+	move_to_center_component.set_must_move_to_center()
 
 func _on_down_ray_cast_2d_on_collision() -> void:
 	velocity_component.apply_collision(Vector2.DOWN)
@@ -82,3 +116,5 @@ func _on_right_ray_cast_2d_on_collision() -> void:
 func _on_up_ray_cast_2d_on_collision() -> void:
 	velocity_component.apply_collision(Vector2.UP)
 	pass # Replace with function body.
+func _on_drilling_aborted() -> void:
+	pass
