@@ -36,6 +36,8 @@ func update_depth(depth: float, delta: float) -> void:
 	else:
 		is_beyond_depth_threshold = false
 		decaying_potential_health_loss = 0.0
+		SignalBus.set_normalized_depth_percentage.emit(0.0)
+		
 		if decay_health_pulse_timer.is_stopped()  == false:
 			decay_health_pulse_timer.stop()
 
