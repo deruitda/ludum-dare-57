@@ -4,6 +4,7 @@ class_name MoveToCenterComponent
 @export var move_to_center_speed = 400
 @export var move_to_center_velocity_threshold = 0.1
 
+@export var use_move_to_center_on_no_input: bool = false
 @export var move_to_center_countdown_timer: Timer
 
 @onready var current_velocity: Vector2 = Vector2.ZERO
@@ -40,7 +41,7 @@ func get_could_move_to_center_based_on_inputs() -> bool:
 	return true
 
 func start_timer() -> void:
-	if move_to_center_countdown_timer.paused or move_to_center_countdown_timer.is_stopped():
+	if  use_move_to_center_on_no_input and (move_to_center_countdown_timer.paused or move_to_center_countdown_timer.is_stopped()):
 		move_to_center_countdown_timer.start()
 	else:
 		pass

@@ -81,7 +81,7 @@ position = Vector2(1, 0)
 
 [node name="MoveToCenterComponent" type="Node" parent="." node_paths=PackedStringArray("move_to_center_countdown_timer")]
 script = ExtResource("11_8xtpu")
-move_to_center_speed = 261
+move_to_center_speed = 200
 move_to_center_velocity_threshold = 0.02
 move_to_center_countdown_timer = NodePath("MoveToCenterCountdownTimer")
 
