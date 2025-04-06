@@ -82,8 +82,8 @@ func _drilling_is_finished() -> void:
 	is_actively_drilling = false
 	has_drillable_position_tile = false
 	
-	drillable_world_tile_map_player.drill_tile(drillable_tile_rid)
 	var tile_resource = drillable_world_tile_map_player.get_tile_resource_from_rid(drillable_tile_rid)
+	drillable_world_tile_map_player.drill_tile(drillable_tile_rid)
 	if (tile_resource is ValuableTileResource):
 		SignalBus.add_cargo.emit(tile_resource)
 	
