@@ -3,21 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://bqngpq1j0yl5m" path="res://assets/png_files/drill01.png" id="1_vu58k"]
 [ext_resource type="Script" uid="uid://kds00okft8db" path="res://scenes/submarine/drill/drill.gd" id="1_xmfwo"]
 [ext_resource type="PackedScene" uid="uid://ca1meki1cy0e6" path="res://scenes/submarine/power_consumption_component.tscn" id="3_yx7yl"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xmfwo"]
-size = Vector2(44, 18)
+[ext_resource type="Script" uid="uid://cut54ox6u58st" path="res://scenes/submarine/ray_cast_collider.gd" id="4_ejuc6"]
 
 [node name="Drill" type="Node2D" node_paths=PackedStringArray("power_consuption_component")]
 script = ExtResource("1_xmfwo")
 power_consuption_component = NodePath("PowerConsumptionComponent")
-
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 32
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -9)
-shape = SubResource("RectangleShape2D_xmfwo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -9)
@@ -29,6 +19,16 @@ texture = ExtResource("1_vu58k")
 [node name="DrillTimer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
-[connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]
-[connection signal="body_shape_exited" from="Area2D" to="." method="_on_area_2d_body_shape_exited"]
+[node name="DrillRayCast" type="RayCast2D" parent="."]
+position = Vector2(0, 4)
+rotation = 3.14159
+scale = Vector2(1, 1.08)
+target_position = Vector2(2.44784e-06, 25.9259)
+collision_mask = 8
+script = ExtResource("4_ejuc6")
+metadata/_custom_type_script = "uid://cut54ox6u58st"
+
+[connection signal="child_entered_tree" from="DrillRayCast" to="." method="_on_area_2d_body_shape_entered"]
+[connection signal="child_exiting_tree" from="DrillRayCast" to="." method="_on_area_2d_body_shape_exited"]
+[connection signal="on_collision" from="DrillRayCast" to="." method="_on_collision"]
+[connection signal="on_collision_exit" from="DrillRayCast" to="." method="_on_collision_exit"]

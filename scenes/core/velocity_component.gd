@@ -6,8 +6,11 @@ class_name VelocityComponent
 @onready var velocity: Vector2
 @onready var current_rotation: float = 0.0
 @onready var drag_resistance: float = 800.0
-func set_rotation(rotation: float) -> void:
-	current_rotation = rotation
+func set_current_rotation(_rotation: float) -> void:
+	current_rotation = _rotation
+
+func set_velocity(_velocity: Vector2) -> void:
+	velocity = _velocity
 
 func apply_move(direction: Vector2, delta: float) -> void:
 	var acceleration_metric = acceleration
@@ -23,22 +26,16 @@ func apply_move(direction: Vector2, delta: float) -> void:
 		velocity.y = clamp(velocity.y + (direction.y * acceleration_metric * delta), -max_speed, max_speed)
 
 
-
-
+func set_collision_direction(_direction: Vector2) -> void:
+	if _direction.x != 0.0:
+		if _direction.x > 0.0 and velocity.x > 0.0 or _direction.x < 0.0 and velocity.x < 0.0:
+			velocity.x = 0.0
+	if _direction.y != 0.0:
+		if _direction.y > 0.0 and velocity.y > 0.0 or _direction.y < 0.0 and velocity.y < 0.0:
+			velocity.y = 0.0
 	
 
 func do_character_move(character_body: CharacterBody2D):
 	
 	character_body.velocity = velocity
 	character_body.move_and_slide()
-
-func apply_collision(collision_direction: Vector2):
-	if collision_direction.x > 0 and velocity.x > 0:
-		velocity.x = 0
-	elif collision_direction.x < 0 and velocity.x < 0:
-		velocity.x = 0
-		
-	if collision_direction.y > 0 and velocity.y > 0:
-		velocity.y = 0
-	elif collision_direction.y < 0 and velocity.y < 0:
-		velocity.y = 0

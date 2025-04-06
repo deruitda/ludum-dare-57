@@ -11,8 +11,6 @@ class_name Hull
 @onready var decaying_potential_health_loss: float = 0.0
 @onready var is_beyond_depth_threshold: bool = false
 
-signal hull_destroyed
-
 func _ready() -> void:
 	SignalBus.purchase_completed.connect(_shop_item_purchased)
 
@@ -22,8 +20,11 @@ func _physics_process(delta: float) -> void:
 
 
 func _shop_item_purchased(shop_item_resource: ShopItemResource):
+	assert(shop_item_resource.item_resource != null)
 	if shop_item_resource.item_resource is HullResource:
 		upgrade_hull(shop_item_resource.item_resource)
+	elif shop_item_resource.item_resource is RepairHullResource:
+		repair_hull()
 
 
 func update_depth(depth: float, delta: float) -> void:
@@ -66,8 +67,7 @@ func set_health(_health: float):
 	
 	if health == 0.0 and not is_destroyed:
 		is_destroyed = true
-		SignalBus.submarine_destroyed.emit()
-		hull_destroyed.emit()
+		SignalBus.hull_destroyed.emit()
 	
 func _on_decay_health_pulse_timer_timeout() -> void:
 	remove_health(decaying_potential_health_loss)

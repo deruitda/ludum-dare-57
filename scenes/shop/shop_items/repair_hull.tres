@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ShopItemResource" load_steps=3 format=3 uid="uid://co2umhba5ghsu"]
+
+[ext_resource type="Resource" uid="uid://cfhnv04klpt17" path="res://scenes/submarine/hull/hulls/repair_hull_resource/repair_hull_resource.tres" id="1_7aqeo"]
+[ext_resource type="Script" uid="uid://dq388fj72n7ck" path="res://scenes/shop/shop_items/shop_item.gd" id="2_8xoyj"]
+
+[resource]
+script = ExtResource("2_8xoyj")
+price = 4
+tooltip = "Hull integrity to 100% "
+is_infinitely_purchaseable = true
+item_resource = ExtResource("1_7aqeo")
