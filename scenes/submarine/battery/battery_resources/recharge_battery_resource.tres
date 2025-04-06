@@ -1,6 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cu6ms5qdkpkjm"]
-
-[ext_resource type="Script" uid="uid://ch8jy8iivfa6b" path="res://scenes/submarine/battery/battery_resources/recharge_battery_resource.gd" id="1_5h51j"]
-
-[resource]
-script = ExtResource("1_5h51j")

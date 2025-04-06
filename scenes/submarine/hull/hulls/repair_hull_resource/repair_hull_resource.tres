@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="RepairHullResource" load_steps=2 format=3 uid="uid://cfhnv04klpt17"]
+
+[ext_resource type="Script" uid="uid://bxsnenjxsi23s" path="res://scenes/submarine/hull/hulls/repair_hull_resource/repair_hull_resource.gd" id="1_3op5n"]
+
+[resource]
+script = ExtResource("1_3op5n")

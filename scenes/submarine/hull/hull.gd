@@ -22,8 +22,11 @@ func _physics_process(delta: float) -> void:
 
 
 func _shop_item_purchased(shop_item_resource: ShopItemResource):
+	assert(shop_item_resource.item_resource != null)
 	if shop_item_resource.item_resource is HullResource:
 		upgrade_hull(shop_item_resource.item_resource)
+	elif shop_item_resource.item_resource is RepairHullResource:
+		repair_hull()
 
 
 func update_depth(depth: float, delta: float) -> void:
