@@ -14,5 +14,5 @@ func _unhandled_input(event):
 		if event.keycode == KEY_ESCAPE and GameState.is_shop_opened:
 			SignalBus.close_shop.emit()
 		
-		if event.keycode == KEY_E and !GameState.is_shop_opened:
+		if event.keycode == KEY_E and GameState.is_player_in_shop_area and !GameState.is_shop_opened:
 			SignalBus.open_shop.emit()

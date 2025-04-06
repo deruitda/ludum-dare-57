@@ -28,5 +28,7 @@ signal submarine_lost_power()
 # Shop Signals
 signal close_shop()
 signal open_shop()
+signal player_entered_shop_area()
+signal player_exited_shop_area()
 signal purchase_upgrade(shop_item_resource: ShopItemResource)
 signal purchase_completed(updated_shop_item_resource: ShopItemResource)

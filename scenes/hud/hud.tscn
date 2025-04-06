@@ -112,6 +112,7 @@ script = ExtResource("4_0bx4p")
 
 [node name="OpenStoreButton" type="Button" parent="MarginContainer/ActionButtonsContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "[E] Open Store"
 script = ExtResource("4_0bx4p")
