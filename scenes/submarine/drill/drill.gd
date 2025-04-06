@@ -16,6 +16,10 @@ class_name Drill
 @onready var current_direction_input: Vector2
 @onready var drilling_direction: Vector2
 
+signal _on_drilling_aborted
+signal _on_drilling_started
+signal _on_drilling_finished
+
 func set_current_input_direction(_direction_input: Vector2):
 	current_direction_input = _direction_input
 
@@ -61,6 +65,7 @@ func start_drilling() -> void:
 	drill_timer.start()
 	drill_timer.timeout.connect(_drilling_is_finished)
 	is_actively_drilling = true
+	_on_drilling_started.emit()
 
 func _drilling_is_finished() -> void:
 	if is_actively_drilling == false:
@@ -71,10 +76,13 @@ func _drilling_is_finished() -> void:
 	var tile_resource = drillable_world_tile_map_player.get_tile_resource_from_rid(drillable_tile_rid)
 	if (tile_resource is ValuableTileResource):
 		SignalBus.add_cargo.emit(tile_resource)
+	
+	_on_drilling_finished.emit()
 
 	
 
 func abort_drilling():
 	drill_timer.stop()
 	is_actively_drilling = false
+	_on_drilling_aborted.emit()
 	

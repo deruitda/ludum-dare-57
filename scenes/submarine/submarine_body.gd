@@ -23,7 +23,11 @@ func _physics_process(delta: float):
 	
 	move_to_center_component.set_current_position_value(global_position)
 	move_to_center_component.set_current_velocity(velocity)
-	move_to_center_component.set_current_input_direction(direction_input)
+	
+	if drill.is_actively_drilling:
+		move_to_center_component.set_current_input_direction(Vector2.ZERO)
+	else:
+		move_to_center_component.set_current_input_direction(direction_input)
 	
 	hull.update_depth(current_depth, delta)
 	apply_rotation()
@@ -32,7 +36,7 @@ func _physics_process(delta: float):
 	if move_to_center_component.is_currently_centering:
 		var move_to_center_velocity: Vector2 = move_to_center_component.get_velocity_to_center()
 		velocity_component.set_velocity(move_to_center_velocity)
-	else:
+	elif not drill.is_actively_drilling:
 		#print("move by input")
 		velocity_component.apply_move(direction_input, delta)
 	
@@ -66,9 +70,15 @@ func apply_rotation() -> void:
 		rotation_degrees = 180.0
 
 func _ready() -> void:
+	drill._on_drilling_aborted.connect(_on_drilling_aborted)
+	drill._on_drilling_started.connect(_on_drilling_started)
 	pass # Replace with function body.
 	
+func _on_drilling_started() -> void:
+	move_to_center_component.set_must_move_to_center()
 
+func _on_drilling_aborted() -> void:
+	pass
 
 func _on_down_ray_cast_2d_on_collision() -> void:
 	velocity_component.apply_collision(Vector2.DOWN)

@@ -44,8 +44,6 @@ func start_timer() -> void:
 		move_to_center_countdown_timer.start()
 	else:
 		pass
-		
-	
 
 func cancel_timer() -> void:
 	if not move_to_center_countdown_timer.paused or not move_to_center_countdown_timer.is_stopped():
@@ -106,9 +104,10 @@ func get_closest_center(_position: Vector2) -> Vector2:
 	var center = (tile_coords + Vector2(0.5, 0.5)) * tile_size
 	return center
 
-
-func _on_move_to_center_countdown_timer_timeout() -> void:
+func set_must_move_to_center() -> void:
 	must_move_to_center = true
 	is_currently_centering = true
 	move_to_center_countdown_timer.stop()
-	
+
+func _on_move_to_center_countdown_timer_timeout() -> void:
+	set_must_move_to_center()
