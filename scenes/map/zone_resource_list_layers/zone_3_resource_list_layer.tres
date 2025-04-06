@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ZoneResourceListLayer" load_steps=3 format=3 uid="uid://5woomv2ypgi3"]
+
+[ext_resource type="Script" uid="uid://b0wmy2qe6hygq" path="res://scenes/map/tile_resource/zone_resource_list_layer.gd" id="1_wsqbr"]
+[ext_resource type="Resource" uid="uid://bcch3kswsf8km" path="res://scenes/map/zone_resource_list_layers/zone_3_variable_tile_resource_list.tres" id="2_wsqbr"]
+
+[resource]
+script = ExtResource("1_wsqbr")
+max_depth_percentage = 1.0
+variable_tile_resource_list = ExtResource("2_wsqbr")
+metadata/_custom_type_script = "uid://b0wmy2qe6hygq"

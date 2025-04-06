@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="VariableTileResourceList" load_steps=13 format=3 uid="uid://bcch3kswsf8km"]
+
+[ext_resource type="Script" uid="uid://dq5ymjjof67y1" path="res://scenes/map/tile_resource/variable_tile_resource_list.gd" id="1_floy0"]
+[ext_resource type="Script" uid="uid://csumtewo3g8r6" path="res://scenes/map/tile_resource/variable_tile_resource.gd" id="2_whfgn"]
+[ext_resource type="Resource" uid="uid://npe5ukvneqfy" path="res://scenes/map/tiles/valuable_1.tres" id="3_kxog6"]
+[ext_resource type="Resource" uid="uid://c44hk3trh8alv" path="res://scenes/map/tiles/water.tres" id="4_dvihx"]
+[ext_resource type="Resource" uid="uid://b76rsc71db2gl" path="res://scenes/map/tiles/rock.tres" id="5_nqxlr"]
+[ext_resource type="Resource" uid="uid://b3yyta77abbwd" path="res://scenes/map/tiles/valuable_3.tres" id="6_kxog6"]
+[ext_resource type="Resource" uid="uid://dq2iilo33ojj3" path="res://scenes/map/tiles/valuable_2.tres" id="7_dvihx"]
+
+[sub_resource type="Resource" id="Resource_dp4oo"]
+script = ExtResource("2_whfgn")
+percent_chance_of_spawn = 0.06
+tile_resource = ExtResource("3_kxog6")
+metadata/_custom_type_script = "uid://csumtewo3g8r6"
+
+[sub_resource type="Resource" id="Resource_qrr3e"]
+script = ExtResource("2_whfgn")
+percent_chance_of_spawn = 0.15
+tile_resource = ExtResource("4_dvihx")
+metadata/_custom_type_script = "uid://csumtewo3g8r6"
+
+[sub_resource type="Resource" id="Resource_guhfe"]
+script = ExtResource("2_whfgn")
+percent_chance_of_spawn = 0.09
+tile_resource = ExtResource("5_nqxlr")
+metadata/_custom_type_script = "uid://csumtewo3g8r6"
+
+[sub_resource type="Resource" id="Resource_nqxlr"]
+script = ExtResource("2_whfgn")
+percent_chance_of_spawn = 0.15
+tile_resource = ExtResource("6_kxog6")
+metadata/_custom_type_script = "uid://csumtewo3g8r6"
+
+[sub_resource type="Resource" id="Resource_x4l5v"]
+script = ExtResource("2_whfgn")
+percent_chance_of_spawn = 0.08
+tile_resource = ExtResource("7_dvihx")
+metadata/_custom_type_script = "uid://csumtewo3g8r6"
+
+[resource]
+script = ExtResource("1_floy0")
+variable_tile_resources = Array[ExtResource("2_whfgn")]([SubResource("Resource_dp4oo"), SubResource("Resource_qrr3e"), SubResource("Resource_guhfe"), SubResource("Resource_nqxlr"), SubResource("Resource_x4l5v")])
+metadata/_custom_type_script = "uid://dq5ymjjof67y1"
