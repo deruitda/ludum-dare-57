@@ -9,3 +9,4 @@ price = 4
 tooltip = "Hull integrity to 100% "
 is_infinitely_purchaseable = true
 item_resource = ExtResource("1_7aqeo")
+is_initially_disabled = true
