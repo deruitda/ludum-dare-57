@@ -26,6 +26,7 @@ func _on_money_collected_updated() -> void:
 	set_button_disabled()
 
 func _on_purchase_completed(purchased_shop_item_resource: ShopItemResource):
+	set_button_disabled()
 	if (purchased_shop_item_resource == shop_item_resource):
 		price_label.text = "Purchased"
 
