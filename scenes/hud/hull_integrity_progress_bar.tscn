@@ -13,6 +13,7 @@ border_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c45xl"]
 bg_color = Color(0.999856, 0.30991, 0.270574, 1)
 border_width_left = 4
+border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0, 0, 0, 1)
@@ -45,6 +46,7 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_constants/outline_size = 8
 theme_override_constants/line_separation = -4
 theme_override_font_sizes/normal_font_size = 11
 text = "Hull

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ng3xa25mlxkb"]
+[gd_scene load_steps=11 format=3 uid="uid://ng3xa25mlxkb"]
 
 [ext_resource type="Script" uid="uid://d48c851g4ll6" path="res://scenes/shop/shop.gd" id="1_100s2"]
 [ext_resource type="PackedScene" uid="uid://cy1wj7klhfd73" path="res://scenes/shop/shop_button/shop_button.tscn" id="2_qaxay"]
@@ -6,6 +6,8 @@
 [ext_resource type="Resource" uid="uid://4pvlb17qoys7" path="res://scenes/shop/shop_items/hull_upgrade_zone_3.tres" id="4_jp048"]
 [ext_resource type="Resource" uid="uid://3fksypnf7kqw" path="res://scenes/shop/shop_items/hull_upgrade_zone_4.tres" id="5_ctpgp"]
 [ext_resource type="Resource" uid="uid://wat7m0b4ias4" path="res://scenes/shop/shop_items/recharge_power.tres" id="6_ptf86"]
+[ext_resource type="Resource" uid="uid://crlc6yobu7bau" path="res://scenes/shop/shop_items/battery_upgrade_extended.tres" id="6_xcdpw"]
+[ext_resource type="Resource" uid="uid://c7vo8imaw6ari" path="res://scenes/shop/shop_items/battery_upgrade_extended_2.tres" id="7_tp26b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_100s2"]
 content_margin_left = 12.0
@@ -132,6 +134,25 @@ tooltip_text = "Survive Zone 4"
 disabled = true
 text = "Armor 4"
 shop_item_resource = ExtResource("5_ctpgp")
+
+[node name="BatteryUpgradesVBoxContainer2" type="VBoxContainer" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CategoryLabel" type="Label" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/BatteryUpgradesVBoxContainer2"]
+layout_mode = 2
+text = "Battery"
+horizontal_alignment = 1
+
+[node name="ExtendedBatteryButton" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/BatteryUpgradesVBoxContainer2" instance=ExtResource("2_qaxay")]
+layout_mode = 2
+text = "Extended"
+shop_item_resource = ExtResource("6_xcdpw")
+
+[node name="ExtendedBattery2Button" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/BatteryUpgradesVBoxContainer2" instance=ExtResource("2_qaxay")]
+layout_mode = 2
+text = "Extended 2"
+shop_item_resource = ExtResource("7_tp26b")
 
 [node name="FlashlightUpgradesVBoxContainer2" type="VBoxContainer" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer"]
 layout_mode = 2

@@ -10,7 +10,10 @@ extends CharacterBody2D
 
 @onready var current_depth: float
 @onready var direction_input: Vector2 = Vector2.ZERO
+@onready var jet_light: PointLight2D = $JetLight
 
+var min_light_energy = 1.0
+var max_light_energy = 5.0
 
 func _process(delta: float) -> void:
 	direction_input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -37,6 +40,8 @@ func _physics_process(delta: float):
 		move_to_center_component.set_current_input_direction(direction_input)
 	
 	hull.update_depth(current_depth, delta)
+	GameState.update_depth(current_depth)
+	modulate_jet_light()
 	apply_rotation()
 	velocity_component.set_current_rotation(rotation_degrees)
 	
@@ -47,6 +52,9 @@ func _physics_process(delta: float):
 		velocity_component.apply_move(direction_input, delta)
 	
 	velocity_component.do_character_move(self)
+
+func modulate_jet_light():
+	var current_energy = jet_light.energy
 
 func apply_rotation() -> void:
 	var normal_x = direction_input.x
