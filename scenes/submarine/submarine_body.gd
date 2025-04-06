@@ -25,6 +25,7 @@ func _physics_process(delta: float):
 	move_to_center_component.set_current_velocity(velocity)
 	
 	if drill.is_actively_drilling:
+		#print ("is actively drilling")
 		move_to_center_component.set_current_input_direction(Vector2.ZERO)
 	else:
 		move_to_center_component.set_current_input_direction(direction_input)
@@ -37,7 +38,6 @@ func _physics_process(delta: float):
 		var move_to_center_velocity: Vector2 = move_to_center_component.get_velocity_to_center()
 		velocity_component.set_velocity(move_to_center_velocity)
 	elif not drill.is_actively_drilling:
-		#print("move by input")
 		velocity_component.apply_move(direction_input, delta)
 	
 	velocity_component.do_character_move(self)

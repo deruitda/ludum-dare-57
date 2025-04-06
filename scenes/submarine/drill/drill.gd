@@ -31,6 +31,7 @@ func _physics_process(delta: float) -> void:
 		if is_actively_drilling:
 			battery.consume_power(power_consuption_component.power_consumption_per_use * delta)
 		elif has_drillable_position_tile:
+			print ("has drillable position")
 			start_drilling()
 	else:
 		if is_actively_drilling:
@@ -70,7 +71,9 @@ func start_drilling() -> void:
 func _drilling_is_finished() -> void:
 	if is_actively_drilling == false:
 		pass
+	print("drilling is finished")
 	is_actively_drilling = false
+	has_drillable_position_tile = false
 	
 	drillable_world_tile_map_player.drill_tile(drillable_tile_rid)
 	var tile_resource = drillable_world_tile_map_player.get_tile_resource_from_rid(drillable_tile_rid)
@@ -79,9 +82,9 @@ func _drilling_is_finished() -> void:
 	
 	_on_drilling_finished.emit()
 
-	
 
 func abort_drilling():
+	print("abort drilling")
 	drill_timer.stop()
 	is_actively_drilling = false
 	_on_drilling_aborted.emit()
