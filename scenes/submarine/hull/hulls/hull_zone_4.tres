@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="HullResource" load_steps=2 format=3 uid="uid://4l2sivmx6wjc"]
+
+[ext_resource type="Script" uid="uid://ccqnu1nqw7xs8" path="res://scenes/submarine/hull/hull_resource.gd" id="1_hyi7o"]
+
+[resource]
+script = ExtResource("1_hyi7o")
+max_depth_percentage_for_full_integrity = 2.0
+is_unlocked = false
+metadata/_custom_type_script = "uid://ccqnu1nqw7xs8"

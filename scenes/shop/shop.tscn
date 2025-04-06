@@ -1,0 +1,186 @@
+[gd_scene load_steps=8 format=3 uid="uid://ng3xa25mlxkb"]
+
+[ext_resource type="Script" uid="uid://d48c851g4ll6" path="res://scenes/shop/shop.gd" id="1_100s2"]
+[ext_resource type="PackedScene" uid="uid://cy1wj7klhfd73" path="res://scenes/shop/shop_button/shop_button.tscn" id="2_qaxay"]
+[ext_resource type="Resource" uid="uid://dmpoqxglxk5uf" path="res://scenes/shop/shop_items/hull_upgrade_zone_2.tres" id="3_7lxhl"]
+[ext_resource type="Resource" uid="uid://4pvlb17qoys7" path="res://scenes/shop/shop_items/hull_upgrade_zone_3.tres" id="4_jp048"]
+[ext_resource type="Resource" uid="uid://3fksypnf7kqw" path="res://scenes/shop/shop_items/hull_upgrade_zone_4.tres" id="5_ctpgp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7r02r"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.999856, 0.30991, 0.270574, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_100s2"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0, 0.480457, 0.197984, 1)
+
+[node name="Shop" type="CanvasLayer"]
+script = ExtResource("1_100s2")
+
+[node name="ShopContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="ShopContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -210.0
+offset_right = 300.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.71347, 0.600358, 0.401854, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="ShopContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopContainer/ColorRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Title" type="RichTextLabel" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "SHOP UGRADES"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="ShopItemsContainer" type="HBoxContainer" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 24
+
+[node name="HullUpgradesVBoxContainer" type="VBoxContainer" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CategoryLabel" type="Label" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/HullUpgradesVBoxContainer"]
+layout_mode = 2
+text = "Hull"
+horizontal_alignment = 1
+
+[node name="HullLevel2Button" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/HullUpgradesVBoxContainer" instance=ExtResource("2_qaxay")]
+layout_mode = 2
+tooltip_text = "Survive Zone 2"
+text = "Armor 2"
+shop_item_resource = ExtResource("3_7lxhl")
+
+[node name="HullLevel3Button2" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/HullUpgradesVBoxContainer" instance=ExtResource("2_qaxay")]
+layout_mode = 2
+tooltip_text = "Survive Zone 3"
+disabled = true
+text = "Armor 3"
+shop_item_resource = ExtResource("4_jp048")
+
+[node name="HullLevel4Button" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/HullUpgradesVBoxContainer" instance=ExtResource("2_qaxay")]
+layout_mode = 2
+tooltip_text = "Survive Zone 4"
+disabled = true
+text = "Armor 4"
+shop_item_resource = ExtResource("5_ctpgp")
+
+[node name="FlashlightUpgradesVBoxContainer2" type="VBoxContainer" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CategoryLabel" type="Label" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/FlashlightUpgradesVBoxContainer2"]
+layout_mode = 2
+text = "Flashlight"
+horizontal_alignment = 1
+
+[node name="FlashlightLevel2Button" type="Button" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/FlashlightUpgradesVBoxContainer2"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+text = "Level 2"
+
+[node name="FlashlightLevel3Button" type="Button" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/FlashlightUpgradesVBoxContainer2"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+text = "Level 3"
+
+[node name="RadarUpgradesVBoxContainer3" type="VBoxContainer" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CategoryLabel" type="Label" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/RadarUpgradesVBoxContainer3"]
+layout_mode = 2
+text = "Radar"
+horizontal_alignment = 1
+
+[node name="RadarLevel2Button" type="Button" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/RadarUpgradesVBoxContainer3"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+text = "Level 2"
+
+[node name="RadarLevel3Button" type="Button" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/RadarUpgradesVBoxContainer3"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+text = "Level 3"
+
+[node name="DrillUpgradesVBoxContainer4" type="VBoxContainer" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CategoryLabel" type="Label" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/DrillUpgradesVBoxContainer4"]
+layout_mode = 2
+text = "Drill"
+horizontal_alignment = 1
+
+[node name="DrillLevel2Button" type="Button" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/DrillUpgradesVBoxContainer4"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+text = "Level 2"
+
+[node name="DrillLevel3Button" type="Button" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/DrillUpgradesVBoxContainer4"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+text = "Level 3"
+
+[node name="ShopActionsContainer" type="HBoxContainer" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="CancelButton" type="Button" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopActionsContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_7r02r")
+text = "Cancel"
+
+[node name="ConfirmButton" type="Button" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopActionsContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_100s2")
+text = "Confirm"

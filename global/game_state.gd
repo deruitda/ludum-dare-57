@@ -12,6 +12,7 @@ func _ready() -> void:
 	SignalBus.add_money_collected.connect(_on_add_money_collected)
 	SignalBus.add_cargo.connect(_on_add_cargo)
 	SignalBus.sell_cargo.connect(_on_sell_cargo)
+	SignalBus.purchase_upgrade.connect(_on_purchase_upgrade)
 	
 func _on_add_money_collected(money_paid: int) -> void:
 	money_collected += money_paid
@@ -39,3 +40,10 @@ func _on_sell_cargo() -> void:
 	current_cargo_value = 0
 	current_cargo_weight = 0
 	SignalBus.cargo_updated.emit()
+
+func _on_purchase_upgrade(shop_item_resource: ShopItemResource) -> void:
+	assert(money_collected >= shop_item_resource.price)
+	money_collected -= shop_item_resource.price
+	shop_item_resource.item_resource.is_unlocked = true
+	SignalBus.money_collected_updated.emit()
+	SignalBus.purchase_completed.emit(shop_item_resource)

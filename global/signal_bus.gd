@@ -17,10 +17,14 @@ signal player_health_changed(new_health_value: int)
 signal submarine_destroyed()
 signal resource_pinged(coords: Vector2, tile_resource: TileResource)
 
-#Status Signals
+# Status Signals
 signal set_current_depth(depth: float)
 signal set_normalized_depth_percentage(depth: float)
 
 #Battery Signals
 signal battery_updated(battery: Battery)
 signal submarine_lost_power()
+
+# Shop Signals
+signal purchase_upgrade(shop_item_resource: ShopItemResource)
+signal purchase_completed(updated_shop_item_resource: ShopItemResource)
