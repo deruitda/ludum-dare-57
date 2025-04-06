@@ -26,8 +26,13 @@ func apply_move(direction: Vector2, delta: float) -> void:
 		velocity.y = clamp(velocity.y + (direction.y * acceleration_metric * delta), -max_speed, max_speed)
 
 
-
-
+func set_collision_direction(_direction: Vector2) -> void:
+	if _direction.x != 0.0:
+		if _direction.x > 0.0 and velocity.x > 0.0 or _direction.x < 0.0 and velocity.x < 0.0:
+			velocity.x = 0.0
+	if _direction.y != 0.0:
+		if _direction.y > 0.0 and velocity.y > 0.0 or _direction.y < 0.0 and velocity.y < 0.0:
+			velocity.y = 0.0
 	
 
 func do_character_move(character_body: CharacterBody2D):

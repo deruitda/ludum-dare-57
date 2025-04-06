@@ -23,6 +23,7 @@ signal _on_drilling_finished
 func set_current_input_direction(_direction_input: Vector2):
 	current_direction_input = _direction_input
 
+
 func _physics_process(delta: float) -> void:
 	if drilling_direction != get_drilling_direction():
 		# We've turned somewhere
@@ -31,7 +32,6 @@ func _physics_process(delta: float) -> void:
 		if is_actively_drilling:
 			battery.consume_power(power_consuption_component.power_consumption_per_use * delta)
 		elif has_drillable_position_tile:
-			print ("has drillable position")
 			start_drilling()
 	else:
 		if is_actively_drilling:
@@ -71,7 +71,6 @@ func start_drilling() -> void:
 func _drilling_is_finished() -> void:
 	if is_actively_drilling == false:
 		pass
-	print("drilling is finished")
 	is_actively_drilling = false
 	has_drillable_position_tile = false
 	
@@ -84,7 +83,6 @@ func _drilling_is_finished() -> void:
 
 
 func abort_drilling():
-	print("abort drilling")
 	drill_timer.stop()
 	is_actively_drilling = false
 	_on_drilling_aborted.emit()

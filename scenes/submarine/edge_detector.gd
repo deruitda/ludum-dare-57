@@ -16,5 +16,7 @@ func get_edge_directions() -> Array[Vector2]:
 		directions.append(Vector2.UP)
 	if down_ray_cast_2d.is_colliding():
 		directions.append(Vector2.DOWN)
+	if directions.size() > 0:
+		print(directions)
 	return directions
 	

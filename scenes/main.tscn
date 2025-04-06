@@ -36,7 +36,6 @@ position = Vector2(3876, 62)
 
 [node name="Submarine" parent="Map" instance=ExtResource("2_sugp2")]
 position = Vector2(2165, 1354)
-speed = 400
 
 [node name="Camera2D" type="Camera2D" parent="Map/Submarine"]
 

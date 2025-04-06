@@ -19,6 +19,11 @@ func _process(delta: float) -> void:
 	SignalBus.set_current_depth.emit(current_depth)
 
 func _physics_process(delta: float):
+	var edge_directions: Array[Vector2] = edge_detector.get_edge_directions()
+	print(edge_directions.size())
+	for edge_direction in edge_directions:
+		velocity_component.set_collision_direction(edge_direction)
+		
 	drill.set_current_input_direction(direction_input)
 	
 	move_to_center_component.set_current_position_value(global_position)

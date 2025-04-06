@@ -52,7 +52,8 @@ script = ExtResource("6_qooq6")
 [node name="LeftRayCast2D" type="RayCast2D" parent="EdgeDetector"]
 rotation = 1.5708
 target_position = Vector2(0, 32)
-collision_mask = 203
+collision_mask = 202
+hit_from_inside = true
 script = ExtResource("7_qooq6")
 
 [node name="RightRayCast2D" type="RayCast2D" parent="EdgeDetector"]
@@ -85,9 +86,4 @@ move_to_center_countdown_timer = NodePath("MoveToCenterCountdownTimer")
 wait_time = 0.3
 one_shot = true
 
-[connection signal="on_collision" from="EdgeDetector/LeftRayCast2D" to="." method="_on_left_ray_cast_2d_on_collision"]
-[connection signal="on_collision" from="EdgeDetector/RightRayCast2D" to="." method="_on_right_ray_cast_2d_on_collision"]
-[connection signal="on_collision" from="EdgeDetector/UpRayCast2D" to="." method="_on_up_ray_cast_2d_on_collision"]
-[connection signal="on_collision" from="EdgeDetector/DownRayCast2D" to="." method="_on_down_ray_cast_2d_on_collision"]
-[connection signal="on_collision_exit" from="EdgeDetector/DownRayCast2D" to="." method="_on_down_ray_cast_2d_on_collision_exit"]
 [connection signal="timeout" from="MoveToCenterComponent/MoveToCenterCountdownTimer" to="MoveToCenterComponent" method="_on_move_to_center_countdown_timer_timeout"]
