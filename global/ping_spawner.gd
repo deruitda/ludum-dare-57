@@ -7,5 +7,5 @@ func _ready() -> void:
 	
 func spawn_ping(coords: Vector2, tile_resource: TileResource):
 	var instance = ping_scene.instantiate() as Ping
-	instance.global_position = coords #this is wrong
+	instance.global_position = coords
 	get_tree().root.add_child(instance)

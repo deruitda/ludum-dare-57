@@ -12,4 +12,6 @@ signal sell_cargo()
 
 # Player Signals
 signal player_health_changed(new_health_value: int)
+
+# Resources
 signal resource_pinged(coords: Vector2, tile_resource: TileResource)

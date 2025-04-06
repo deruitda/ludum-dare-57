@@ -1,0 +1,106 @@
+[gd_scene load_steps=5 format=3 uid="uid://d201f6lfjqx1v"]
+
+[ext_resource type="Script" uid="uid://bjtwfhkcxh4nv" path="res://scenes/hud/ping_pointer/ping_pointer.gd" id="1_1mpxc"]
+[ext_resource type="Texture2D" uid="uid://dgjcv0ueroemu" path="res://scenes/hud/ping_pointer/corner.png" id="1_q816w"]
+[ext_resource type="Texture2D" uid="uid://cw5nr1x3r2802" path="res://scenes/hud/ping_pointer/middle.png" id="2_vw58g"]
+[ext_resource type="Texture2D" uid="uid://dy8o21panlsyf" path="res://scenes/hud/ping_pointer/middle-side.png" id="4_1bryd"]
+
+[node name="PingPointer" type="CanvasLayer"]
+script = ExtResource("1_1mpxc")
+metadata/_edit_horizontal_guides_ = [320.0]
+
+[node name="UpperLeft" type="TextureRect" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_q816w")
+flip_v = true
+
+[node name="UpperRight" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -256.0
+offset_bottom = 256.0
+grow_horizontal = 0
+texture = ExtResource("1_q816w")
+flip_h = true
+flip_v = true
+
+[node name="BottomRight" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -256.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("1_q816w")
+flip_h = true
+
+[node name="BottomLeft" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -256.0
+offset_right = 256.0
+grow_vertical = 0
+texture = ExtResource("1_q816w")
+
+[node name="Bottom" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -256.0
+offset_right = 128.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_vw58g")
+
+[node name="Top" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_right = 128.0
+offset_bottom = 256.0
+grow_horizontal = 2
+texture = ExtResource("2_vw58g")
+flip_v = true
+
+[node name="Left" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -128.0
+offset_right = 256.0
+offset_bottom = 128.0
+grow_vertical = 2
+texture = ExtResource("4_1bryd")
+flip_v = true
+
+[node name="Right" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -128.0
+offset_bottom = 128.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("4_1bryd")
+flip_h = true
