@@ -29,7 +29,9 @@ func _physics_process(delta: float):
 	if move_to_center_component.is_currently_centering:
 		var move_to_center_velocity: Vector2 = move_to_center_component.get_velocity_to_center()
 		velocity_component.set_velocity(move_to_center_velocity)
+		print("move")
 	else:
+		#print("move by input")
 		velocity_component.apply_move(direction_input, delta)
 	
 	velocity_component.do_character_move(self)

@@ -72,7 +72,6 @@ collision_mask = 203
 script = ExtResource("7_qooq6")
 
 [node name="Hull" parent="." instance=ExtResource("8_myfyj")]
-visible = false
 position = Vector2(1, 0)
 
 [node name="Battery" parent="." instance=ExtResource("9_roe7p")]
@@ -82,6 +81,8 @@ script = ExtResource("11_8xtpu")
 move_to_center_countdown_timer = NodePath("MoveToCenterCountdownTimer")
 
 [node name="MoveToCenterCountdownTimer" type="Timer" parent="MoveToCenterComponent"]
+wait_time = 0.3
+one_shot = true
 
 [connection signal="on_collision" from="EdgeDetector/LeftRayCast2D" to="." method="_on_left_ray_cast_2d_on_collision"]
 [connection signal="on_collision" from="EdgeDetector/RightRayCast2D" to="." method="_on_right_ray_cast_2d_on_collision"]

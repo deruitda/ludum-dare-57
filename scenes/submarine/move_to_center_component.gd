@@ -13,8 +13,12 @@ class_name MoveToCenterComponent
 @onready var must_move_to_center: bool = false
 @onready var is_currently_centering: bool = false
 
+func _ready() -> void:
+	move_to_center_countdown_timer.timeout.connect(_on_move_to_center_countdown_timer_timeout)
+
 func _process(delta: float) -> void:
 	if is_currently_centering and (current_input_direction > Vector2.ZERO or is_in_center(current_position)):
+		print(is_in_center(current_position))
 		is_currently_centering = false
 	elif is_currently_centering:
 		pass
@@ -37,12 +41,19 @@ func get_could_move_to_center_based_on_inputs() -> bool:
 	return true
 
 func start_timer() -> void:
-	if move_to_center_countdown_timer.is_stopped():
+	if move_to_center_countdown_timer.paused or move_to_center_countdown_timer.is_stopped():
+		#print("starting timer")
 		move_to_center_countdown_timer.start()
+	else:
+		pass
+		#print ("start timer is  paused")
+		
+	
 
 func cancel_timer() -> void:
-	if move_to_center_countdown_timer.is_stopped():
+	if not move_to_center_countdown_timer.paused or not move_to_center_countdown_timer.is_stopped():
 		move_to_center_countdown_timer.stop()
+		#print("cancelling timer")
 
 func is_in_center(_position: Vector2):
 	return get_closest_center(_position) == _position
@@ -100,6 +111,7 @@ func get_closest_center(_position: Vector2) -> Vector2:
 
 
 func _on_move_to_center_countdown_timer_timeout() -> void:
+	#print ("timeout")
 	must_move_to_center = true
 	is_currently_centering = true
 	move_to_center_countdown_timer.stop()
