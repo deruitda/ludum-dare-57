@@ -4,6 +4,7 @@ extends Node
 @export var max_cargo_weight: int = 10
 var current_cargo_weight: int = 0
 var current_cargo_value: int = 0
+@export var is_shop_opened: bool = false
 
 const TOTAL_DEPTH: float = 11800.0
 const PIXEL_SIZE: int = 64
@@ -13,6 +14,8 @@ func _ready() -> void:
 	SignalBus.add_cargo.connect(_on_add_cargo)
 	SignalBus.sell_cargo.connect(_on_sell_cargo)
 	SignalBus.purchase_upgrade.connect(_on_purchase_upgrade)
+	SignalBus.close_shop.connect(_on_close_shop)
+	SignalBus.open_shop.connect(_on_open_shop)
 	
 func _on_add_money_collected(money_paid: int) -> void:
 	money_collected += money_paid
@@ -44,6 +47,14 @@ func _on_sell_cargo() -> void:
 func _on_purchase_upgrade(shop_item_resource: ShopItemResource) -> void:
 	assert(money_collected >= shop_item_resource.price)
 	money_collected -= shop_item_resource.price
-	shop_item_resource.item_resource.is_unlocked = true
+	# If the purchase is an "unlockable" item, unlock it
+	if shop_item_resource.item_resource and shop_item_resource.item_resource.is_unlocked == false:
+		shop_item_resource.item_resource.is_unlocked = true
 	SignalBus.money_collected_updated.emit()
 	SignalBus.purchase_completed.emit(shop_item_resource)
+
+func _on_close_shop() -> void:
+	is_shop_opened = false
+
+func _on_open_shop() -> void:
+	is_shop_opened = true

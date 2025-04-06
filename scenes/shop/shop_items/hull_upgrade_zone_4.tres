@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("2_dy4pa")
-price = 400
+price = 15
 tooltip = "Survive Zone 4"
 unlocked_by_item_resource = ExtResource("3_ewe4g")
 item_resource = ExtResource("1_ewe4g")

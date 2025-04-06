@@ -142,27 +142,23 @@ mouse_default_cursor_shape = 2
 texture_normal = ExtResource("3_c45xl")
 stretch_mode = 0
 
-[node name="TempButtonsContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="ActionButtonsContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_constants/separation = 12
 
-[node name="AddMaterialButton" type="Button" parent="MarginContainer/TempButtonsContainer"]
+[node name="ActivateRadarButton" type="Button" parent="MarginContainer/ActionButtonsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Add Material 0"
+text = "[R] Radar Ping"
 script = ExtResource("4_0bx4p")
 
-[node name="GetPaidButton" type="Button" parent="MarginContainer/TempButtonsContainer"]
+[node name="OpenStoreButton" type="Button" parent="MarginContainer/ActionButtonsContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "+$1"
+text = "[E] Open Store"
 script = ExtResource("4_0bx4p")
 
-[node name="SellCargoButton" type="Button" parent="MarginContainer/TempButtonsContainer"]
-layout_mode = 2
-text = "Sell Cargo"
-
-[connection signal="pressed" from="MarginContainer/TempButtonsContainer/AddMaterialButton" to="." method="_on_add_material_button_pressed"]
-[connection signal="pressed" from="MarginContainer/TempButtonsContainer/GetPaidButton" to="MarginContainer/TempButtonsContainer/GetPaidButton" method="_on_get_paid_pressed"]
-[connection signal="pressed" from="MarginContainer/TempButtonsContainer/SellCargoButton" to="." method="_on_sell_cargo_button_pressed"]
+[connection signal="pressed" from="MarginContainer/ActionButtonsContainer/ActivateRadarButton" to="." method="_on_activate_radar_button_pressed"]
+[connection signal="pressed" from="MarginContainer/ActionButtonsContainer/OpenStoreButton" to="." method="_on_open_store_button_pressed"]

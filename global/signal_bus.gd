@@ -22,5 +22,7 @@ signal set_current_depth(depth: float)
 signal set_normalized_depth_percentage(depth: float)
 
 # Shop Signals
+signal close_shop()
+signal open_shop()
 signal purchase_upgrade(shop_item_resource: ShopItemResource)
 signal purchase_completed(updated_shop_item_resource: ShopItemResource)

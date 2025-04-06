@@ -18,7 +18,7 @@ func _ready():
 
 func _on_pressed() -> void:
 	# If able to purchase the item, signal the purchase
-	if is_player_able_to_purchase_item():
+	if !is_player_unable_to_purchase_item():
 		SignalBus.purchase_upgrade.emit(shop_item_resource)
 
 func _on_money_collected_updated() -> void:
@@ -34,20 +34,20 @@ func _on_purchase_completed(purchased_shop_item_resource: ShopItemResource):
 #   2. The Shop Item is locked behind another Shop Resource
 #   3. The Shop Item has already been purchased
 #   4. The player cannot afford the Shop Item 
-func is_player_able_to_purchase_item() -> bool:
-	return ((shop_item_resource != null)
-	and (shop_item_resource.unlocked_by_item_resource 
-	and shop_item_resource.unlocked_by_item_resource.is_unlocked == true)
-	and (shop_item_resource.item_resource and shop_item_resource.item_resource.is_unlocked == false)
-	and (GameState.money_collected >= shop_item_resource.price ))
+func is_player_unable_to_purchase_item() -> bool:
+	return ((shop_item_resource == null)
+	or (shop_item_resource.unlocked_by_item_resource 
+	and shop_item_resource.unlocked_by_item_resource.is_unlocked != true)
+	or (shop_item_resource.item_resource and shop_item_resource.item_resource.is_unlocked == true)
+	or (GameState.money_collected < shop_item_resource.price ))
 
 # Button is disabled if the player is not able to purchase the item
 func set_button_disabled() -> void:
-	$".".disabled = !is_player_able_to_purchase_item()
+	$".".disabled = is_player_unable_to_purchase_item()
 
 func set_price_label_color() -> void:
 	# Set price color to red if the player cannot afford the item AND it hasn't been purchased yet
-	if shop_item_resource and shop_item_resource.item_resource.is_unlocked == false and  shop_item_resource.price > GameState.money_collected:
+	if shop_item_resource and shop_item_resource.item_resource and shop_item_resource.item_resource.is_unlocked == false and  shop_item_resource.price > GameState.money_collected:
 		price_label.set("theme_override_colors/font_color", "#ff0000")
 	# Otherwise, set the color to green
 	else:
