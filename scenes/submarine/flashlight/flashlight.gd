@@ -16,9 +16,6 @@ func toggle_flashlight():
 	else:
 		animated_sprite.play("close")
 		
-	
-
-
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite.animation == "open":
 		light.enabled = true

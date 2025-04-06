@@ -13,6 +13,9 @@ class_name Hull
 
 signal hull_destroyed
 
+func _physics_process(delta: float) -> void:
+	update_depth(GameState.depth, delta)
+
 func update_depth(depth: float, delta: float) -> void:
 	var percentage_depth = depth / (GameState.TOTAL_DEPTH / GameState.PIXEL_SIZE)
 	
