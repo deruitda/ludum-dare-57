@@ -84,9 +84,10 @@ position = Vector2(1, 0)
 
 [node name="Battery" parent="." instance=ExtResource("9_roe7p")]
 
-[node name="Flashlight" parent="." instance=ExtResource("11_8xtpu")]
+[node name="Flashlight" parent="." node_paths=PackedStringArray("battery") instance=ExtResource("11_8xtpu")]
 position = Vector2(0, -42)
 scale = Vector2(0.402774, 0.406502)
+battery = NodePath("../Battery")
 
 [node name="JetLight" type="PointLight2D" parent="."]
 position = Vector2(15, -2)

@@ -16,9 +16,15 @@ signal hull_destroyed
 func _ready() -> void:
 	SignalBus.purchase_completed.connect(_shop_item_purchased)
 
+
+func _physics_process(delta: float) -> void:
+	update_depth(GameState.depth, delta)
+
+
 func _shop_item_purchased(shop_item_resource: ShopItemResource):
 	if shop_item_resource.item_resource is HullResource:
 		upgrade_hull(shop_item_resource.item_resource)
+
 
 func update_depth(depth: float, delta: float) -> void:
 	var percentage_depth = depth / (GameState.TOTAL_DEPTH / GameState.PIXEL_SIZE)

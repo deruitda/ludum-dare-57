@@ -7,6 +7,8 @@ var current_cargo_value: int = 0
 @export var is_shop_opened: bool = false
 var is_player_in_shop_area: bool = false
 
+var depth = 0.0
+
 const TOTAL_DEPTH: float = 11800.0
 const PIXEL_SIZE: int = 64
 
@@ -19,6 +21,9 @@ func _ready() -> void:
 	SignalBus.open_shop.connect(_on_open_shop)
 	SignalBus.player_entered_shop_area.connect(_on_player_entered_shop_area)
 	SignalBus.player_exited_shop_area.connect(_on_player_exited_shop_area)
+	
+func update_depth(new_depth: float):
+	depth = new_depth
 	
 func _on_add_money_collected(money_paid: int) -> void:
 	money_collected += money_paid
