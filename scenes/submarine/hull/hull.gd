@@ -44,7 +44,6 @@ func remove_health_by_decay_rate(decay_rate: float) -> void:
 			is_destroyed = true
 			SignalBus.submarine_destroyed.emit()
 			hull_destroyed.emit()
-			queue_free()
 
 
 func _on_decay_health_pulse_timer_timeout() -> void:

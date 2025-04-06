@@ -4,6 +4,8 @@ extends Node
 @export var max_cargo_weight: int = 10
 var current_cargo_weight: int = 0
 
+const TOTAL_DEPTH: float = 11800.0
+
 func _ready() -> void:
 	SignalBus.add_money_collected.connect(_on_add_money_collected)
 	SignalBus.add_cargo.connect(_on_add_cargo)

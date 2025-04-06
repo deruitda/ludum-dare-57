@@ -13,6 +13,7 @@ tile_map_data = PackedByteArray("AAB2AAAAAAADAAAAAAB2AAEAAAADAAAAAAB2AAIAAAADAAA
 position = Vector2(1408, 40)
 
 [node name="Camera2D" type="Camera2D" parent="Map/Submarine"]
+position = Vector2(2512, 11800)
 
 [node name="audio_controller" parent="Map/Submarine" instance=ExtResource("3_sugp2")]
 position = Vector2(-1408, -40)
