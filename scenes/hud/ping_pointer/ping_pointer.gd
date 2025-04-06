@@ -8,7 +8,7 @@ extends CanvasLayer
 @onready var top: AnimatedSprite2D = $Top
 @onready var right: AnimatedSprite2D = $Right
 @onready var left: AnimatedSprite2D = $Left
-@onready var player: Node2D = $"../Submarine"
+@export var player: Node2D
 
 @export var max_distance: float = 650
 
