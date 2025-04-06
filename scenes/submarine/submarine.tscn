@@ -32,7 +32,6 @@ position = Vector2(1, -58)
 
 [node name="VelocityComponent" parent="." instance=ExtResource("6_efdjn")]
 acceleration = 200.0
-max_speed = 200.0
 
 [node name="Drill" parent="." instance=ExtResource("4_tnxgy")]
 position = Vector2(-25, 0)
