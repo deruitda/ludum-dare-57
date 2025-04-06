@@ -7,9 +7,9 @@ func _ready() -> void:
 	SignalBus.money_collected_updated.connect(_on_signal_money_collected_updated)
 	SignalBus.cargo_updated.connect(_on_signal_cargo_updated)
 
-# Temporary game state updates when clicking buttons for testing purposes
+# Temporary game state updates when clicking buttons for testing purposesd
 
-# Testing Cargo / Material
+# Testing Cargo / Materials
 func _on_add_material_button_pressed() -> void:
 	SignalBus.add_cargo.emit()
 
@@ -22,7 +22,6 @@ func _on_get_paid_pressed() -> void:
 
 func _on_signal_money_collected_updated() -> void:
 	collected_money_rich_text.set_text("$" + str(GameState.money_collected))
-
 
 func _on_sell_cargo_button_pressed() -> void:
 	SignalBus.sell_cargo.emit()

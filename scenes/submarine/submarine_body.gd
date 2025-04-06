@@ -2,16 +2,20 @@ extends CharacterBody2D
 @export var speed = 400
 @export var velocity_component: VelocityComponent
 @export var edge_detector: EdgeDetector
+@export var hull: Hull
+
+@onready var current_depth: float
 @onready var direction_input: Vector2 = Vector2.ZERO
 
-func get_input():
-	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = input_direction * speed
 
 func _process(delta: float) -> void:
 	direction_input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	current_depth = global_position.y / GameState.PIXEL_SIZE
+	SignalBus.set_current_depth.emit(current_depth)
 
 func _physics_process(delta: float):
+	hull.update_depth(current_depth, delta)
+	
 	apply_rotation()
 	
 	velocity_component.apply_move(direction_input, delta)
