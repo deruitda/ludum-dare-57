@@ -1,19 +1,21 @@
-[gd_scene load_steps=10 format=3 uid="uid://cws16jfeq8cd2"]
+[gd_scene load_steps=12 format=3 uid="uid://cws16jfeq8cd2"]
 
 [ext_resource type="Texture2D" uid="uid://bdu3xay1kbw8b" path="res://assets/png_files/orb_ship.png" id="2_77ovh"]
 [ext_resource type="Script" uid="uid://d1v1uwdcnmi7d" path="res://scenes/submarine/submarine_body.gd" id="2_tnxgy"]
 [ext_resource type="PackedScene" uid="uid://cpi5qsqbo0r0x" path="res://scenes/radar/radar.tscn" id="3_77ovh"]
-[ext_resource type="PackedScene" uid="uid://f231crs35mvv" path="res://scenes/submarine/drill.tscn" id="4_tnxgy"]
+[ext_resource type="PackedScene" uid="uid://f231crs35mvv" path="res://scenes/submarine/drill/drill.tscn" id="4_tnxgy"]
+[ext_resource type="Resource" uid="uid://blvbx87ro403o" path="res://scenes/submarine/drill/drill_resources/drill_resource_1.tres" id="6_641nr"]
 [ext_resource type="PackedScene" uid="uid://rcwc7cd67g8x" path="res://scenes/core/velocity_component.tscn" id="6_efdjn"]
 [ext_resource type="Script" uid="uid://bh4sbf1janobf" path="res://scenes/submarine/edge_detector.gd" id="6_qooq6"]
 [ext_resource type="Script" uid="uid://cut54ox6u58st" path="res://scenes/submarine/ray_cast_collider.gd" id="7_qooq6"]
 [ext_resource type="PackedScene" uid="uid://pec3axhf51j6" path="res://scenes/submarine/hull.tscn" id="8_myfyj"]
+[ext_resource type="PackedScene" uid="uid://c4my6omyv1qkl" path="res://scenes/submarine/battery.tscn" id="9_roe7p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_77ovh"]
 radius = 27.0185
 
 [node name="sub_body" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "edge_detector", "hull")]
-collision_mask = 194
+collision_mask = 218
 script = ExtResource("2_tnxgy")
 velocity_component = NodePath("VelocityComponent")
 edge_detector = NodePath("EdgeDetector")
@@ -27,15 +29,18 @@ shape = SubResource("CircleShape2D_77ovh")
 
 [node name="Submarine" type="Node2D" parent="."]
 
-[node name="Radar" parent="." instance=ExtResource("3_77ovh")]
+[node name="Radar" parent="." node_paths=PackedStringArray("battery") instance=ExtResource("3_77ovh")]
 position = Vector2(1, -58)
+battery = NodePath("../Battery")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("6_efdjn")]
 acceleration = 200.0
 
-[node name="Drill" parent="." instance=ExtResource("4_tnxgy")]
+[node name="Drill" parent="." node_paths=PackedStringArray("battery") instance=ExtResource("4_tnxgy")]
 position = Vector2(-25, 0)
 rotation = -1.5708
+battery = NodePath("../Battery")
+drill_resource = ExtResource("6_641nr")
 
 [node name="EdgeDetector" type="Node2D" parent="."]
 script = ExtResource("6_qooq6")
@@ -65,6 +70,8 @@ script = ExtResource("7_qooq6")
 
 [node name="Hull" parent="." instance=ExtResource("8_myfyj")]
 position = Vector2(1, 0)
+
+[node name="Battery" parent="." instance=ExtResource("9_roe7p")]
 
 [connection signal="on_collision" from="EdgeDetector/DownRayCast2D" to="." method="_on_down_ray_cast_2d_on_collision"]
 [connection signal="on_collision" from="EdgeDetector/LeftRayCast2D" to="." method="_on_left_ray_cast_2d_on_collision"]

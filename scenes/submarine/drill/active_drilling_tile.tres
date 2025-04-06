@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://0txse07qq7dg"]
+
+[ext_resource type="Script" uid="uid://b76thxxwmkepo" path="res://scenes/submarine/drill/active_drilling_tile.gd" id="1_sc8in"]
+
+[resource]
+script = ExtResource("1_sc8in")

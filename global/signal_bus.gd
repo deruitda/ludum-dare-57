@@ -21,6 +21,10 @@ signal resource_pinged(coords: Vector2, tile_resource: TileResource)
 signal set_current_depth(depth: float)
 signal set_normalized_depth_percentage(depth: float)
 
+#Battery Signals
+signal battery_updated(battery: Battery)
+signal submarine_lost_power()
+
 # Shop Signals
 signal close_shop()
 signal open_shop()
