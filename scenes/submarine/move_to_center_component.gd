@@ -18,7 +18,6 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if is_currently_centering and (current_input_direction > Vector2.ZERO or is_in_center(current_position)):
-		print(is_in_center(current_position))
 		is_currently_centering = false
 	elif is_currently_centering:
 		pass
@@ -66,6 +65,7 @@ func get_velocity_to_center() -> Vector2:
 	var direction = center_position - current_position
 	
 	if direction.length() < 1.0:
+		is_currently_centering = false
 		return Vector2.ZERO  # Close enough to center, stop moving
 		
 	var desired_velocity = direction.normalized() * move_to_center_speed
