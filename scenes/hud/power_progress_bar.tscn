@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1cvebcwww5bn"]
+
+[ext_resource type="Script" uid="uid://bd4r5lqfrnrh3" path="res://scenes/hud/power_progress_bar.gd" id="1_divh1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6kolt"]
+bg_color = Color(0.346118, 0.229818, 0.00102788, 0.85098)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48c2t"]
+bg_color = Color(0.736395, 0.577792, 0, 1)
+border_width_left = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[node name="PowerProgressBar" type="ProgressBar"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_6kolt")
+theme_override_styles/fill = SubResource("StyleBoxFlat_48c2t")
+max_value = 1.0
+step = 0.001
+value = 1.0
+fill_mode = 3
+show_percentage = false
+script = ExtResource("1_divh1")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = 3.0
+offset_right = 32.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_font_sizes/normal_font_size = 11
+text = "Power"
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="FlashTimer" type="Timer" parent="."]
+wait_time = 0.8
+
+[connection signal="timeout" from="FlashTimer" to="." method="_on_flash_timer_timeout"]
