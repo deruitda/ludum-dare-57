@@ -15,12 +15,14 @@ signal hull_destroyed
 
 func update_depth(depth: float, delta: float) -> void:
 	var percentage_depth = depth / (GameState.TOTAL_DEPTH / GameState.PIXEL_SIZE)
+	
 	if percentage_depth > hull_resource.max_depth_percentage_for_full_integrity:
 		is_beyond_depth_threshold = true
-		var over_percentage = percentage_depth - hull_resource.max_depth_percentage_for_full_integrity
 		
+		var depth_allowed = (GameState.TOTAL_DEPTH / GameState.PIXEL_SIZE) * hull_resource.max_depth_percentage_for_full_integrity
+		var damage_depth = depth - depth_allowed
 		# Quadratic decay based on % over safe depth
-		var current_decay_rate = pow(over_percentage, 2) * delta * QUADRATIC_MULTIPLIER
+		var current_decay_rate = pow(damage_depth, 2) * delta * QUADRATIC_MULTIPLIER
 		decaying_potential_health_loss = decaying_potential_health_loss + current_decay_rate
 		
 		if decay_health_pulse_timer.is_stopped():
@@ -28,9 +30,8 @@ func update_depth(depth: float, delta: float) -> void:
 			
 		var safe_depth = hull_resource.max_depth_percentage_for_full_integrity
 		var normalized_depth = (percentage_depth - safe_depth) / (1.0 - safe_depth)
-		print (normalized_depth)
 		var normalized_depth_percentage = clamp(normalized_depth, 0.0, 1.0)
-		SignalBus.set_normalized_depth_percentage.emit(normalized_depth)
+		SignalBus.set_normalized_depth_percentage.emit(normalized_depth_percentage)
 	
 	else:
 		is_beyond_depth_threshold = false

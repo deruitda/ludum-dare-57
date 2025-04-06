@@ -23,6 +23,5 @@ func _update_normalized_depth_percentage_color(normalized_depth_percentage: floa
 	
 	
 func get_health_color(percentage: float) -> Color:
-	print(percentage)
 	# Lerp from red to green (low health = red, high health = green)
 	return HEALTHY_COLOR.lerp(UNHEALTHY_COLOR, percentage)
