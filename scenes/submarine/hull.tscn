@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://pec3axhf51j6"]
+
+[ext_resource type="Script" uid="uid://cjsgrwt4iro8m" path="res://scenes/submarine/hull/hull.gd" id="1_lqpxy"]
+[ext_resource type="Resource" uid="uid://bef84krj3d14a" path="res://scenes/submarine/hull/hulls/hull_zone_1.tres" id="2_ojh4u"]
+
+[node name="Hull" type="Node2D"]
+script = ExtResource("1_lqpxy")
+hull_resource = ExtResource("2_ojh4u")
+metadata/_custom_type_script = "uid://cjsgrwt4iro8m"
+
+[node name="DecayHealthPulseTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="DecayHealthPulseTimer" to="." method="_on_decay_health_pulse_timer_timeout"]

@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjt3pbi53hjfi"]
+
+[ext_resource type="Script" uid="uid://dsxgtp7hyy1k4" path="res://scenes/hud/hull_integrity_progress_bar.gd" id="1_d4rkf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cgeww"]
+bg_color = Color(0.432225, 0.014049, 2.40654e-08, 0.784314)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c45xl"]
+bg_color = Color(0.999856, 0.30991, 0.270574, 1)
+border_width_left = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[node name="HullIntegrityProgressBar" type="ProgressBar"]
+modulate = Color(1, 1, 1, 0.564706)
+offset_right = 8.0
+offset_bottom = 8.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_cgeww")
+theme_override_styles/fill = SubResource("StyleBoxFlat_c45xl")
+value = 100.0
+fill_mode = 3
+show_percentage = false
+script = ExtResource("1_d4rkf")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = 3.0
+offset_right = 20.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/line_separation = -4
+theme_override_font_sizes/normal_font_size = 11
+text = "Hull
+Integrity"
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1

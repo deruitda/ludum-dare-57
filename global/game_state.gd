@@ -5,6 +5,9 @@ extends Node
 var current_cargo_weight: int = 0
 var current_cargo_value: int = 0
 
+const TOTAL_DEPTH: float = 11800.0
+const PIXEL_SIZE: int = 64
+
 func _ready() -> void:
 	SignalBus.add_money_collected.connect(_on_add_money_collected)
 	SignalBus.add_cargo.connect(_on_add_cargo)

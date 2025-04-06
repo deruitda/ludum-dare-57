@@ -14,4 +14,9 @@ signal sell_cargo()
 signal player_health_changed(new_health_value: int)
 
 # Resources
+signal submarine_destroyed()
 signal resource_pinged(coords: Vector2, tile_resource: TileResource)
+
+#Status Signals
+signal set_current_depth(depth: float)
+signal set_normalized_depth_percentage(depth: float)
