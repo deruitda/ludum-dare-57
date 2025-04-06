@@ -10,11 +10,11 @@ signal cargo_updated()
 signal cargo_at_max_capacity()
 signal sell_cargo()
 
-# Player Signals
-signal player_health_changed(new_health_value: int)
+# Hull Signals
+signal hull_health_updated(hull: Hull)
+signal hull_destroyed()
 
 # Resources
-signal submarine_destroyed()
 signal resource_pinged(coords: Vector2, tile_resource: TileResource)
 
 # Status Signals
