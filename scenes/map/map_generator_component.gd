@@ -13,14 +13,30 @@ func generate_world(tile_map_layer: WorldTileMapLayer) -> void:
 	var tile_resources = []
 	var weights = []
 	var number_of_tile_resources: int = 0
-	if tile_map_layer.variable_tile_resource_list:
-		weights = tile_map_layer.variable_tile_resource_list.get_tile_resource_percentage_weight_list()
-		tile_resources = tile_map_layer.variable_tile_resource_list.get_tile_resource_list()
+	var zone_resource_list_layers = tile_map_layer.zone_resource_list_layers.duplicate(true)
+	var i = 0
+	var current_zone_resource_list_layer = zone_resource_list_layers.get(i)
+	var current_variable_tile_resource_list = current_zone_resource_list_layer.variable_tile_resource_list
+	var max_depth: float = 0.0
+	if current_variable_tile_resource_list:
+		
+		weights = current_variable_tile_resource_list.get_tile_resource_percentage_weight_list()
+		tile_resources = current_variable_tile_resource_list.get_tile_resource_list()
 		number_of_tile_resources = tile_resources.size()
 		weights.push_back(1)
+		max_depth = tile_map_layer.num_tiles_deep / current_zone_resource_list_layer.max_depth_percentage
 	
-	for x in tile_map_layer.num_tiles_wide:
-		for y in tile_map_layer.num_tiles_deep:
+	for y in tile_map_layer.num_tiles_deep:
+		if y > current_zone_resource_list_layer.get_max_depth() and zone_resource_list_layers.size() - 1 > i:
+			i = i + 1
+			current_zone_resource_list_layer = zone_resource_list_layers.get(i)
+			current_variable_tile_resource_list = current_zone_resource_list_layer.variable_tile_resource_list
+			weights = current_variable_tile_resource_list.get_tile_resource_percentage_weight_list()
+			weights.push_back(1)
+			tile_resources = current_variable_tile_resource_list.get_tile_resource_list()
+			max_depth = tile_map_layer.num_tiles_deep / current_zone_resource_list_layer.max_depth_percentage
+			
+		for x in tile_map_layer.num_tiles_wide:
 			var coords = Vector2(x, y)
 			var tile_resource: TileResource = null
 			var tile_data = tile_map_layer.get_cell_tile_data(coords)
