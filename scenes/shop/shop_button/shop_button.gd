@@ -27,8 +27,19 @@ func _on_money_collected_updated() -> void:
 
 func _on_purchase_completed(purchased_shop_item_resource: ShopItemResource):
 	set_button_disabled()
-	if (purchased_shop_item_resource == shop_item_resource):
+	if (!purchased_shop_item_resource.is_infinitely_purchaseable and purchased_shop_item_resource == shop_item_resource):
 		price_label.text = "Purchased"
+
+# Return true if the item can only be purchased once and is already unlocked
+func has_shop_item_already_been_purchased() -> bool:
+	return shop_item_resource \
+	and !shop_item_resource.is_infinitely_purchaseable \
+	and shop_item_resource.item_resource \
+	and shop_item_resource.item_resource.is_unlocked == true
+
+# Return true if the item has not been purchased yet and the player can't afford it
+func is_player_unable_to_afford_item() -> bool:
+	return shop_item_resource and shop_item_resource.price > GameState.money_collected
 
 # Player is not able to purchase the button if any of the conditions are true:
 #   1. There is no Shop Item Resource set for the Shop Button
@@ -36,11 +47,9 @@ func _on_purchase_completed(purchased_shop_item_resource: ShopItemResource):
 #   3. The Shop Item has already been purchased
 #   4. The player cannot afford the Shop Item 
 func is_player_unable_to_purchase_item() -> bool:
-	return ((shop_item_resource == null)
-	or (shop_item_resource.unlocked_by_item_resource 
-	and shop_item_resource.unlocked_by_item_resource.is_unlocked != true)
-	or (shop_item_resource.item_resource and shop_item_resource.item_resource.is_unlocked == true)
-	or (GameState.money_collected < shop_item_resource.price ))
+	var is_shop_item_locked = shop_item_resource.unlocked_by_item_resource and shop_item_resource.unlocked_by_item_resource.is_unlocked != true
+	
+	return shop_item_resource == null or is_shop_item_locked or has_shop_item_already_been_purchased() or is_player_unable_to_afford_item()
 
 # Button is disabled if the player is not able to purchase the item
 func set_button_disabled() -> void:
@@ -48,7 +57,7 @@ func set_button_disabled() -> void:
 
 func set_price_label_color() -> void:
 	# Set price color to red if the player cannot afford the item AND it hasn't been purchased yet
-	if shop_item_resource and shop_item_resource.item_resource and shop_item_resource.item_resource.is_unlocked == false and  shop_item_resource.price > GameState.money_collected:
+	if !has_shop_item_already_been_purchased() and is_player_unable_to_afford_item():
 		price_label.set("theme_override_colors/font_color", "#ff0000")
 	# Otherwise, set the color to green
 	else:
