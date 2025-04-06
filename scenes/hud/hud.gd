@@ -2,17 +2,12 @@ extends Node
 
 @onready var collected_money_rich_text = %CollectedMoneyRichText
 @onready var add_material_button = %AddMaterialButton
-@onready var hull_integrity_progress_bar: ProgressBar = %HullIntegrityProgressBar
 
 func _ready() -> void:
 	SignalBus.money_collected_updated.connect(_on_signal_money_collected_updated)
 	SignalBus.cargo_updated.connect(_on_signal_cargo_updated)
-	SignalBus.player_health_changed.connect(_on_player_health_changed)
 
-# Temporary game state updates when clicking buttons for testing purposes
-
-func _on_player_health_changed(health: float):
-	hull_integrity_progress_bar.value = health
+# Temporary game state updates when clicking buttons for testing purposesd
 
 # Testing Cargo / Materials
 func _on_add_material_button_pressed() -> void:
@@ -27,7 +22,6 @@ func _on_get_paid_pressed() -> void:
 
 func _on_signal_money_collected_updated() -> void:
 	collected_money_rich_text.set_text("$" + str(GameState.money_collected))
-
 
 func _on_sell_cargo_button_pressed() -> void:
 	SignalBus.sell_cargo.emit()
