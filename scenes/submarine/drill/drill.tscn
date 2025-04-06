@@ -25,7 +25,6 @@ scale = Vector2(1, 0.3125)
 texture = ExtResource("1_vu58k")
 
 [node name="PowerConsumptionComponent" parent="." instance=ExtResource("3_yx7yl")]
-power_consumption_per_use = 5.0
 
 [node name="DrillTimer" type="Timer" parent="."]
 one_shot = true

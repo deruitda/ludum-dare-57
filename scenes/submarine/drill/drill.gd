@@ -13,15 +13,13 @@ class_name Drill
 
 func _physics_process(delta: float) -> void:
 	if is_actively_drilling:
-		battery.use_power(power_consuption_component.power_consumption_per_use * delta)
+		battery.consume_power(power_consuption_component.power_consumption_per_use * delta)
 
 func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if !body is WorldTileMapLayer:
 		pass
 	
 	if not is_actively_drilling:
-		if not battery.has_enough_power_for(power_consuption_component.power_consumption_per_use):
-			pass
 		active_drilling_rid = body_rid
 		active_drilling_world_tile_map_layer = body
 		is_actively_drilling = true

@@ -13,7 +13,7 @@ func has_enough_power_for(potential_power_amount: float) -> bool:
 func get_percentage_of_power_left() -> float:
 	return current_power_level / max_power_level
 
-func use_power(power_amount: float) -> void:
+func consume_power(power_amount: float) -> void:
 	current_power_level = max(current_power_level - power_amount, 0.0)
 	SignalBus.battery_updated.emit(self)
 	if current_power_level == 0.0:
