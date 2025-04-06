@@ -6,11 +6,13 @@ extends CharacterBody2D
 @export var velocity_component: VelocityComponent
 @export var edge_detector: EdgeDetector
 @export var hull: Hull
+@export var checkpoint: Checkpoint
 @export var drill: Drill
 
 @onready var current_depth: float
 @onready var direction_input: Vector2 = Vector2.ZERO
 @onready var jet_light: PointLight2D = $JetLight
+@onready var battery: Battery = $Battery
 
 var min_light_energy = 1.0
 var max_light_energy = 5.0
@@ -52,6 +54,12 @@ func _physics_process(delta: float):
 	
 	velocity_component.do_character_move(self)
 
+func do_respawn():
+	if checkpoint:
+		hull.repair_hull()
+		battery.fully_charge_battery()
+		global_position = checkpoint.get_spawn_position()
+
 func modulate_jet_light():
 	pass
 	#var current_energy = jet_light.energy
@@ -86,10 +94,26 @@ func apply_rotation() -> void:
 func _ready() -> void:
 	drill._on_drilling_aborted.connect(_on_drilling_aborted)
 	drill._on_drilling_started.connect(_on_drilling_started)
-	pass # Replace with function body.
+	SignalBus.hull_destroyed.connect(do_respawn)
+	SignalBus.submarine_lost_power.connect(do_respawn)
 	
 func _on_drilling_started() -> void:
 	move_to_center_component.set_must_move_to_center()
 
+func _on_down_ray_cast_2d_on_collision() -> void:
+	velocity_component.apply_collision(Vector2.DOWN)
+	pass # Replace with function body.
+
+func _on_left_ray_cast_2d_on_collision() -> void:
+	velocity_component.apply_collision(Vector2.LEFT)
+	pass # Replace with function body.
+
+func _on_right_ray_cast_2d_on_collision() -> void:
+	velocity_component.apply_collision(Vector2.RIGHT)
+	pass # Replace with function body.
+
+func _on_up_ray_cast_2d_on_collision() -> void:
+	velocity_component.apply_collision(Vector2.UP)
+	pass # Replace with function body.
 func _on_drilling_aborted() -> void:
 	pass

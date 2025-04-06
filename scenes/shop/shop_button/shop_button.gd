@@ -4,17 +4,17 @@ class_name ShopButton
 @onready var price_label = %PriceLabel
 
 @export var shop_item_resource: ShopItemResource
+var hull: Hull
+var full_integrity_string = "Full Integrity"
 
 func _ready():
 	SignalBus.money_collected_updated.connect(_on_money_collected_updated)
 	SignalBus.purchase_completed.connect(_on_purchase_completed)
+	SignalBus.hull_health_updated.connect(_on_hull_health_updated)
 	
-	# Init price text based on the shop item resource
-	if shop_item_resource and "$" + str(shop_item_resource.price) != price_label.text:
-		price_label.text = "$" + str(shop_item_resource.price)
-	
+	set_price_label_text()	
 	set_price_label_color()
-	set_button_disabled()
+	set_button_disabled_conditionally()
 
 func _on_pressed() -> void:
 	# If able to purchase the item, signal the purchase
@@ -23,12 +23,18 @@ func _on_pressed() -> void:
 
 func _on_money_collected_updated() -> void:
 	set_price_label_color()
-	set_button_disabled()
+	set_button_disabled_conditionally()
 
 func _on_purchase_completed(purchased_shop_item_resource: ShopItemResource):
-	set_button_disabled()
-	if (!purchased_shop_item_resource.is_infinitely_purchaseable and purchased_shop_item_resource == shop_item_resource):
+	set_button_disabled_conditionally()
+	if !purchased_shop_item_resource.is_infinitely_purchaseable and purchased_shop_item_resource == shop_item_resource:
 		price_label.text = "Purchased"
+
+# Enable or disable the Repair Hull button based on the hull health
+func _on_hull_health_updated(_hull: Hull):
+	hull = _hull
+	if shop_item_resource.item_resource is RepairHullResource:
+		set_button_disabled_conditionally()
 
 # Return true if the item can only be purchased once and is already unlocked
 func has_shop_item_already_been_purchased() -> bool:
@@ -47,13 +53,32 @@ func is_player_unable_to_afford_item() -> bool:
 #   3. The Shop Item has already been purchased
 #   4. The player cannot afford the Shop Item 
 func is_player_unable_to_purchase_item() -> bool:
+	if shop_item_resource.item_resource is RepairHullResource:
+		# If hull is new or fully repaired, button is disabled
+		if (hull == null or hull.health >= hull.hull_resource.max_health):
+			if price_label.text != full_integrity_string:
+				price_label.text = full_integrity_string
+			return true
+			
+		if price_label.text == full_integrity_string:
+			set_price_label_text()
+		return is_player_unable_to_afford_item()
+
 	var is_shop_item_locked = shop_item_resource.unlocked_by_item_resource and shop_item_resource.unlocked_by_item_resource.is_unlocked != true
-	
-	return shop_item_resource == null or is_shop_item_locked or has_shop_item_already_been_purchased() or is_player_unable_to_afford_item()
+
+	return shop_item_resource == null \
+	or is_shop_item_locked \
+	or has_shop_item_already_been_purchased() \
+	or is_player_unable_to_afford_item()
 
 # Button is disabled if the player is not able to purchase the item
-func set_button_disabled() -> void:
-	$".".disabled = is_player_unable_to_purchase_item()
+func set_button_disabled_conditionally() -> void:
+	disabled = is_player_unable_to_purchase_item()
+
+func set_price_label_text() -> void:
+	var new_price_text = "$" + str(shop_item_resource.price)
+	if shop_item_resource and new_price_text != price_label.text:
+		price_label.text = new_price_text
 
 func set_price_label_color() -> void:
 	# Set price color to red if the player cannot afford the item AND it hasn't been purchased yet

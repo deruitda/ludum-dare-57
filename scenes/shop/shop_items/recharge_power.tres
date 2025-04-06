@@ -9,3 +9,4 @@ price = 0
 tooltip = "CHAAARGE"
 is_infinitely_purchaseable = true
 item_resource = ExtResource("1_ai2us")
+is_initially_disabled = true
