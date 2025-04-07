@@ -6,6 +6,8 @@ extends Node2D
 @onready var power_consumption_component: PowerConsumptionComponent = $PowerConsumptionComponent
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
+@export var flashlight_resource: FlashlightResource
+
 var audio = [
 	preload("res://assets/audio/sfx/flashlight.wav"),
 	preload("res://assets/audio/sfx/radar_arm.wav")
@@ -13,6 +15,7 @@ var audio = [
 
 func _ready() -> void:
 	SignalBus.toggle_flashlight.connect(_on_toggle_flashlight)
+	light.texture = flashlight_resource.light_texture
 
 func _process(delta: float) -> void:
 	if light.enabled:

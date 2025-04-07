@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="FlashlightResource" load_steps=3 format=3 uid="uid://fimryso8my8b"]
+
+[ext_resource type="Texture2D" uid="uid://dcrgetdsnr3rx" path="res://scenes/submarine/flashlight/flashlight_resources/flashlight_light_texture_1.png" id="1_vubwd"]
+[ext_resource type="Script" uid="uid://b2lx2tpjf8cd8" path="res://scenes/submarine/flashlight/flashlight_resources/flashlight_resource.gd" id="2_e8qhe"]
+
+[resource]
+script = ExtResource("2_e8qhe")
+light_texture = ExtResource("1_vubwd")
+is_unlocked = false
+metadata/_custom_type_script = "uid://b2lx2tpjf8cd8"
