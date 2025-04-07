@@ -26,6 +26,8 @@ func create_particle():
 	bubble.name = "Bubble"
 	bubble.global_position = spawn_position  # or wherever you want it to spawn
 	bubble.air_spout = self
+	bubble.add_to_group("bubbles")
+
 	get_tree().current_scene.add_child(bubble)
 #
 func _physics_process(delta: float) -> void:
@@ -36,7 +38,7 @@ func _physics_process(delta: float) -> void:
 	
 	
 func can_create_bubbles() -> bool:
-	return current_particle_count < max_air_particles and GameState.TOTAL_ALLOWED_BUBBLES < GameState.total_bubbles
+	return not is_spout_smothered() and current_particle_count < max_air_particles and GameState.TOTAL_ALLOWED_BUBBLES > GameState.total_bubbles
 
 func _on_bubble_popped():
 	max_air_particles -= 1
@@ -44,6 +46,18 @@ func _on_bubble_popped():
 
 func _on_spawn_timer_timeout() -> void:
 	if can_create_bubbles():
+		print("can")
 		create_particle()
 		current_particle_count += 1
 		GameState.total_bubbles += 1
+	else:
+		print( GameState.TOTAL_ALLOWED_BUBBLES > GameState.total_bubbles)
+
+func is_spout_smothered() -> bool:
+	var bubble_count = 0
+	var range = 32.0  # Pixels around spout to consider as "smothered"
+	for bubble in get_tree().get_nodes_in_group("bubbles"):
+		if bubble.position.distance_to(global_position) < range:
+			bubble_count += 1
+	
+	return bubble_count >= 3  # Or however many is "too many"
