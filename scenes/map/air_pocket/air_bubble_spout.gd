@@ -12,7 +12,7 @@ extends Node2D
 @export var gravity: float = -2.0
 
 const AIR_LAYER: int = 11
-const CONNECTION_MASKS: Array[int] = [2, 4, 5, 7, 8] 
+const CONNECTION_MASKS: Array[int] = [11] 
 
 func create_particle():
 	var particle_server = PhysicsServer2D
@@ -27,16 +27,16 @@ func create_particle():
 	var shape = particle_server.circle_shape_create()
 	particle_server.shape_set_data(shape, 8)
 	particle_server.body_add_shape(air_col, shape, Transform2D.IDENTITY)
-	particle_server.body_set_collision_layer(air_col, AIR_LAYER)
-	for mask in CONNECTION_MASKS:
-		particle_server.body_set_collision_mask(air_col, mask)
+
+	particle_server.body_set_collision_layer(air_col, 1 << 10)
+	particle_server.body_set_collision_mask(air_col, 1 << 0 | 1 << 7 | 1 << 10 | 1 << 1 | 1 << 3)
 	
 	particle_server.body_set_param(air_col, PhysicsServer2D.BODY_PARAM_FRICTION, 0.0)
 	particle_server.body_set_param(air_col, PhysicsServer2D.BODY_PARAM_MASS, 0.05)
 	particle_server.body_set_param(air_col, PhysicsServer2D.BODY_PARAM_GRAVITY_SCALE, gravity)
 	
 	particle_server.body_set_state(air_col, PhysicsServer2D.BODY_STATE_TRANSFORM, trans)
-	
+
 	var air_particle = rendering_server.canvas_item_create()
 	rendering_server.canvas_item_set_parent(air_particle, get_canvas_item())
 	rendering_server.canvas_item_set_transform(air_particle, trans)
@@ -69,4 +69,3 @@ func _on_spawn_timer_timeout() -> void:
 	if current_particle_count < max_air_particles:
 		create_particle()
 		current_particle_count += 1
-		
