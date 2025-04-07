@@ -2,6 +2,7 @@ extends CharacterBody2D
 @export var speed = 400
 
 @export var move_to_center_component: MoveToCenterComponent
+@onready var ship_light: PointLight2D = $ShipLight
 
 @export var velocity_component: VelocityComponent
 @export var edge_detector: EdgeDetector
@@ -24,38 +25,36 @@ func _process(delta: float) -> void:
 	SignalBus.set_current_depth.emit(current_depth)
 
 func _physics_process(delta: float):
-	#if not direction_input == Vector2.ZERO:
-		#print("no direction")
-	#else:
-		#print("direction") 
 	drill.set_current_input_direction(direction_input)
 	apply_rotation()
-	
-	move_to_center_component.set_current_position_value(global_position)
-	move_to_center_component.set_current_velocity(velocity)
-	
-	if drill.is_actively_drilling:
-		move_to_center_component.set_current_input_direction(Vector2.ZERO)
-		move_to_center_component.set_must_move_to_center()
-	elif not drill.drilling_direction == direction_input:
-		var edge_directions: Array[Vector2] = edge_detector.get_edge_directions()
-		for edge_direction in edge_directions:
-			velocity_component.set_collision_direction(edge_direction)
+	if current_depth < 0.4:
+		velocity_component.apply_gravity(delta)
+	else:
+		move_to_center_component.set_current_position_value(global_position)
+		move_to_center_component.set_current_velocity(velocity)
 		
-			if edge_directions.size() > 0:
-				move_to_center_component.set_must_move_to_center()
-	
-	hull.update_depth(current_depth, delta)
-	GameState.update_depth(current_depth)
-	modulate_jet_light()
-	velocity_component.set_current_rotation(rotation_degrees)
-	
-	if move_to_center_component.is_currently_centering:
-		var move_to_center_velocity: Vector2 = move_to_center_component.get_velocity_to_center()
-		velocity_component.set_velocity(move_to_center_velocity)
-	elif not drill.is_actively_drilling:
-		velocity_component.apply_move(direction_input, delta)
-	
+		if drill.is_actively_drilling:
+			move_to_center_component.set_current_input_direction(Vector2.ZERO)
+			move_to_center_component.set_must_move_to_center()
+		elif not drill.drilling_direction == direction_input:
+			var edge_directions: Array[Vector2] = edge_detector.get_edge_directions()
+			for edge_direction in edge_directions:
+				velocity_component.set_collision_direction(edge_direction)
+			
+				if edge_directions.size() > 0:
+					move_to_center_component.set_must_move_to_center()
+		
+		hull.update_depth(current_depth, delta)
+		GameState.update_depth(current_depth)
+		modulate_jet_light()
+		velocity_component.set_current_rotation(rotation_degrees)
+		
+		if move_to_center_component.is_currently_centering:
+			var move_to_center_velocity: Vector2 = move_to_center_component.get_velocity_to_center()
+			velocity_component.set_velocity(move_to_center_velocity)
+		elif not drill.is_actively_drilling:
+			velocity_component.apply_move(direction_input, delta)
+		
 	velocity_component.do_character_move(self)
 
 func do_respawn():
@@ -95,6 +94,19 @@ func apply_rotation() -> void:
 	elif left_right_vector == Vector2.RIGHT:
 		rotation_degrees = 180.0
 
+func apply_depth_effects():
+	apply_ship_light()
+
+
+func apply_ship_light():
+	if current_depth >= 20:
+		ship_light.enabled = true
+		var energy = ship_light.energy
+		var lerped = lerp(energy, max_light_energy, 0.1)
+		ship_light.energy = lerped
+	else:
+		ship_light.enabled = false
+		ship_light.energy = 0
 func _ready() -> void:
 	drill._on_drilling_aborted.connect(_on_drilling_aborted)
 	drill._on_drilling_started.connect(_on_drilling_started)
