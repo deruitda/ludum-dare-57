@@ -87,6 +87,7 @@ func set_price_label_tooltip() -> void:
 		tooltip_text = shop_item_resource.tooltip
 
 func set_price_label_text() -> void:
+	assert(shop_item_resource != null)
 	var new_price_text = "$" + str(shop_item_resource.price)
 	if shop_item_resource and new_price_text != price_label.text:
 		price_label.text = new_price_text

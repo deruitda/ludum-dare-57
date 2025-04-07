@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ShopItemResource" load_steps=4 format=3 uid="uid://chvg61ghqqmeo"]
+
+[ext_resource type="Script" uid="uid://dq388fj72n7ck" path="res://scenes/shop/shop_items/shop_item.gd" id="1_bvjk7"]
+[ext_resource type="Resource" uid="uid://bai2j8stk8clp" path="res://scenes/submarine/cargo_capacity_resources/cargo_capacity_upgrade_2.tres" id="1_fvrcd"]
+[ext_resource type="Resource" uid="uid://crin58wqthgjs" path="res://scenes/submarine/cargo_capacity_resources/cargo_capacity_upgrade_1.tres" id="3_c6w38"]
+
+[resource]
+script = ExtResource("1_bvjk7")
+price = 65
+tooltip = "Carry 10 more valuables"
+is_infinitely_purchaseable = false
+unlocked_by_item_resource = ExtResource("3_c6w38")
+item_resource = ExtResource("1_fvrcd")
+metadata/_custom_type_script = "uid://dq388fj72n7ck"

@@ -47,6 +47,7 @@ text = "$0
 "
 fit_content = true
 scroll_active = false
+autowrap_mode = 0
 vertical_alignment = 1
 drag_and_drop_selection_enabled = false
 

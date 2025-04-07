@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ng3xa25mlxkb"]
+[gd_scene load_steps=15 format=3 uid="uid://ng3xa25mlxkb"]
 
 [ext_resource type="Script" uid="uid://d48c851g4ll6" path="res://scenes/shop/shop.gd" id="1_100s2"]
 [ext_resource type="PackedScene" uid="uid://cy1wj7klhfd73" path="res://scenes/shop/shop_button/shop_button.tscn" id="2_qaxay"]
@@ -10,7 +10,9 @@
 [ext_resource type="Resource" uid="uid://blkrympbkkbkx" path="res://scenes/shop/shop_items/flashlight_upgrade_1.tres" id="9_8qn5i"]
 [ext_resource type="Resource" uid="uid://wtrfeqkuieiq" path="res://scenes/shop/shop_items/radar_upgrade_1.tres" id="9_dww4p"]
 [ext_resource type="Resource" uid="uid://co2umhba5ghsu" path="res://scenes/shop/shop_items/repair_hull.tres" id="9_tp26b"]
+[ext_resource type="Resource" uid="uid://vj47h685foif" path="res://scenes/shop/shop_items/cargo_capacity_upgrade_1.tres" id="10_dww4p"]
 [ext_resource type="AudioStream" uid="uid://c7efuqdkoa0ev" path="res://assets/audio/sfx/Radar_call.wav" id="11_8qn5i"]
+[ext_resource type="Resource" uid="uid://chvg61ghqqmeo" path="res://scenes/shop/shop_items/cargo_capacity_upgrade_2.tres" id="11_g6lcs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7r02r"]
 content_margin_left = 12.0
@@ -191,18 +193,18 @@ theme_override_constants/separation = 12
 
 [node name="CategoryLabel" type="Label" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/RadarUpgradesVBoxContainer3"]
 layout_mode = 2
-text = "Radar"
+text = "Capacity"
 horizontal_alignment = 1
 
-[node name="RadarLevel2Button" type="Button" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/RadarUpgradesVBoxContainer3"]
-custom_minimum_size = Vector2(0, 64)
+[node name="CapacityUpgrade1Button" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/RadarUpgradesVBoxContainer3" instance=ExtResource("2_qaxay")]
 layout_mode = 2
-text = "Level 2"
+text = "+5 Cargo"
+shop_item_resource = ExtResource("10_dww4p")
 
-[node name="RadarLevel3Button" type="Button" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/RadarUpgradesVBoxContainer3"]
-custom_minimum_size = Vector2(0, 64)
+[node name="CapacityUpgrade2Button" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/RadarUpgradesVBoxContainer3" instance=ExtResource("2_qaxay")]
 layout_mode = 2
-text = "Level 3"
+text = "+10 Cargo"
+shop_item_resource = ExtResource("11_g6lcs")
 
 [node name="DrillUpgradesVBoxContainer4" type="VBoxContainer" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer"]
 layout_mode = 2
