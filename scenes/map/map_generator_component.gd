@@ -3,6 +3,8 @@ class_name WorldGeneratorComponent
 
 var rng: RandomNumberGenerator
 @export var seed: String
+@export var root_position: Vector2 = Vector2(-50, 0.0)
+
 func _ready() -> void:
 	
 	rng = RandomNumberGenerator.new()
@@ -37,7 +39,7 @@ func generate_world(tile_map_layer: WorldTileMapLayer) -> void:
 			max_depth = tile_map_layer.num_tiles_deep / current_zone_resource_list_layer.max_depth_percentage
 			
 		for x in tile_map_layer.num_tiles_wide:
-			var coords = Vector2(x, y)
+			var coords = Vector2(x, y) + root_position
 			var tile_resource: TileResource = null
 			var tile_data = tile_map_layer.get_cell_tile_data(coords)
 			if tile_data:

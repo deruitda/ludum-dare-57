@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://ba37xei3d3pef"]
+[gd_scene load_steps=20 format=4 uid="uid://ba37xei3d3pef"]
 
 [ext_resource type="Script" uid="uid://bjtv52svxk5hf" path="res://scenes/main.gd" id="1_25pwl"]
 [ext_resource type="PackedScene" uid="uid://y7i0qucf3p8i" path="res://scenes/hud/hud.tscn" id="2_gt6bt"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cws16jfeq8cd2" path="res://scenes/submarine/submarine.tscn" id="11_r5pac"]
 [ext_resource type="PackedScene" uid="uid://ce0kl0dk0xdtq" path="res://scenes/core/audio_controller.tscn" id="12_1jpr6"]
 [ext_resource type="PackedScene" uid="uid://b545gpw6lx5g8" path="res://scenes/core/checkpoint.tscn" id="13_trceg"]
+[ext_resource type="Texture2D" uid="uid://cmwbtjko1gkck" path="res://assets/png_files/sun_background01.png" id="14_a8y0u"]
 
 [sub_resource type="Gradient" id="Gradient_sclgi"]
 
@@ -78,7 +79,7 @@ texture = SubResource("GradientTexture2D_ovew5")
 
 [node name="BoatShop" parent="." instance=ExtResource("10_gads5")]
 z_index = -1
-position = Vector2(4010, -737)
+position = Vector2(4133, -495)
 scale = Vector2(3.92, 3.92)
 
 [node name="Submarine" parent="." node_paths=PackedStringArray("checkpoint") instance=ExtResource("11_r5pac")]
@@ -95,6 +96,10 @@ position = Vector2(-1408, -40)
 position = Vector2(4168, 20)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(3777, -1655)
+scale = Vector2(13.125, 13.125)
+texture = ExtResource("14_a8y0u")
 
 [node name="WinningArea" type="Area2D" parent="."]
 
