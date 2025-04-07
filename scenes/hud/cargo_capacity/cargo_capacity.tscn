@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4nlnlxaka6gk"]
+
+[ext_resource type="Script" uid="uid://um8qt1faducf" path="res://scenes/hud/cargo_capacity/cargo_capacity.gd" id="1_okr25"]
+
+[node name="CargoCapacity" type="VBoxContainer"]
+offset_right = 116.0
+offset_bottom = 50.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("1_okr25")
+
+[node name="CargoFullWarning" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.999856, 0.30991, 0.270574, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 28
+text = "Cargo Full"
+
+[node name="CargoWeightLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 28
+text = "0 / 10"
+
+[node name="CargoCapacityLabel" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.783523, 0.783523, 0.783523, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 12
+text = "Capacity"

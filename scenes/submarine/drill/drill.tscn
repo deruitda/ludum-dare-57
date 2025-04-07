@@ -1,34 +1,145 @@
-[gd_scene load_steps=5 format=3 uid="uid://f231crs35mvv"]
+[gd_scene load_steps=19 format=3 uid="uid://f231crs35mvv"]
 
 [ext_resource type="Texture2D" uid="uid://bqngpq1j0yl5m" path="res://assets/png_files/drill01.png" id="1_vu58k"]
 [ext_resource type="Script" uid="uid://kds00okft8db" path="res://scenes/submarine/drill/drill.gd" id="1_xmfwo"]
 [ext_resource type="PackedScene" uid="uid://ca1meki1cy0e6" path="res://scenes/submarine/power_consumption_component.tscn" id="3_yx7yl"]
+[ext_resource type="Texture2D" uid="uid://cd2rjeotnol5v" path="res://assets/png_files/drill_animation01.png" id="4_4omm4"]
 [ext_resource type="Script" uid="uid://cut54ox6u58st" path="res://scenes/submarine/ray_cast_collider.gd" id="4_ejuc6"]
+[ext_resource type="AudioStream" uid="uid://bm8o0rbepie6i" path="res://assets/audio/sfx/drill.wav" id="6_km5jr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62lld"]
+atlas = ExtResource("4_4omm4")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82dry"]
+atlas = ExtResource("4_4omm4")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01dm2"]
+atlas = ExtResource("4_4omm4")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvknl"]
+atlas = ExtResource("4_4omm4")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8gxu"]
+atlas = ExtResource("4_4omm4")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_km5jr"]
+atlas = ExtResource("4_4omm4")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1mxd"]
+atlas = ExtResource("4_4omm4")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6r1s"]
+atlas = ExtResource("4_4omm4")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wqem"]
+atlas = ExtResource("1_vu58k")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxwtr"]
+atlas = ExtResource("4_4omm4")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qapo"]
+atlas = ExtResource("4_4omm4")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8qapo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62lld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82dry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01dm2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvknl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8gxu")
+}],
+"loop": true,
+"name": &"active_drilling",
+"speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_km5jr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1mxd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6r1s")
+}],
+"loop": false,
+"name": &"end_drilling",
+"speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wqem")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxwtr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qapo")
+}],
+"loop": false,
+"name": &"start_drilling",
+"speed": 11.0
+}]
 
 [node name="Drill" type="Node2D" node_paths=PackedStringArray("power_consuption_component")]
 script = ExtResource("1_xmfwo")
 power_consuption_component = NodePath("PowerConsumptionComponent")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -9)
-scale = Vector2(1, 0.3125)
-texture = ExtResource("1_vu58k")
 
 [node name="PowerConsumptionComponent" parent="." instance=ExtResource("3_yx7yl")]
 
 [node name="DrillTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8.5)
+scale = Vector2(1, 0.359375)
+sprite_frames = SubResource("SpriteFrames_8qapo")
+animation = &"end_drilling"
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_km5jr")
+volume_db = 6.558
+pitch_scale = 0.42
+bus = &"Drill"
+
 [node name="DrillRayCast" type="RayCast2D" parent="."]
-position = Vector2(0, 4)
+position = Vector2(0, 15)
 rotation = 3.14159
 scale = Vector2(1, 1.08)
-target_position = Vector2(2.44784e-06, 25.9259)
+target_position = Vector2(-8.87314e-05, 32.4074)
 collision_mask = 8
+hit_from_inside = true
 script = ExtResource("4_ejuc6")
 metadata/_custom_type_script = "uid://cut54ox6u58st"
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="child_entered_tree" from="DrillRayCast" to="." method="_on_area_2d_body_shape_entered"]
 [connection signal="child_exiting_tree" from="DrillRayCast" to="." method="_on_area_2d_body_shape_exited"]
-[connection signal="on_collision" from="DrillRayCast" to="." method="_on_collision"]
-[connection signal="on_collision_exit" from="DrillRayCast" to="." method="_on_collision_exit"]
+[connection signal="on_collision" from="DrillRayCast" to="." method="_on_drill_ray_cast_on_collision"]
+[connection signal="on_collision_exit" from="DrillRayCast" to="." method="_on_drill_ray_cast_on_collision_exit"]

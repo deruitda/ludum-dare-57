@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_yxren")
-drill_speed = 1.0
+drill_speed = 0.5
 name = "dirt"
 atlas_coordinates = Vector2(1, 0)
 metadata/_custom_type_script = "uid://joiabccf67iw"

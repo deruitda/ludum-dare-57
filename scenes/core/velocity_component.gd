@@ -9,6 +9,10 @@ class_name VelocityComponent
 func set_current_rotation(_rotation: float) -> void:
 	current_rotation = _rotation
 
+func is_moving() -> bool:
+	print("x" + str(velocity.x) + "y" + str(velocity.y))
+	return velocity.x != 0 || velocity.y != 0
+
 func set_velocity(_velocity: Vector2) -> void:
 	velocity = _velocity
 
@@ -34,6 +38,9 @@ func set_collision_direction(_direction: Vector2) -> void:
 		if _direction.y > 0.0 and velocity.y > 0.0 or _direction.y < 0.0 and velocity.y < 0.0:
 			velocity.y = 0.0
 	
+
+func apply_gravity(delta: float):
+	velocity.y += (9.8 * GameState.PIXEL_SIZE * delta)
 
 func do_character_move(character_body: CharacterBody2D):
 	

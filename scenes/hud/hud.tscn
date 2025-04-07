@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://y7i0qucf3p8i"]
+[gd_scene load_steps=8 format=3 uid="uid://y7i0qucf3p8i"]
 
 [ext_resource type="Texture2D" uid="uid://bkrttxk3o4ob1" path="res://assets/png_files/radar_ping_gold01.png" id="2_cgeww"]
 [ext_resource type="PackedScene" uid="uid://cpfs0tttr5k67" path="res://scenes/hud/depth_progress_bar.tscn" id="2_mgtrf"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dv0b0igbo624" path="res://scenes/hud/hud.gd" id="4_0bx4p"]
 [ext_resource type="PackedScene" uid="uid://b1cvebcwww5bn" path="res://scenes/hud/power_progress_bar.tscn" id="4_n56i7"]
 [ext_resource type="PackedScene" uid="uid://bjt3pbi53hjfi" path="res://scenes/hud/hull_integrity_progress_bar.tscn" id="4_v7mo4"]
+[ext_resource type="PackedScene" uid="uid://b4nlnlxaka6gk" path="res://scenes/hud/cargo_capacity/cargo_capacity.tscn" id="5_n56i7"]
 
 [node name="Hud" type="CanvasLayer"]
 script = ExtResource("4_0bx4p")
@@ -26,50 +27,52 @@ theme_override_constants/margin_top = 36
 theme_override_constants/margin_right = 36
 theme_override_constants/margin_bottom = 36
 
-[node name="Center Left" type="MarginContainer" parent="MarginContainer"]
-custom_minimum_size = Vector2(72, 312)
+[node name="TopLeft" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_constants/margin_top = 72
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Center Left"]
-layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="HullIntegrityProgressBar" parent="MarginContainer/Center Left/HBoxContainer" instance=ExtResource("4_v7mo4")]
-layout_mode = 2
-
-[node name="PowerProgressBar" parent="MarginContainer/Center Left/HBoxContainer" instance=ExtResource("4_n56i7")]
-layout_mode = 2
-
-[node name="Top Left" type="Control" parent="MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="CollectedMoneyRichText" type="RichTextLabel" parent="MarginContainer/Top Left"]
+[node name="CollectedMoneyRichText" type="RichTextLabel" parent="MarginContainer/TopLeft"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 40.0
+layout_mode = 2
 theme_override_colors/default_color = Color(0.623616, 1, 0.5945, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/normal_font_size = 28
 text = "$0
 "
+fit_content = true
 scroll_active = false
 vertical_alignment = 1
 drag_and_drop_selection_enabled = false
 
-[node name="Container" type="Control" parent="MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TopLeft"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_bottom = 36
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TopLeft/MarginContainer"]
+custom_minimum_size = Vector2(72, 312)
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="HullIntegrityProgressBar" parent="MarginContainer/TopLeft/MarginContainer/HBoxContainer" instance=ExtResource("4_v7mo4")]
+layout_mode = 2
+
+[node name="PowerProgressBar" parent="MarginContainer/TopLeft/MarginContainer/HBoxContainer" instance=ExtResource("4_n56i7")]
+layout_mode = 2
+
+[node name="CargoCapacity" parent="MarginContainer/TopLeft" instance=ExtResource("5_n56i7")]
+layout_mode = 2
+
+[node name="TopRight" type="Control" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 mouse_default_cursor_shape = 2
 
-[node name="PauseButton" type="TextureButton" parent="MarginContainer/Container"]
+[node name="PauseButton" type="TextureButton" parent="MarginContainer/TopRight"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 1
@@ -83,7 +86,7 @@ mouse_default_cursor_shape = 2
 texture_normal = ExtResource("2_cgeww")
 stretch_mode = 0
 
-[node name="PlayButton" type="TextureButton" parent="MarginContainer/Container"]
+[node name="PlayButton" type="TextureButton" parent="MarginContainer/TopRight"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
