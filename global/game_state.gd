@@ -5,6 +5,9 @@ extends Node
 var INITIAL_CARGO_WEIGHT = 0
 var INITIAL_CARGO_VALUE = 0
 
+@export var TOTAL_ALLOWED_BUBBLES:int = 1000
+@onready var total_bubbles: int = 0
+
 var money_collected: int = INITIAL_MONEY_COLLECTED
 var max_cargo_weight: int = INITIAL_MAX_CARGO_WEIGHT
 var current_cargo_weight: int = INITIAL_CARGO_WEIGHT

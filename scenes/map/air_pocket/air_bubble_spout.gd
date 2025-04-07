@@ -27,7 +27,6 @@ func create_particle():
 	bubble.global_position = spawn_position  # or wherever you want it to spawn
 	bubble.air_spout = self
 	get_tree().current_scene.add_child(bubble)
-	
 #
 func _physics_process(delta: float) -> void:
 	current_timer += delta
@@ -35,9 +34,16 @@ func _physics_process(delta: float) -> void:
 		_on_spawn_timer_timeout()
 		current_timer -= spawn_in_seconds
 	
+	
+func can_create_bubbles() -> bool:
+	return current_particle_count < max_air_particles and GameState.TOTAL_ALLOWED_BUBBLES < GameState.total_bubbles
+
 func _on_bubble_popped():
 	max_air_particles -= 1
+	GameState.total_bubbles -= 1
+
 func _on_spawn_timer_timeout() -> void:
-	if current_particle_count < max_air_particles:
+	if can_create_bubbles():
 		create_particle()
 		current_particle_count += 1
+		GameState.total_bubbles += 1
