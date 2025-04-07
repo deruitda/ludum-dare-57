@@ -15,6 +15,7 @@ extends CharacterBody2D
 @onready var jet_light: PointLight2D = $JetLight
 @onready var battery: Battery = $Battery
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
 
 var audio = [
  	preload("res://assets/audio/sfx/prop_start.wav"),
@@ -23,7 +24,7 @@ var audio = [
  ]
 
 var min_light_energy = 1.0
-var max_light_energy = 5.0
+var max_light_energy = 2.0
 
 func _process(delta: float) -> void:
 	direction_input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -47,26 +48,34 @@ func _physics_process(delta: float):
 		if drill.is_actively_drilling:
 			move_to_center_component.set_current_input_direction(Vector2.ZERO)
 			move_to_center_component.set_must_move_to_center()
-		elif not drill.drilling_direction == direction_input:
-			var edge_directions: Array[Vector2] = edge_detector.get_edge_directions()
-			for edge_direction in edge_directions:
-				velocity_component.set_collision_direction(edge_direction)
 			
-				if edge_directions.size() > 0:
-					move_to_center_component.set_must_move_to_center()
+		var edge_directions: Array[Vector2] = edge_detector.get_edge_directions()
 		
-		hull.update_depth(current_depth, delta)
-		GameState.update_depth(current_depth)
-		modulate_jet_light()
-		velocity_component.set_current_rotation(rotation_degrees)
+		if edge_directions.size() > 0:
+			move_to_center_component.start_timer()
 		
 		if move_to_center_component.is_currently_centering:
 			var move_to_center_velocity: Vector2 = move_to_center_component.get_velocity_to_center()
 			velocity_component.set_velocity(move_to_center_velocity)
 		elif not drill.is_actively_drilling:
 			velocity_component.apply_move(direction_input, delta)
+			
+		#set_edge_detection()
+		
+		hull.update_depth(current_depth, delta)
+		GameState.update_depth(current_depth)
+		velocity_component.set_current_rotation(rotation_degrees)
+		
 		
 	velocity_component.do_character_move(self)
+
+#func set_edge_detection():
+	#var edge_directions: Array[Vector2] = edge_detector.get_edge_directions()
+	##for edge_direction in edge_directions:
+		##velocity_component.set_collision_direction(edge_direction)
+	#
+		#if edge_directions.size() > 0:
+			#move_to_center_component.set_must_move_to_center()
 
 func do_respawn():
 	if checkpoint:
@@ -77,13 +86,14 @@ func do_respawn():
 
 func apply_movement_effects():
 	
-	if velocity_component.velocity.length() > 0:
+	if current_depth > 1 and velocity_component.velocity.length() > 0:
 		jet_light.energy = velocity_component.velocity.length() / 100
-	elif velocity_component.velocity.length() == 0:
+		gpu_particles_2d.emitting = true
+		var num_particles = velocity_component.velocity.length()
+		gpu_particles_2d.process_material.radial_velocity_max = num_particles
+	elif velocity_component.velocity.length() == 0 or current_depth < 0.4:
 		jet_light.energy = 0.0	
-	
-	
-	print("velocity len: " + str(velocity_component.velocity.length()))
+		gpu_particles_2d.emitting = false
 	
 	# the player is stopped, set the sustained sound
 	if audio_stream_player_2d.stream == null || audio_stream_player_2d.stream == audio[2]:
@@ -100,10 +110,6 @@ func apply_movement_effects():
 	if audio_stream_player_2d.stream == audio[1] && !velocity_component.is_moving():
 		audio_stream_player_2d.stream = audio[2]
 		audio_stream_player_2d.play()
-
-func modulate_jet_light():
-	pass
-	#var current_energy = jet_light.energy
 
 func apply_rotation() -> void:
 	var normal_x = direction_input.x
