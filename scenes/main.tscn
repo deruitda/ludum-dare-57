@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://ba37xei3d3pef"]
+[gd_scene load_steps=22 format=4 uid="uid://ba37xei3d3pef"]
 
 [ext_resource type="Script" uid="uid://bjtv52svxk5hf" path="res://scenes/main.gd" id="1_25pwl"]
 [ext_resource type="PackedScene" uid="uid://y7i0qucf3p8i" path="res://scenes/hud/hud.tscn" id="2_gt6bt"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d201f6lfjqx1v" path="res://scenes/hud/ping_pointer/ping_pointer.tscn" id="3_p07le"]
 [ext_resource type="PackedScene" uid="uid://ng3xa25mlxkb" path="res://scenes/shop/shop.tscn" id="4_6uobj"]
 [ext_resource type="PackedScene" uid="uid://btknplgeb70by" path="res://scenes/map/tile_map_layer.tscn" id="5_4xcqp"]
-[ext_resource type="Script" path="res://scenes/map/tile_resource/zone_resource_list_layer.gd" id="6_6qnuo"]
+[ext_resource type="Script" uid="uid://b0wmy2qe6hygq" path="res://scenes/map/tile_resource/zone_resource_list_layer.gd" id="6_6qnuo"]
 [ext_resource type="Resource" uid="uid://v3xrbcr0u4i6" path="res://scenes/map/zone_resource_list_layers/zone_1_resource_list_layer.tres" id="7_g5njp"]
 [ext_resource type="Resource" uid="uid://cljheb83ftod6" path="res://scenes/map/zone_resource_list_layers/zone_2_resource_list_layer.tres" id="8_82res"]
 [ext_resource type="Resource" uid="uid://5woomv2ypgi3" path="res://scenes/map/zone_resource_list_layers/zone_3_resource_list_layer.tres" id="9_2ocyq"]
@@ -34,6 +34,9 @@ width = 2000
 height = 2000
 fill_from = Vector2(0.592593, 0.247863)
 fill_to = Vector2(0.592593, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a8y0u"]
+size = Vector2(4582, 2433)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_25pwl")
@@ -125,8 +128,16 @@ position = Vector2(5920, 9889)
 max_air_particles = 300
 spawn_in_seconds = 3.0
 
+[node name="WinningArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WinningArea2D"]
+position = Vector2(4241, 17610.5)
+shape = SubResource("RectangleShape2D_a8y0u")
+
 [node name="background" type="Sprite2D" parent="."]
 z_index = -3
 position = Vector2(6012, -2578)
 scale = Vector2(22.2746, 19.7716)
 texture = ExtResource("16_jbj1t")
+
+[connection signal="body_entered" from="WinningArea2D" to="." method="_on_winning_area_2d_body_entered"]

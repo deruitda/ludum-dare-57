@@ -1,9 +1,15 @@
 extends Node
 
-@export var money_collected: int = 0
-@export var max_cargo_weight: int = 10
-var current_cargo_weight: int = 0
-var current_cargo_value: int = 0
+@export var INITIAL_MONEY_COLLECTED = 0
+@export var INITIAL_MAX_CARGO_WEIGHT = 10
+var INITIAL_CARGO_WEIGHT = 0
+var INITIAL_CARGO_VALUE = 0
+
+var money_collected: int = INITIAL_MONEY_COLLECTED
+var max_cargo_weight: int = INITIAL_MAX_CARGO_WEIGHT
+var current_cargo_weight: int = INITIAL_CARGO_WEIGHT
+var current_cargo_value: int = INITIAL_CARGO_VALUE
+
 @export var is_shop_opened: bool = false
 var is_player_in_shop_area: bool = false
 
@@ -24,9 +30,10 @@ func _ready() -> void:
 	SignalBus.submarine_lost_power.connect(die)
 
 func _on_new_game() -> void:
-	current_cargo_value = 0
-	current_cargo_weight = 0
-	money_collected = 0
+	current_cargo_value = INITIAL_CARGO_VALUE
+	current_cargo_weight = INITIAL_CARGO_WEIGHT
+	max_cargo_weight = INITIAL_MAX_CARGO_WEIGHT
+	money_collected = INITIAL_MONEY_COLLECTED
 	SignalBus.cargo_updated.emit()
 	SignalBus.money_collected_updated.emit()
 
