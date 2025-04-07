@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://b31timckohuyk"]
+[gd_resource type="TileSet" load_steps=16 format=3 uid="uid://b31timckohuyk"]
 
 [ext_resource type="Resource" uid="uid://b76rsc71db2gl" path="res://scenes/map/tiles/rock.tres" id="1_kq4rb"]
 [ext_resource type="Texture2D" uid="uid://bdrmnlqo8u368" path="res://assets/png_files/tile_set.png" id="1_u7v1k"]
@@ -7,7 +7,10 @@
 [ext_resource type="Resource" uid="uid://bs3ippusmw88v" path="res://scenes/map/tiles/bedrock.tres" id="4_ubw4j"]
 [ext_resource type="Resource" uid="uid://npe5ukvneqfy" path="res://scenes/map/tiles/valuable_1.tres" id="5_kybr3"]
 [ext_resource type="Resource" uid="uid://dq2iilo33ojj3" path="res://scenes/map/tiles/valuable_2.tres" id="6_pnfni"]
+[ext_resource type="Resource" uid="uid://bomtobf6gfj0y" path="res://scenes/map/tiles/valuable_4.tres" id="6_ubw4j"]
 [ext_resource type="Resource" uid="uid://b3yyta77abbwd" path="res://scenes/map/tiles/valuable_3.tres" id="7_g3jvo"]
+[ext_resource type="Resource" uid="uid://cnbe1t6cbydrf" path="res://scenes/map/tiles/valuable_5.tres" id="8_kybr3"]
+[ext_resource type="Resource" uid="uid://b2cxj38jb0l61" path="res://scenes/map/tiles/valuable_6.tres" id="10_pnfni"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_kq4rb"]
 polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
@@ -21,6 +24,7 @@ polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qgpub"]
 texture = ExtResource("1_u7v1k")
 texture_region_size = Vector2i(64, 64)
+0:0/animation_separation = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_kq4rb")
 0:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
@@ -46,6 +50,15 @@ texture_region_size = Vector2i(64, 64)
 6:0/0 = 0
 6:0/0/physics_layer_4/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 6:0/0/custom_data_0 = ExtResource("7_g3jvo")
+4:1/0 = 0
+4:1/0/physics_layer_4/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+4:1/0/custom_data_0 = ExtResource("6_ubw4j")
+5:1/0 = 0
+5:1/0/physics_layer_4/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+5:1/0/custom_data_0 = ExtResource("8_kybr3")
+6:1/0 = 0
+6:1/0/physics_layer_4/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+6:1/0/custom_data_0 = ExtResource("10_pnfni")
 
 [resource]
 tile_size = Vector2i(64, 64)

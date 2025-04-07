@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ng3xa25mlxkb"]
+[gd_scene load_steps=13 format=3 uid="uid://ng3xa25mlxkb"]
 
 [ext_resource type="Script" uid="uid://d48c851g4ll6" path="res://scenes/shop/shop.gd" id="1_100s2"]
 [ext_resource type="PackedScene" uid="uid://cy1wj7klhfd73" path="res://scenes/shop/shop_button/shop_button.tscn" id="2_qaxay"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://blkrympbkkbkx" path="res://scenes/shop/shop_items/flashlight_upgrade_1.tres" id="9_8qn5i"]
 [ext_resource type="Resource" uid="uid://co2umhba5ghsu" path="res://scenes/shop/shop_items/repair_hull.tres" id="9_tp26b"]
 [ext_resource type="Resource" uid="uid://oamge6kiq2jc" path="res://scenes/shop/shop_items/flashlight_upgrade_2.tres" id="10_dww4p"]
+[ext_resource type="AudioStream" uid="uid://c7efuqdkoa0ev" path="res://assets/audio/sfx/Radar_call.wav" id="11_8qn5i"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7r02r"]
 content_margin_left = 12.0
@@ -243,5 +244,9 @@ theme_override_constants/separation = 12
 layout_mode = 2
 text = "Repair Hull"
 shop_item_resource = ExtResource("9_tp26b")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_8qn5i")
+volume_db = 24.0
 
 [connection signal="pressed" from="ShopContainer/ColorRect/MarginContainer/VBoxContainer/Control/CloseShopButton" to="." method="_on_close_shop_button_pressed"]
