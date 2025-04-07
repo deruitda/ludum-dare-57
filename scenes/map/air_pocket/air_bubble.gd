@@ -24,6 +24,5 @@ func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, lo
 
 		var direction = Vector2.UP# Get the direction away from the player
 		var burst_velocity = direction * linear_velocity.length() * collision_velocity  # Apply the velocity
-		print (linear_velocity)
 		# Call the custom function on the Player class
 		body._on_bubble_collision(burst_velocity)  # This assumes `handle_bubble_collision` exists in the Player class

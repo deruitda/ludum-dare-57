@@ -46,12 +46,9 @@ func _on_bubble_popped():
 
 func _on_spawn_timer_timeout() -> void:
 	if can_create_bubbles():
-		print("can")
 		create_particle()
 		current_particle_count += 1
 		GameState.total_bubbles += 1
-	else:
-		print( GameState.TOTAL_ALLOWED_BUBBLES > GameState.total_bubbles)
 
 func is_spout_smothered() -> bool:
 	var bubble_count = 0
