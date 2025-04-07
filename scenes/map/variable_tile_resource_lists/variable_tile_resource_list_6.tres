@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="VariableTileResourceList" load_steps=11 format=3 uid="uid://5byi0g0tff67"]
+
+[ext_resource type="Script" uid="uid://dq5ymjjof67y1" path="res://scenes/map/tile_resource/variable_tile_resource_list.gd" id="1_ojcue"]
+[ext_resource type="Script" uid="uid://csumtewo3g8r6" path="res://scenes/map/tile_resource/variable_tile_resource.gd" id="2_8rb6w"]
+[ext_resource type="Resource" uid="uid://b3yyta77abbwd" path="res://scenes/map/tiles/valuable_3.tres" id="3_uax4t"]
+[ext_resource type="Resource" uid="uid://b76rsc71db2gl" path="res://scenes/map/tiles/rock.tres" id="4_7nlw6"]
+[ext_resource type="Resource" uid="uid://dq2iilo33ojj3" path="res://scenes/map/tiles/valuable_2.tres" id="5_emwfa"]
+[ext_resource type="Resource" uid="uid://c44hk3trh8alv" path="res://scenes/map/tiles/water.tres" id="6_s66sg"]
+
+[sub_resource type="Resource" id="Resource_vxglm"]
+script = ExtResource("2_8rb6w")
+percent_chance_of_spawn = 0.08
+tile_resource = ExtResource("3_uax4t")
+metadata/_custom_type_script = "uid://csumtewo3g8r6"
+
+[sub_resource type="Resource" id="Resource_2f3dj"]
+script = ExtResource("2_8rb6w")
+percent_chance_of_spawn = 0.3
+tile_resource = ExtResource("4_7nlw6")
+metadata/_custom_type_script = "uid://csumtewo3g8r6"
+
+[sub_resource type="Resource" id="Resource_yq6so"]
+script = ExtResource("2_8rb6w")
+percent_chance_of_spawn = 0.12
+tile_resource = ExtResource("5_emwfa")
+metadata/_custom_type_script = "uid://csumtewo3g8r6"
+
+[sub_resource type="Resource" id="Resource_tel4y"]
+script = ExtResource("2_8rb6w")
+percent_chance_of_spawn = 0.2
+tile_resource = ExtResource("6_s66sg")
+metadata/_custom_type_script = "uid://csumtewo3g8r6"
+
+[resource]
+script = ExtResource("1_ojcue")
+variable_tile_resources = Array[ExtResource("2_8rb6w")]([SubResource("Resource_vxglm"), SubResource("Resource_2f3dj"), SubResource("Resource_yq6so"), SubResource("Resource_tel4y")])
+metadata/_custom_type_script = "uid://dq5ymjjof67y1"

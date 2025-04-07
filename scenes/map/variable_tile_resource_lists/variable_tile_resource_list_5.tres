@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="VariableTileResourceList" load_steps=9 format=3 uid="uid://bs3a2oj2ql6s7"]
+
+[ext_resource type="Script" uid="uid://dq5ymjjof67y1" path="res://scenes/map/tile_resource/variable_tile_resource_list.gd" id="1_fvxxk"]
+[ext_resource type="Script" uid="uid://csumtewo3g8r6" path="res://scenes/map/tile_resource/variable_tile_resource.gd" id="2_72qo5"]
+[ext_resource type="Resource" uid="uid://b3yyta77abbwd" path="res://scenes/map/tiles/valuable_3.tres" id="3_potai"]
+[ext_resource type="Resource" uid="uid://b76rsc71db2gl" path="res://scenes/map/tiles/rock.tres" id="4_s11o7"]
+[ext_resource type="Resource" uid="uid://c44hk3trh8alv" path="res://scenes/map/tiles/water.tres" id="5_7x0e8"]
+
+[sub_resource type="Resource" id="Resource_y6deb"]
+script = ExtResource("2_72qo5")
+percent_chance_of_spawn = 0.2
+tile_resource = ExtResource("3_potai")
+metadata/_custom_type_script = "uid://csumtewo3g8r6"
+
+[sub_resource type="Resource" id="Resource_2wyq8"]
+script = ExtResource("2_72qo5")
+percent_chance_of_spawn = 0.6
+tile_resource = ExtResource("4_s11o7")
+metadata/_custom_type_script = "uid://csumtewo3g8r6"
+
+[sub_resource type="Resource" id="Resource_vxglm"]
+script = ExtResource("2_72qo5")
+percent_chance_of_spawn = 0.1
+tile_resource = ExtResource("5_7x0e8")
+metadata/_custom_type_script = "uid://csumtewo3g8r6"
+
+[resource]
+script = ExtResource("1_fvxxk")
+variable_tile_resources = Array[ExtResource("2_72qo5")]([SubResource("Resource_y6deb"), SubResource("Resource_2wyq8"), SubResource("Resource_vxglm")])
+metadata/_custom_type_script = "uid://dq5ymjjof67y1"

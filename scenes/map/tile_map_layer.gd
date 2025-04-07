@@ -1,6 +1,8 @@
 extends TileMapLayer
 class_name WorldTileMapLayer
 
+@export var tile_variable_controls: Array[TileVariableControl]
+
 @export var num_tiles_wide: int = 250
 @export var num_tiles_deep: int = 185 
 @export var world_generator_component: WorldGeneratorComponent
