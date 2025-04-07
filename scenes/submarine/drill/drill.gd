@@ -103,6 +103,7 @@ func abort_drilling():
 		pass
 	is_actively_drilling = false
 	drill_timer.stop()
+	drillable_world_tile_map_player.abort_drilling(drillable_tile_rid)
 	_on_drilling_aborted.emit()
 	if animated_sprite_2d.animation == "active_drilling":
 		animated_sprite_2d.play("end_drilling")

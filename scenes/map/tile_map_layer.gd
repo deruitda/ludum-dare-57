@@ -39,3 +39,9 @@ func drilling_tile(rid: RID) -> void:
 	var resource = get_tile_resource_from_rid(rid)
 	
 	set_tile_resource(drilling_resource, coords, resource.anim_source_index)
+	
+func abort_drilling(rid: RID) -> void:
+	var coords = self.get_coords_for_body_rid(rid)
+	var resource = get_tile_resource_from_rid(rid)
+	
+	set_tile_resource(resource, coords, 0)
