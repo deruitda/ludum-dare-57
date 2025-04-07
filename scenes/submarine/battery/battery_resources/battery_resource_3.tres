@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_mbm28")
-max_power_level = 150.0
+max_power_level = 100.0
 is_unlocked = false
 metadata/_custom_type_script = "uid://lplghhp5ejtj"
