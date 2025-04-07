@@ -43,7 +43,7 @@ frame_10/duration = 0.1
 frame_11/texture = ExtResource("4_toevd")
 frame_11/duration = 0.1
 
-[node name="Node2D" type="CanvasLayer"]
+[node name="Cracks" type="CanvasLayer"]
 script = ExtResource("1_pfpp2")
 
 [node name="TextureRect1" type="TextureRect" parent="."]
@@ -52,12 +52,13 @@ modulate = Color(1, 1, 1, 0.352941)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 347.0
-offset_top = 113.0
-offset_right = -997.0
-offset_bottom = -531.0
+offset_left = 272.0
+offset_top = -4.0
+offset_right = -1072.0
+offset_bottom = -648.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = 0.656244
 texture = SubResource("AnimatedTexture_xei1x")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
@@ -66,12 +67,13 @@ modulate = Color(1, 1, 1, 0.352941)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 739.0
-offset_top = 477.0
-offset_right = -605.0
-offset_bottom = -167.0
+offset_left = 803.0
+offset_top = 498.0
+offset_right = -541.0
+offset_bottom = -146.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = -0.410152
 texture = SubResource("AnimatedTexture_xei1x")
 
 [node name="TextureRect3" type="TextureRect" parent="."]
@@ -100,4 +102,5 @@ offset_right = -276.0
 offset_bottom = -467.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = -0.45204
 texture = SubResource("AnimatedTexture_xei1x")

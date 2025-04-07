@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=4 uid="uid://ba37xei3d3pef"]
+[gd_scene load_steps=21 format=4 uid="uid://ba37xei3d3pef"]
 
 [ext_resource type="Script" uid="uid://bjtv52svxk5hf" path="res://scenes/main.gd" id="1_25pwl"]
 [ext_resource type="PackedScene" uid="uid://y7i0qucf3p8i" path="res://scenes/hud/hud.tscn" id="2_gt6bt"]
+[ext_resource type="PackedScene" uid="uid://ds5eamg4g8geo" path="res://cracks.tscn" id="2_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://d201f6lfjqx1v" path="res://scenes/hud/ping_pointer/ping_pointer.tscn" id="3_p07le"]
 [ext_resource type="PackedScene" uid="uid://ng3xa25mlxkb" path="res://scenes/shop/shop.tscn" id="4_6uobj"]
 [ext_resource type="PackedScene" uid="uid://btknplgeb70by" path="res://scenes/map/tile_map_layer.tscn" id="5_4xcqp"]
@@ -38,6 +39,8 @@ size = Vector2(4547, 2423)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_25pwl")
+
+[node name="Cracks" parent="." instance=ExtResource("2_jkv2x")]
 
 [node name="Hud" parent="." instance=ExtResource("2_gt6bt")]
 
@@ -97,7 +100,7 @@ position = Vector2(4168, 20)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -2
-position = Vector2(3777, -1655)
+position = Vector2(3696, -1766)
 scale = Vector2(13.125, 13.125)
 texture = ExtResource("14_a8y0u")
 

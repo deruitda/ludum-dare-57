@@ -12,19 +12,30 @@ func update_screen(hull: Hull):
 	var hp_percent = hull.get_hull_health_percentage()
 	var animated = null
 	
-	if hp_percent < 25:
+	if hp_percent <= 0 || hp_percent >= 1.0:
+		texture_rect_1.visible = false
+		texture_rect_2.visible = false
+		texture_rect_3.visible = false
+		texture_rect_4.visible = false
+		return
+	
+	if hp_percent < 0.25:
+		texture_rect_1.visible = true
 		animated = texture_rect_1.texture as AnimatedTexture
-	if hp_percent < 50:
+	if hp_percent < 0.50 and hp_percent > 0.25:
+		texture_rect_2.visible = true
 		animated = texture_rect_2.texture as AnimatedTexture
-	if hp_percent < 75:
+	if hp_percent < 0.75 and hp_percent > 0.50:
+		texture_rect_3.visible = true
 		animated = texture_rect_3.texture as AnimatedTexture
-	if hp_percent < 100:
+	if hp_percent < 1.0 and hp_percent > 0.75:
+		texture_rect_4.visible = true
 		animated = texture_rect_4.texture as AnimatedTexture
-		
-	run_animation(animated)
+	
+	if animated != null:
+		run_animation(animated)
 
 func run_animation(animated_texture: AnimatedTexture):
-	animated_texture.visible = true
 	animated_texture.pause = false
 	animated_texture.one_shot = true
 	animated_texture.speed_scale = 1.0
