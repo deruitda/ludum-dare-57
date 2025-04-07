@@ -17,6 +17,8 @@ extends CharacterBody2D
 @onready var battery: Battery = $Battery
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
+@onready var power_loss_audio_player: AudioStreamPlayer2D = $PowerLossAudioPlayer
+@onready var explosion_audio_player: AudioStreamPlayer2D = $ExplosionAudioPlayer
 
 var is_dead = false
 
@@ -78,6 +80,14 @@ func _physics_process(delta: float):
 	#
 		#if edge_directions.size() > 0:
 			#move_to_center_component.set_must_move_to_center()
+
+func die_hull():
+	explosion_audio_player.play()
+	die()
+
+func die_power():
+	power_loss_audio_player.play()
+	die()
 
 func die():
 	is_dead = true
@@ -168,8 +178,8 @@ func apply_ship_light():
 func _ready() -> void:
 	drill._on_drilling_aborted.connect(_on_drilling_aborted)
 	drill._on_drilling_started.connect(_on_drilling_started)
-	SignalBus.hull_destroyed.connect(die)
-	SignalBus.submarine_lost_power.connect(do_respawn)
+	SignalBus.hull_destroyed.connect(die_hull)
+	SignalBus.submarine_lost_power.connect(die_power)
 	
 func _on_drilling_started() -> void:
 	move_to_center_component.set_must_move_to_center()
