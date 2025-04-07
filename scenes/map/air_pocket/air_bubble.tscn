@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8mat6bxa32ce"]
+
+[ext_resource type="Texture2D" uid="uid://cuc7hlfjdmivs" path="res://assets/png_files/bubble_sprite01.png" id="1_lduf1"]
+[ext_resource type="Script" uid="uid://pmp7xq553g7o" path="res://scenes/map/air_pocket/air_bubble.gd" id="1_nyyir"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nyyir"]
+
+[node name="AirBubble" type="RigidBody2D"]
+collision_layer = 1024
+collision_mask = 1243
+mass = 0.05
+gravity_scale = -2.0
+script = ExtResource("1_nyyir")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nyyir")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_lduf1")
