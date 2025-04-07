@@ -30,28 +30,23 @@ func set_current_input_direction(_direction_input: Vector2):
 	current_direction_input = _direction_input
 
 func _physics_process(delta: float) -> void:
+	set_colliding_state()
 	if drilling_direction != get_drilling_direction() and is_actively_drilling:
 		# We've turned somewhere
 		abort_drilling()
-	if  (not current_direction_input == Vector2.ZERO) and  current_direction_input == drilling_direction:
+	if  (not current_direction_input == Vector2.ZERO) and current_direction_input == drilling_direction:
 		if is_actively_drilling:
 			battery.consume_power(power_consuption_component.power_consumption_per_use * delta)
-		elif has_drillable_position_tile:
+		elif has_drillable_position_tile and not is_actively_drilling:
 			start_drilling()
 	else:
 		if is_actively_drilling:
 			abort_drilling()
-
-func _on_collision() -> void:
-	drillable_tile_rid = drill_ray_cast.get_collider_rid()
-	drillable_world_tile_map_player = drill_ray_cast.get_collider()
-	
-	drilling_direction = get_drilling_direction()
-	has_drillable_position_tile = true
-
-func _on_collision_exit() -> void:
-	has_drillable_position_tile = false
-
+func set_colliding_state():
+	if not drill_ray_cast.is_colliding() and is_actively_drilling:
+		has_drillable_position_tile = false
+		abort_drilling()
+		
 func get_drilling_direction() -> Vector2:
 	# Default direction (90 degrees to the left, which is -90 degrees)
 	var default_direction = Vector2(0.0, -1.0)  # Upward direction in the local coordinate system
@@ -89,22 +84,38 @@ func _drilling_is_finished() -> void:
 	
 	animated_sprite_2d.play("end_drilling")
 	audio_listener_2d.play()
-	
 
 
 func abort_drilling():
+	print("abort drilling")
+	has_drillable_position_tile = false
 	drill_timer.stop()
 	is_actively_drilling = false
 	_on_drilling_aborted.emit()
-	animated_sprite_2d.play("end_drilling")
+	if animated_sprite_2d.animation == "active_drilling":
+		animated_sprite_2d.play("end_drilling")
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
+	print(animated_sprite_2d.animation)
 	if is_actively_drilling:
 		animated_sprite_2d.play("active_drilling")
-	elif animated_sprite_2d.animation == "active_drilling":
+	elif animated_sprite_2d.animation == "active_drilling" or animated_sprite_2d.animation == "start_drilling":
 		animated_sprite_2d.play("end_drilling")
 	elif animated_sprite_2d.animation == "end_drilling":
-		animated_sprite_2d.play("idle")
-		audio_listener_2d.stop()
 		
+		animated_sprite_2d.play("idle")
+		animated_sprite_2d.stop()
+		
+
+
+func _on_drill_ray_cast_on_collision_exit() -> void:
+	has_drillable_position_tile = false
+
+
+func _on_drill_ray_cast_on_collision() -> void:
+	drillable_tile_rid = drill_ray_cast.get_collider_rid()
+	drillable_world_tile_map_player = drill_ray_cast.get_collider()
+	
+	drilling_direction = get_drilling_direction()
+	has_drillable_position_tile = true

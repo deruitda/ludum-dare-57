@@ -24,7 +24,12 @@ func _process(delta: float) -> void:
 	SignalBus.set_current_depth.emit(current_depth)
 
 func _physics_process(delta: float):
+	#if not direction_input == Vector2.ZERO:
+		#print("no direction")
+	#else:
+		#print("direction") 
 	drill.set_current_input_direction(direction_input)
+	apply_rotation()
 	
 	move_to_center_component.set_current_position_value(global_position)
 	move_to_center_component.set_current_velocity(velocity)
@@ -43,7 +48,6 @@ func _physics_process(delta: float):
 	hull.update_depth(current_depth, delta)
 	GameState.update_depth(current_depth)
 	modulate_jet_light()
-	apply_rotation()
 	velocity_component.set_current_rotation(rotation_degrees)
 	
 	if move_to_center_component.is_currently_centering:
