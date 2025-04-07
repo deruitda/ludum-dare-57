@@ -1,6 +1,7 @@
 extends Node
 class_name VelocityComponent
 @export var acceleration = 1000.0
+@export var deceleration = 2000.0
 @export var max_speed: float = 1000.0
 
 @onready var velocity: Vector2
@@ -17,15 +18,22 @@ func set_velocity(_velocity: Vector2) -> void:
 
 func apply_move(direction: Vector2, delta: float) -> void:
 	var acceleration_metric = acceleration
-	
-	if direction.x == 0.0:
-		velocity.x = move_toward(velocity.x, 0, drag_resistance * delta)
+	var deceleration_metric = deceleration
+
+	# Handle X-axis
+	if sign(direction.x) != sign(velocity.x) and velocity.x != 0:
+		# If the direction is opposite to the current velocity, apply deceleration
+		velocity.x = clamp(velocity.x + (direction.x * deceleration_metric * delta), -max_speed, max_speed)
 	else:
+		# Otherwise, apply regular acceleration
 		velocity.x = clamp(velocity.x + (direction.x * acceleration_metric * delta), -max_speed, max_speed)
-	
-	if direction.y == 0.0:
-		velocity.y = move_toward(velocity.y, 0, drag_resistance * delta)
+
+	# Handle Y-axis
+	if sign(direction.y) != sign(velocity.y) and velocity.y != 0:
+		# Apply deceleration for opposite direction
+		velocity.y = clamp(velocity.y + (direction.y * deceleration_metric * delta), -max_speed, max_speed)
 	else:
+		# Otherwise, apply regular acceleration
 		velocity.y = clamp(velocity.y + (direction.y * acceleration_metric * delta), -max_speed, max_speed)
 
 func set_collision_direction(_direction: Vector2) -> void:

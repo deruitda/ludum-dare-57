@@ -240,7 +240,7 @@ spawn_in_seconds = 0.05
 [node name="AirBubbleSpout10" parent="." instance=ExtResource("14_a8y0u")]
 position = Vector2(3550, 4384)
 max_air_particles = 300
-spawn_in_seconds = 0.01
+spawn_in_seconds = 0.1
 gravity = -1.0
 
 [connection signal="body_entered" from="WinningArea2D" to="." method="_on_winning_area_2d_body_entered"]
