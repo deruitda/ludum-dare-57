@@ -1,6 +1,6 @@
 extends Node
 
-@export var INITIAL_MONEY_COLLECTED = 2000
+@export var INITIAL_MONEY_COLLECTED = 0
 @export var INITIAL_MAX_CARGO_WEIGHT = 10
 var INITIAL_CARGO_WEIGHT = 0
 var INITIAL_CARGO_VALUE = 0
@@ -12,6 +12,9 @@ var money_collected: int = INITIAL_MONEY_COLLECTED
 var max_cargo_weight: int = INITIAL_MAX_CARGO_WEIGHT
 var current_cargo_weight: int = INITIAL_CARGO_WEIGHT
 var current_cargo_value: int = INITIAL_CARGO_VALUE
+
+@export var TOTAL_ALLOWED_BUBBLES:int = 1000
+@onready var total_bubbles: int = 0
 
 @export var is_shop_opened: bool = false
 var is_player_in_shop_area: bool = false
