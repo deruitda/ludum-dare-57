@@ -1,5 +1,9 @@
 extends Node
 
+# Gameplay Signals
+signal new_game()
+signal player_has_won()
+
 # Money Collected Signals
 signal add_money_collected(moneyPaid: int)
 signal money_collected_updated()

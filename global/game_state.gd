@@ -13,6 +13,7 @@ const TOTAL_DEPTH: float = 11800.0
 const PIXEL_SIZE: int = 64
 
 func _ready() -> void:
+	SignalBus.new_game.connect(_on_new_game)
 	SignalBus.add_money_collected.connect(_on_add_money_collected)
 	SignalBus.add_cargo.connect(_on_add_cargo)
 	SignalBus.sell_cargo.connect(_on_sell_cargo)
@@ -23,6 +24,14 @@ func _ready() -> void:
 	SignalBus.player_exited_shop_area.connect(_on_player_exited_shop_area)
 	SignalBus.hull_destroyed.connect(die)
 	SignalBus.submarine_lost_power.connect(die)
+
+func _on_new_game() -> void:
+	current_cargo_value = 0
+	current_cargo_weight = 0
+	money_collected = 0
+	SignalBus.cargo_updated.emit()
+	SignalBus.money_collected_updated.emit()
+
 	
 func die():
 	current_cargo_value = 0
