@@ -1,10 +1,13 @@
 extends Node
 
-@export var INITIAL_MONEY_COLLECTED = 0
+@export var INITIAL_MONEY_COLLECTED = 2000
 @export var INITIAL_MAX_CARGO_WEIGHT = 10
 var INITIAL_CARGO_WEIGHT = 0
 var INITIAL_CARGO_VALUE = 0
 
+## The total money ever collected by the player, used for final game stats
+var total_money_collected = INITIAL_MONEY_COLLECTED
+## The current amount of money the player has available to spend
 var money_collected: int = INITIAL_MONEY_COLLECTED
 var max_cargo_weight: int = INITIAL_MAX_CARGO_WEIGHT
 var current_cargo_weight: int = INITIAL_CARGO_WEIGHT
@@ -18,6 +21,9 @@ var depth: float = 0.0
 const TOTAL_DEPTH: float = 11800.0
 const PIXEL_SIZE: int = 64
 
+# Winning information
+var total_play_time_in_seconds = 0
+
 func _ready() -> void:
 	SignalBus.new_game.connect(_on_new_game)
 	SignalBus.add_cargo.connect(_on_add_cargo)
@@ -28,6 +34,7 @@ func _ready() -> void:
 	SignalBus.player_exited_shop_area.connect(_on_player_exited_shop_area)
 	SignalBus.hull_destroyed.connect(die)
 	SignalBus.submarine_lost_power.connect(die)
+	SignalBus.player_has_won.connect(_on_player_has_won)
 
 func _on_new_game() -> void:
 	current_cargo_value = INITIAL_CARGO_VALUE
@@ -47,6 +54,7 @@ func update_depth(new_depth: float):
 	depth = new_depth
 	
 func add_money_collected(money_paid: int) -> void:
+	total_money_collected += money_paid
 	money_collected += money_paid
 	SignalBus.money_collected_updated.emit()
 		
@@ -110,3 +118,6 @@ func _on_player_exited_shop_area() -> void:
 	is_player_in_shop_area = false
 	if is_shop_opened:
 		is_shop_opened = false
+
+func _on_player_has_won(_total_play_time: float) -> void:
+	total_play_time_in_seconds = _total_play_time
