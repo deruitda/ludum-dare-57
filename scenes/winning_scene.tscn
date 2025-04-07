@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://5v7lre2y0xoa"]
+
+[ext_resource type="Texture2D" uid="uid://bclge6b41vytt" path="res://assets/png_files/edmund_fitzgerald01.png" id="1_0rqyc"]
+[ext_resource type="Script" uid="uid://bqj2dlck4ifgu" path="res://scenes/winning_scene.gd" id="1_m1si2"]
+[ext_resource type="PackedScene" uid="uid://cws16jfeq8cd2" path="res://scenes/submarine/submarine.tscn" id="2_fpoli"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fpoli"]
+content_margin_left = 24.0
+content_margin_top = 12.0
+content_margin_right = 24.0
+content_margin_bottom = 12.0
+bg_color = Color(0, 0.480457, 0.197984, 1)
+
+[node name="WinningScene" type="CanvasLayer"]
+script = ExtResource("1_m1si2")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Camera2D" type="Camera2D" parent="Control"]
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_0rqyc")
+expand_mode = 3
+
+[node name="sub_body" parent="Control" instance=ExtResource("2_fpoli")]
+position = Vector2(200, 220)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = 36.0
+offset_right = 474.0
+offset_bottom = 156.0
+theme_override_font_sizes/normal_font_size = 28
+text = "Congratulations, you have found the SS Edmund Fitzgerald"
+fit_content = true
+vertical_alignment = 1
+
+[node name="PlayAgainButton" type="Button" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 32.0
+offset_top = 140.0
+offset_right = 199.0
+offset_bottom = 198.0
+mouse_default_cursor_shape = 2
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_fpoli")
+text = "Play Again"
+
+[connection signal="pressed" from="Control/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
