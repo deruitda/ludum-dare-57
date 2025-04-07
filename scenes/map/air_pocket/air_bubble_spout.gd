@@ -1,5 +1,5 @@
 extends Node2D
-
+class_name AirSpout
 @onready var bubble_texture: Texture = preload("res://assets/png_files/bubble_sprite01.png")
 @export var max_air_particles: int = 1000
 
@@ -25,7 +25,7 @@ func create_particle():
 	
 	bubble.name = "Bubble"
 	bubble.global_position = spawn_position  # or wherever you want it to spawn
-
+	bubble.air_spout = self
 	get_tree().current_scene.add_child(bubble)
 	
 #
@@ -35,7 +35,8 @@ func _physics_process(delta: float) -> void:
 		_on_spawn_timer_timeout()
 		current_timer -= spawn_in_seconds
 	
-
+func _on_bubble_popped():
+	max_air_particles -= 1
 func _on_spawn_timer_timeout() -> void:
 	if current_particle_count < max_air_particles:
 		create_particle()
