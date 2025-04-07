@@ -21,7 +21,6 @@ func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, lo
 	
 	if body is SubmarineBody:
 		# Apply velocity to the bubble
-
 		var direction = Vector2.UP# Get the direction away from the player
 		var burst_velocity = direction * linear_velocity.length() * collision_velocity  # Apply the velocity
 		# Call the custom function on the Player class

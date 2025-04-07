@@ -206,3 +206,14 @@ func _on_drilling_aborted() -> void:
 
 func _on_bubble_collision(collision_velocity: Vector2):
 	velocity_component.add_burst_velocity(collision_velocity)
+
+
+
+func _on_bubble_collider_body_entered(body: Node2D) -> void:
+	body.can_sleep = false
+	pass # Replace with function body.
+
+
+func _on_bubble_collider_body_exited(body: Node2D) -> void:
+	body.can_sleep = true
+	pass # Replace with function body.
