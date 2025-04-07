@@ -42,3 +42,7 @@ func apply_gravity(delta: float):
 func do_character_move(character_body: CharacterBody2D):
 	character_body.velocity = velocity
 	character_body.move_and_slide()
+	
+func add_burst_velocity(linear_velocity: Vector2) -> void:
+	print("velocity")
+	velocity += linear_velocity
