@@ -24,7 +24,7 @@ func generate_map_from_control(tile_map_layer: WorldTileMapLayer, tile_variable_
 	var tile_resources = variable_tile_resource_list.get_tile_resource_list()
 	
 	for y in num_tiles_deep:
-		for x in tile_map_layer.num_tiles_wide:
+		for x in num_tiles_wide:
 			var coords = Vector2(x, y) + get_starting_position
 			var tile_resource: TileResource = null
 			var tile_data = tile_map_layer.get_cell_tile_data(coords)
