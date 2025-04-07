@@ -73,6 +73,7 @@ func start_drilling() -> void:
 		return
 	drill_timer.wait_time = tile_resource.drill_speed
 	drill_timer.start()
+	drillable_world_tile_map_player.drilling_tile(drillable_tile_rid)
 	drill_timer.timeout.connect(_drilling_is_finished)
 	
 	is_actively_drilling = true

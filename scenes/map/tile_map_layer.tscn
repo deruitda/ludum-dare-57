@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://btknplgeb70by"]
+[gd_scene load_steps=7 format=4 uid="uid://btknplgeb70by"]
 
 [ext_resource type="Script" uid="uid://dqt7xrchrxbs4" path="res://scenes/map/map_generator_component.gd" id="1_bthto"]
 [ext_resource type="TileSet" uid="uid://b31timckohuyk" path="res://scenes/map/tile_resource/tile_map_layer.tres" id="1_d6qiv"]
 [ext_resource type="Script" uid="uid://cfj54igp1nk16" path="res://scenes/map/tile_map_layer.gd" id="2_ne56t"]
 [ext_resource type="Resource" uid="uid://ddv73pvyli3gs" path="res://scenes/map/tiles/dirt.tres" id="3_gsati"]
+[ext_resource type="Resource" uid="uid://cpsg8etaeo0sd" path="res://scenes/map/tiles/drilling.tres" id="5_d6qiv"]
 [ext_resource type="Resource" uid="uid://c44hk3trh8alv" path="res://scenes/map/tiles/water.tres" id="6_iwege"]
 
 [node name="DrillingTileMapLayer" type="TileMapLayer" node_paths=PackedStringArray("world_generator_component")]
@@ -13,6 +14,7 @@ script = ExtResource("2_ne56t")
 world_generator_component = NodePath("WorldGenerator")
 base_tile_resource = ExtResource("3_gsati")
 drilled_tile_space = ExtResource("6_iwege")
+drilling_resource = ExtResource("5_d6qiv")
 
 [node name="WorldGenerator" type="Node" parent="."]
 script = ExtResource("1_bthto")

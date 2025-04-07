@@ -8,5 +8,6 @@ weight = 1
 price = 25
 drill_speed = 1.0
 name = "valuable_3"
+anim_source_index = 5
 atlas_coordinates = Vector2(6, 0)
 metadata/_custom_type_script = "uid://joiabccf67iw"
