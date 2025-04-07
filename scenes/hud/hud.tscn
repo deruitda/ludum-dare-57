@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://y7i0qucf3p8i"]
+[gd_scene load_steps=11 format=3 uid="uid://y7i0qucf3p8i"]
 
 [ext_resource type="Texture2D" uid="uid://bkrttxk3o4ob1" path="res://assets/png_files/radar_ping_gold01.png" id="2_cgeww"]
 [ext_resource type="PackedScene" uid="uid://cpfs0tttr5k67" path="res://scenes/hud/depth_progress_bar.tscn" id="2_mgtrf"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://b1cvebcwww5bn" path="res://scenes/hud/power_progress_bar.tscn" id="4_n56i7"]
 [ext_resource type="PackedScene" uid="uid://bjt3pbi53hjfi" path="res://scenes/hud/hull_integrity_progress_bar.tscn" id="4_v7mo4"]
 [ext_resource type="PackedScene" uid="uid://b4nlnlxaka6gk" path="res://scenes/hud/cargo_capacity/cargo_capacity.tscn" id="5_n56i7"]
+[ext_resource type="Texture2D" uid="uid://fmju7bey5hqn" path="res://assets/png_files/flashlight_screen_element01.png" id="8_mq0y1"]
+[ext_resource type="Texture2D" uid="uid://doiqi3xi37q6s" path="res://assets/png_files/radar_screenelement01.png" id="9_go0ap"]
+[ext_resource type="Texture2D" uid="uid://blih3gltbg0ds" path="res://assets/png_files/store_screen_element.png" id="10_nhd55"]
 
 [node name="Hud" type="CanvasLayer"]
 script = ExtResource("4_0bx4p")
@@ -107,24 +110,159 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_constants/separation = 12
 
-[node name="ToggleFlashlightButton" type="Button" parent="MarginContainer/ActionButtonsContainer"]
+[node name="ToggleFlashlightButton" type="TextureButton" parent="MarginContainer/ActionButtonsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "[F] Toggle Flashlight"
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("8_mq0y1")
 script = ExtResource("4_0bx4p")
 
-[node name="ActivateRadarButton" type="Button" parent="MarginContainer/ActionButtonsContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/ActionButtonsContainer/ToggleFlashlightButton"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -42.0
+offset_right = 56.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -2
+theme_override_font_sizes/normal_font_size = 12
+text = "Toggle
+Flashlight"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="MarginContainer/ActionButtonsContainer/ToggleFlashlightButton"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -16.0
+offset_right = 49.0
+offset_bottom = 32.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[b][ F ][b]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActivateRadarButton" type="TextureButton" parent="MarginContainer/ActionButtonsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "[R] Radar Ping"
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("9_go0ap")
 script = ExtResource("4_0bx4p")
 
-[node name="OpenStoreButton" type="Button" parent="MarginContainer/ActionButtonsContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/ActionButtonsContainer/ActivateRadarButton"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -42.0
+offset_right = 56.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -2
+theme_override_font_sizes/normal_font_size = 12
+text = "Ping
+Sonar"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="MarginContainer/ActionButtonsContainer/ActivateRadarButton"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -16.0
+offset_right = 49.0
+offset_bottom = 32.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[b][ R ][b]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OpenStoreButton" type="TextureButton" parent="MarginContainer/ActionButtonsContainer"]
 unique_name_in_owner = true
-visible = false
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-text = "[E] Open Store"
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("10_nhd55")
 script = ExtResource("4_0bx4p")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/ActionButtonsContainer/OpenStoreButton"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -42.0
+offset_right = 56.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -2
+theme_override_font_sizes/normal_font_size = 12
+text = "Open
+Shop"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="MarginContainer/ActionButtonsContainer/OpenStoreButton"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -16.0
+offset_right = 49.0
+offset_bottom = 32.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[b][ E ][b]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="MarginContainer/ActionButtonsContainer/ToggleFlashlightButton" to="." method="_on_toggle_flashlight_button_pressed"]
 [connection signal="pressed" from="MarginContainer/ActionButtonsContainer/ActivateRadarButton" to="." method="_on_activate_radar_button_pressed"]
