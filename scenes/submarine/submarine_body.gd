@@ -70,8 +70,9 @@ func _physics_process(delta: float):
 
 func do_respawn():
 	if checkpoint:
-		hull.repair_hull()
+		hull.respawn()
 		battery.fully_charge_battery()
+		velocity_component.set_velocity(Vector2.ZERO)
 		global_position = checkpoint.get_spawn_position()
 
 func apply_movement_effects():
