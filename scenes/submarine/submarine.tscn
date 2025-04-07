@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cws16jfeq8cd2"]
+[gd_scene load_steps=16 format=3 uid="uid://cws16jfeq8cd2"]
 
 [ext_resource type="Texture2D" uid="uid://bdu3xay1kbw8b" path="res://assets/png_files/orb_ship.png" id="2_77ovh"]
 [ext_resource type="Script" uid="uid://d1v1uwdcnmi7d" path="res://scenes/submarine/submarine_body.gd" id="2_tnxgy"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://c4my6omyv1qkl" path="res://scenes/submarine/battery/battery.tscn" id="9_roe7p"]
 [ext_resource type="Script" uid="uid://b6lu3wcrtuet7" path="res://scenes/submarine/move_to_center_component.gd" id="11_8xtpu"]
 [ext_resource type="PackedScene" uid="uid://chdm7yhy0aeyf" path="res://scenes/submarine/flashlight/flashlight.tscn" id="12_wr4gp"]
+[ext_resource type="Texture2D" uid="uid://b0ne80qh4r07n" path="res://scenes/submarine/sub_light.png" id="13_6kx6w"]
+[ext_resource type="Texture2D" uid="uid://bbeseyw315hnj" path="res://scenes/submarine/jet_light.png" id="13_7x5j0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_77ovh"]
 radius = 27.0185
@@ -94,5 +96,19 @@ one_shot = true
 [node name="Flashlight" parent="." node_paths=PackedStringArray("battery") instance=ExtResource("12_wr4gp")]
 position = Vector2(1.25, -60)
 battery = NodePath("../Battery")
+
+[node name="ShipLight" type="PointLight2D" parent="."]
+position = Vector2(-4.0625, -2.5)
+scale = Vector2(1.31836, 1.16374)
+enabled = false
+color = Color(0.54076, 0.614041, 0.89648, 1)
+energy = 0.0
+texture = ExtResource("13_6kx6w")
+
+[node name="JetLight" type="PointLight2D" parent="."]
+position = Vector2(0.791818, 0)
+scale = Vector2(0.22749, 0.0878906)
+texture = ExtResource("13_7x5j0")
+offset = Vector2(257.025, 0)
 
 [connection signal="timeout" from="MoveToCenterComponent/MoveToCenterCountdownTimer" to="MoveToCenterComponent" method="_on_move_to_center_countdown_timer_timeout"]
