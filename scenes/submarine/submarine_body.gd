@@ -3,15 +3,14 @@ extends CharacterBody2D
 
 @export var move_to_center_component: MoveToCenterComponent
 @onready var ship_light: PointLight2D = $ShipLight
-@onready var hull_sprite: Sprite2D = %HullSprite2D
-
 @export var velocity_component: VelocityComponent
 @export var edge_detector: EdgeDetector
 @export var hull: Hull
 @export var checkpoint: Checkpoint
 @export var drill: Drill
 @export var submarine_sprite: Sprite2D
-
+@onready var radar: Node2D = $Radar
+@onready var flashlight: Node2D = $Flashlight
 @onready var current_depth: float
 @onready var direction_input: Vector2 = Vector2.ZERO
 @onready var jet_light: PointLight2D = $JetLight
@@ -19,6 +18,7 @@ extends CharacterBody2D
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
 
+var is_dead = false
 
 var audio = [
  	preload("res://assets/audio/sfx/prop_start.wav"),
@@ -68,8 +68,8 @@ func _physics_process(delta: float):
 		GameState.update_depth(current_depth)
 		velocity_component.set_current_rotation(rotation_degrees)
 		
-		
-	velocity_component.do_character_move(self)
+	if !is_dead:
+		velocity_component.do_character_move(self)
 
 #func set_edge_detection():
 	#var edge_directions: Array[Vector2] = edge_detector.get_edge_directions()
@@ -79,12 +79,29 @@ func _physics_process(delta: float):
 		#if edge_directions.size() > 0:
 			#move_to_center_component.set_must_move_to_center()
 
+func die():
+	is_dead = true
+	drill.visible = false
+	radar.visible = false
+	flashlight.visible = false
+	jet_light.visible = false
+	hull.begin_die()
+
+
+func _on_hull_hull_done_dying() -> void:
+	do_respawn()
+
 func do_respawn():
 	if checkpoint:
 		hull.respawn()
 		battery.fully_charge_battery()
 		velocity_component.set_velocity(Vector2.ZERO)
 		global_position = checkpoint.get_spawn_position()
+		drill.visible = true
+		radar.visible = true
+		flashlight.visible = true
+		jet_light.visible = true
+		is_dead = false
 
 func apply_movement_effects():
 	
@@ -153,10 +170,8 @@ func apply_ship_light():
 func _ready() -> void:
 	drill._on_drilling_aborted.connect(_on_drilling_aborted)
 	drill._on_drilling_started.connect(_on_drilling_started)
-	SignalBus.hull_destroyed.connect(do_respawn)
+	SignalBus.hull_destroyed.connect(die)
 	SignalBus.submarine_lost_power.connect(do_respawn)
-	if hull.hull_resource.hull_sprite:
-		hull_sprite.texture = hull.hull_resource.hull_sprite
 	
 func _on_drilling_started() -> void:
 	move_to_center_component.set_must_move_to_center()
@@ -178,12 +193,3 @@ func _on_up_ray_cast_2d_on_collision() -> void:
 	pass # Replace with function body.
 func _on_drilling_aborted() -> void:
 	pass
-
-func _on_hull_upgraded(hull: Hull) -> void:
-	hull_sprite.texture = hull.hull_resource.hull_sprite
-
-
-
-func _on_hull_hull_upgraded(_hull: Hull) -> void:
-	if _hull.hull_resource.hull_sprite:
-		hull_sprite.texture = _hull.hull_resource.hull_sprite

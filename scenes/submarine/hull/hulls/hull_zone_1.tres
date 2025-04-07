@@ -1,12 +1,11 @@
-[gd_resource type="Resource" script_class="HullResource" load_steps=3 format=3 uid="uid://bef84krj3d14a"]
+[gd_resource type="Resource" script_class="HullResource" load_steps=2 format=3 uid="uid://bef84krj3d14a"]
 
-[ext_resource type="Texture2D" uid="uid://b8gr33t0t4lqn" path="res://assets/png_files/orb_ship_hull01.png" id="1_hek1y"]
 [ext_resource type="Script" uid="uid://ccqnu1nqw7xs8" path="res://scenes/submarine/hull/hull_resource.gd" id="1_n0l1y"]
 
 [resource]
 script = ExtResource("1_n0l1y")
 max_depth_percentage_for_full_integrity = 0.333
-max_health = 100.0
-hull_sprite = ExtResource("1_hek1y")
+max_health = null
+hull_level = 1
 is_unlocked = true
 metadata/_custom_type_script = "uid://ccqnu1nqw7xs8"
