@@ -1,6 +1,6 @@
 extends Node
 
-@export var money_collected: int = 0
+@export var money_collected: int = 5000
 @export var max_cargo_weight: int = 10
 var current_cargo_weight: int = 0
 var current_cargo_value: int = 0
