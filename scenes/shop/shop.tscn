@@ -148,26 +148,6 @@ disabled = true
 text = "Armor 4"
 shop_item_resource = ExtResource("5_ctpgp")
 
-[node name="BatteryUpgradesVBoxContainer2" type="VBoxContainer" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 12
-
-[node name="CategoryLabel" type="Label" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/BatteryUpgradesVBoxContainer2"]
-layout_mode = 2
-text = "Battery"
-horizontal_alignment = 1
-
-[node name="ExtendedBatteryButton" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/BatteryUpgradesVBoxContainer2" instance=ExtResource("2_qaxay")]
-layout_mode = 2
-text = "Extended"
-shop_item_resource = ExtResource("6_xcdpw")
-
-[node name="ExtendedBattery2Button" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/BatteryUpgradesVBoxContainer2" instance=ExtResource("2_qaxay")]
-layout_mode = 2
-text = "Extended 2"
-shop_item_resource = ExtResource("7_tp26b")
-
 [node name="FlashlightUpgradesVBoxContainer2" type="VBoxContainer" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -187,6 +167,26 @@ shop_item_resource = ExtResource("9_8qn5i")
 layout_mode = 2
 text = "Sonar"
 shop_item_resource = ExtResource("9_dww4p")
+
+[node name="BatteryUpgradesVBoxContainer2" type="VBoxContainer" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="CategoryLabel" type="Label" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/BatteryUpgradesVBoxContainer2"]
+layout_mode = 2
+text = "Battery"
+horizontal_alignment = 1
+
+[node name="ExtendedBatteryButton" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/BatteryUpgradesVBoxContainer2" instance=ExtResource("2_qaxay")]
+layout_mode = 2
+text = "Extended"
+shop_item_resource = ExtResource("6_xcdpw")
+
+[node name="ExtendedBattery2Button" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/BatteryUpgradesVBoxContainer2" instance=ExtResource("2_qaxay")]
+layout_mode = 2
+text = "Extended 2"
+shop_item_resource = ExtResource("7_tp26b")
 
 [node name="CargoCapacityUpgradesVBoxContainer3" type="VBoxContainer" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer"]
 layout_mode = 2
