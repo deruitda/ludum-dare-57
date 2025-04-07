@@ -3,18 +3,21 @@ extends CharacterBody2D
 
 @export var move_to_center_component: MoveToCenterComponent
 @onready var ship_light: PointLight2D = $ShipLight
+@onready var hull_sprite: Sprite2D = %HullSprite2D
 
 @export var velocity_component: VelocityComponent
 @export var edge_detector: EdgeDetector
 @export var hull: Hull
 @export var checkpoint: Checkpoint
 @export var drill: Drill
+@export var submarine_sprite: Sprite2D
 
 @onready var current_depth: float
 @onready var direction_input: Vector2 = Vector2.ZERO
 @onready var jet_light: PointLight2D = $JetLight
 @onready var battery: Battery = $Battery
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+
 
 var audio = [
  	preload("res://assets/audio/sfx/prop_start.wav"),
@@ -151,11 +154,14 @@ func apply_ship_light():
 	else:
 		ship_light.enabled = false
 		ship_light.energy = 0
+
 func _ready() -> void:
 	drill._on_drilling_aborted.connect(_on_drilling_aborted)
 	drill._on_drilling_started.connect(_on_drilling_started)
 	SignalBus.hull_destroyed.connect(do_respawn)
 	SignalBus.submarine_lost_power.connect(do_respawn)
+	if hull.hull_resource.hull_sprite:
+		hull_sprite.texture = hull.hull_resource.hull_sprite
 	
 func _on_drilling_started() -> void:
 	move_to_center_component.set_must_move_to_center()
@@ -177,3 +183,12 @@ func _on_up_ray_cast_2d_on_collision() -> void:
 	pass # Replace with function body.
 func _on_drilling_aborted() -> void:
 	pass
+
+func _on_hull_upgraded(hull: Hull) -> void:
+	hull_sprite.texture = hull.hull_resource.hull_sprite
+
+
+
+func _on_hull_hull_upgraded(_hull: Hull) -> void:
+	if _hull.hull_resource.hull_sprite:
+		hull_sprite.texture = _hull.hull_resource.hull_sprite
