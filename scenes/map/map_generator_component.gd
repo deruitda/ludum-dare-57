@@ -3,6 +3,8 @@ class_name WorldGeneratorComponent
 
 var rng: RandomNumberGenerator
 @export var seed: String
+@export var root_position: Vector2 = Vector2(-50, 0.0)
+
 func _ready() -> void:
 	
 	rng = RandomNumberGenerator.new()
@@ -20,10 +22,9 @@ func generate_world(tile_map_layer: WorldTileMapLayer) -> void:
 	var max_depth: float = 0.0
 	if current_variable_tile_resource_list:
 		
-		weights = current_variable_tile_resource_list.get_tile_resource_percentage_weight_list()
+		weights = current_variable_tile_resource_list.get_tile_resource_percentage_weight_list(true)
 		tile_resources = current_variable_tile_resource_list.get_tile_resource_list()
 		number_of_tile_resources = tile_resources.size()
-		weights.push_back(1)
 		max_depth = tile_map_layer.num_tiles_deep / current_zone_resource_list_layer.max_depth_percentage
 	
 	for y in tile_map_layer.num_tiles_deep:
@@ -31,13 +32,12 @@ func generate_world(tile_map_layer: WorldTileMapLayer) -> void:
 			i = i + 1
 			current_zone_resource_list_layer = zone_resource_list_layers.get(i)
 			current_variable_tile_resource_list = current_zone_resource_list_layer.variable_tile_resource_list
-			weights = current_variable_tile_resource_list.get_tile_resource_percentage_weight_list()
-			weights.push_back(1)
+			weights = current_variable_tile_resource_list.get_tile_resource_percentage_weight_list(true)
 			tile_resources = current_variable_tile_resource_list.get_tile_resource_list()
 			max_depth = tile_map_layer.num_tiles_deep / current_zone_resource_list_layer.max_depth_percentage
 			
 		for x in tile_map_layer.num_tiles_wide:
-			var coords = Vector2(x, y)
+			var coords = Vector2(x, y) + root_position
 			var tile_resource: TileResource = null
 			var tile_data = tile_map_layer.get_cell_tile_data(coords)
 			if tile_data:

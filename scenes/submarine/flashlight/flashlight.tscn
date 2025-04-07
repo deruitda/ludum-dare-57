@@ -1,7 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://chdm7yhy0aeyf"]
+[gd_scene load_steps=21 format=3 uid="uid://chdm7yhy0aeyf"]
 
 [ext_resource type="Script" uid="uid://cu7flfsg780ii" path="res://scenes/submarine/flashlight/flashlight.gd" id="1_f3xsa"]
-[ext_resource type="Texture2D" uid="uid://dcrgetdsnr3rx" path="res://scenes/submarine/flashlight/flashlight_light_texture.png" id="2_txavb"]
 [ext_resource type="Texture2D" uid="uid://bdpfwse68koed" path="res://scenes/submarine/flashlight/flashlight_close_animation.png" id="3_pxniy"]
 [ext_resource type="Texture2D" uid="uid://xydxecgca1gj" path="res://scenes/submarine/flashlight/flashlight_animation.png" id="4_f3xsa"]
 [ext_resource type="AudioStream" uid="uid://div4n4x24jeij" path="res://assets/audio/sfx/radar_arm.wav" id="6_ueyfn"]
@@ -130,7 +129,6 @@ color = Color(0.554724, 0.614032, 1, 1)
 energy = 1.89
 shadow_enabled = true
 shadow_item_cull_mask = 1024
-texture = ExtResource("2_txavb")
 offset = Vector2(709.855, 5.64)
 texture_scale = 2.73
 

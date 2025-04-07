@@ -1,6 +1,5 @@
-[gd_scene load_steps=18 format=3 uid="uid://cws16jfeq8cd2"]
+[gd_scene load_steps=17 format=3 uid="uid://cws16jfeq8cd2"]
 
-[ext_resource type="Texture2D" uid="uid://bdu3xay1kbw8b" path="res://assets/png_files/orb_ship_hull02.png" id="2_77ovh"]
 [ext_resource type="Script" uid="uid://d1v1uwdcnmi7d" path="res://scenes/submarine/submarine_body.gd" id="2_tnxgy"]
 [ext_resource type="PackedScene" uid="uid://cpi5qsqbo0r0x" path="res://scenes/radar/radar.tscn" id="3_77ovh"]
 [ext_resource type="PackedScene" uid="uid://f231crs35mvv" path="res://scenes/submarine/drill/drill.tscn" id="4_tnxgy"]
@@ -41,16 +40,13 @@ edge_detector = NodePath("EdgeDetector")
 hull = NodePath("Hull")
 drill = NodePath("Drill")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_77ovh")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_77ovh")
 
 [node name="Submarine" type="Node2D" parent="."]
 
 [node name="Radar" parent="." node_paths=PackedStringArray("battery") instance=ExtResource("3_77ovh")]
-position = Vector2(35, -50)
+position = Vector2(35, -51.25)
 rotation = 0.396715
 battery = NodePath("../Battery")
 
@@ -107,7 +103,7 @@ wait_time = 0.3
 one_shot = true
 
 [node name="Flashlight" parent="." node_paths=PackedStringArray("battery") instance=ExtResource("12_wr4gp")]
-position = Vector2(1.25, -60)
+position = Vector2(2.5, -62.5)
 battery = NodePath("../Battery")
 
 [node name="ShipLight" type="PointLight2D" parent="."]
@@ -134,5 +130,7 @@ lifetime = 1.63
 randomness = 0.61
 process_material = SubResource("ParticleProcessMaterial_q1rah")
 
+[connection signal="hull_done_dying" from="Hull" to="." method="_on_hull_hull_done_dying"]
+[connection signal="hull_upgraded" from="Hull" to="." method="_on_hull_hull_upgraded"]
 [connection signal="timeout" from="MoveToCenterComponent/MoveToCenterCountdownTimer" to="MoveToCenterComponent" method="_on_move_to_center_countdown_timer_timeout"]
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

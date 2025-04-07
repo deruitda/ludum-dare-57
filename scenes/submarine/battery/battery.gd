@@ -6,20 +6,23 @@ class_name Battery
 
 func _ready() -> void:
 	fully_charge_battery()
+	SignalBus.recharge_battery.connect(_on_recharge_battery)
 	SignalBus.battery_updated.emit(self)
 	SignalBus.purchase_completed.connect(_shop_item_purchased)
 
 func _shop_item_purchased(shop_item_resource: ShopItemResource):
 	if shop_item_resource.item_resource is BatteryResource:
 		upgrade_battery(shop_item_resource.item_resource)
-	elif shop_item_resource.item_resource is RechargeBatteryResource:
-		fully_charge_battery()
 
 func has_enough_power_for(potential_power_amount: float) -> bool:
 	return current_power_level > potential_power_amount
 
 func get_percentage_of_power_left() -> float:
 	return current_power_level / battery_resource.max_power_level
+
+# Received from Recharge Battery signal
+func _on_recharge_battery() -> void:
+	fully_charge_battery()
 
 func fully_charge_battery() -> void:
 	_set_current_power_level(battery_resource.max_power_level)

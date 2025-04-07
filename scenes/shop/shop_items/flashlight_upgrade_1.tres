@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ShopItemResource" load_steps=3 format=3 uid="uid://blkrympbkkbkx"]
+
+[ext_resource type="Resource" uid="uid://c6lcqnvwotfnf" path="res://scenes/submarine/flashlight/flashlight_resources/flashlight_1.tres" id="1_ukgpg"]
+[ext_resource type="Script" uid="uid://dq388fj72n7ck" path="res://scenes/shop/shop_items/shop_item.gd" id="2_2musp"]
+
+[resource]
+script = ExtResource("2_2musp")
+price = 10
+tooltip = "Flashlight helps you see"
+is_infinitely_purchaseable = false
+item_resource = ExtResource("1_ukgpg")
+is_initially_disabled = false
+metadata/_custom_type_script = "uid://dq388fj72n7ck"

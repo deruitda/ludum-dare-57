@@ -1,7 +1,10 @@
 extends Node
 
+# Gameplay Signals
+signal new_game()
+signal player_has_won()
+
 # Money Collected Signals
-signal add_money_collected(moneyPaid: int)
 signal money_collected_updated()
 
 # Cargo Signals
@@ -22,6 +25,7 @@ signal set_current_depth(depth: float)
 signal set_normalized_depth_percentage(depth: float)
 
 # Battery Signals
+signal recharge_battery()
 signal battery_updated(battery: Battery)
 signal submarine_lost_power()
 

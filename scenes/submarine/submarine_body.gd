@@ -3,19 +3,22 @@ extends CharacterBody2D
 
 @export var move_to_center_component: MoveToCenterComponent
 @onready var ship_light: PointLight2D = $ShipLight
-
 @export var velocity_component: VelocityComponent
 @export var edge_detector: EdgeDetector
 @export var hull: Hull
 @export var checkpoint: Checkpoint
 @export var drill: Drill
-
+@export var submarine_sprite: Sprite2D
+@onready var radar: Node2D = $Radar
+@onready var flashlight: Node2D = $Flashlight
 @onready var current_depth: float
 @onready var direction_input: Vector2 = Vector2.ZERO
 @onready var jet_light: PointLight2D = $JetLight
 @onready var battery: Battery = $Battery
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
+
+var is_dead = false
 
 var audio = [
  	preload("res://assets/audio/sfx/prop_start.wav"),
@@ -29,7 +32,6 @@ var max_light_energy = 2.0
 func _process(delta: float) -> void:
 	direction_input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	current_depth = global_position.y / GameState.PIXEL_SIZE
-	
 	SignalBus.set_current_depth.emit(current_depth)
 
 func _physics_process(delta: float):
@@ -66,8 +68,8 @@ func _physics_process(delta: float):
 		GameState.update_depth(current_depth)
 		velocity_component.set_current_rotation(rotation_degrees)
 		
-		
-	velocity_component.do_character_move(self)
+	if !is_dead:
+		velocity_component.do_character_move(self)
 
 #func set_edge_detection():
 	#var edge_directions: Array[Vector2] = edge_detector.get_edge_directions()
@@ -77,14 +79,33 @@ func _physics_process(delta: float):
 		#if edge_directions.size() > 0:
 			#move_to_center_component.set_must_move_to_center()
 
+func die():
+	is_dead = true
+	drill.visible = false
+	radar.visible = false
+	flashlight.visible = false
+	jet_light.visible = false
+	hull.begin_die()
+
+
+func _on_hull_hull_done_dying() -> void:
+	do_respawn()
+
 func do_respawn():
 	if checkpoint:
 		hull.respawn()
 		battery.fully_charge_battery()
 		velocity_component.set_velocity(Vector2.ZERO)
 		global_position = checkpoint.get_spawn_position()
+		drill.visible = true
+		radar.visible = true
+		flashlight.visible = true
+		jet_light.visible = true
+		is_dead = false
 
 func apply_movement_effects():
+	
+	print("direction input: " + str(direction_input))
 	
 	if current_depth > 1 and velocity_component.velocity.length() > 0:
 		jet_light.energy = velocity_component.velocity.length() / 100
@@ -94,20 +115,14 @@ func apply_movement_effects():
 	elif velocity_component.velocity.length() == 0 or current_depth < 0.4:
 		jet_light.energy = 0.0	
 		gpu_particles_2d.emitting = false
-	
-	# the player is stopped, set the sustained sound
-	if audio_stream_player_2d.stream == null || audio_stream_player_2d.stream == audio[2]:
-		if velocity_component.is_moving() && !audio_stream_player_2d.playing:
-			audio_stream_player_2d.stream = audio[0]
-			audio_stream_player_2d.play()
-			
-	# if we've played the start sound and are moving, play sustained
-	if audio_stream_player_2d.stream == audio[0] && !audio_stream_player_2d.playing && velocity_component.is_moving():
+
+	# if moving, play sustained prop sound
+	if direction_input != Vector2.ZERO && velocity_component.is_moving() && !audio_stream_player_2d.playing:
 		audio_stream_player_2d.stream = audio[1]
 		audio_stream_player_2d.play()
 		
-	# if we're moving and are now stopped, play the stop sound
-	if audio_stream_player_2d.stream == audio[1] && !velocity_component.is_moving():
+	# if was moving but now no direction stop
+	if direction_input == Vector2.ZERO && audio_stream_player_2d.playing && audio_stream_player_2d.stream == audio[1]:
 		audio_stream_player_2d.stream = audio[2]
 		audio_stream_player_2d.play()
 
@@ -151,10 +166,11 @@ func apply_ship_light():
 	else:
 		ship_light.enabled = false
 		ship_light.energy = 0
+
 func _ready() -> void:
 	drill._on_drilling_aborted.connect(_on_drilling_aborted)
 	drill._on_drilling_started.connect(_on_drilling_started)
-	SignalBus.hull_destroyed.connect(do_respawn)
+	SignalBus.hull_destroyed.connect(die)
 	SignalBus.submarine_lost_power.connect(do_respawn)
 	
 func _on_drilling_started() -> void:

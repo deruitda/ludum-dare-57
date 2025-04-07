@@ -11,6 +11,10 @@ class_name Hull
 @onready var decaying_potential_health_loss: float = 0.0
 @onready var is_beyond_depth_threshold: bool = false
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+
+signal hull_upgraded(hull: Hull)
+signal hull_done_dying()
 
 func _ready() -> void:
 	SignalBus.purchase_completed.connect(_shop_item_purchased)
@@ -80,6 +84,18 @@ func _on_decay_health_pulse_timer_timeout() -> void:
 func repair_hull():
 	set_health(hull_resource.max_health)
 
+func begin_die():
+	if hull_resource.hull_level == 0:
+		animated_sprite_2d.play("0_die")
+	if hull_resource.hull_level == 1:
+		animated_sprite_2d.play("1_die")
+		
+	if hull_resource.hull_level == 2:
+		animated_sprite_2d.play("2_die")
+		
+	if hull_resource.hull_level == 3:
+		animated_sprite_2d.play("3_die")
+
 func respawn():
 	repair_hull()
 	is_destroyed = false
@@ -88,5 +104,32 @@ func upgrade_hull(new_hull_resource: HullResource) -> void:
 	hull_resource = new_hull_resource
 	repair_hull()
 	
+	if hull_resource.hull_level == 1:
+		animated_sprite_2d.play("1_default")
+		
+	if hull_resource.hull_level == 2:
+		animated_sprite_2d.play("2_default")
+		
+	if hull_resource.hull_level == 3:
+		animated_sprite_2d.play("3_default")
+		
+	hull_upgraded.emit(self)
+	
+	
 func get_hull_health_percentage() -> float:
 	return health / hull_resource.max_health
+	
+
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if animated_sprite_2d.animation == "0_die" || animated_sprite_2d.animation == "1_die" || animated_sprite_2d.animation == "2_die" || animated_sprite_2d.animation == "3_die":
+		hull_done_dying.emit()
+	if animated_sprite_2d.animation == "0_die":
+		animated_sprite_2d.play("0_default")
+	if animated_sprite_2d.animation == "1_die":
+		animated_sprite_2d.play("1_default")
+	if animated_sprite_2d.animation == "2_die":
+		animated_sprite_2d.play("2_default")
+	if animated_sprite_2d.animation == "3_die":
+		animated_sprite_2d.play("3_default")

@@ -6,7 +6,9 @@
 
 [resource]
 script = ExtResource("2_dv5ma")
-price = 14
+price = 200
 tooltip = "Extends battery life by 50%"
+is_infinitely_purchaseable = false
 unlocked_by_item_resource = ExtResource("1_xr3y2")
 item_resource = ExtResource("1_dv5ma")
+is_initially_disabled = false

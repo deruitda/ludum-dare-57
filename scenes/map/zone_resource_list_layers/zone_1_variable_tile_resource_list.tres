@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Resource_dp4oo"]
 script = ExtResource("2_7vp6r")
-percent_chance_of_spawn = 0.1
+percent_chance_of_spawn = 0.4
 tile_resource = ExtResource("3_vsf0m")
 metadata/_custom_type_script = "uid://csumtewo3g8r6"
 
@@ -20,7 +20,7 @@ metadata/_custom_type_script = "uid://csumtewo3g8r6"
 
 [sub_resource type="Resource" id="Resource_guhfe"]
 script = ExtResource("2_7vp6r")
-percent_chance_of_spawn = 0.08
+percent_chance_of_spawn = 0.1
 tile_resource = ExtResource("5_v5qqe")
 metadata/_custom_type_script = "uid://csumtewo3g8r6"
 

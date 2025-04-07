@@ -88,7 +88,7 @@ func _drilling_is_finished() -> void:
 	
 	var tile_resource = drillable_world_tile_map_player.get_tile_resource_from_rid(drillable_tile_rid)
 	if (tile_resource is ValuableTileResource):
-		SignalBus.add_cargo.emit(drill_resource)
+		SignalBus.add_cargo.emit(tile_resource)
 		
 	drillable_world_tile_map_player.drill_tile(drillable_tile_rid)
 	
