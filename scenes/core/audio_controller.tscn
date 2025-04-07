@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ce0kl0dk0xdtq"]
+[gd_scene load_steps=4 format=3 uid="uid://ce0kl0dk0xdtq"]
 
 [ext_resource type="AudioStream" uid="uid://b07rasvd1ewn0" path="res://assets/audio/music/Underwater.wav" id="1_es8wx"]
 [ext_resource type="Script" uid="uid://q7cyxqkajp0i" path="res://scenes/core/audio_controller.gd" id="1_vky2s"]
+[ext_resource type="AudioStream" uid="uid://bdedifew3b610" path="res://assets/audio/sfx/money.wav" id="3_4dwyx"]
 
 [node name="audio_controller" type="Node2D" node_paths=PackedStringArray("audio_stream_player")]
 script = ExtResource("1_vky2s")
@@ -14,3 +15,7 @@ max_distance = 15000.0
 bus = &"Music"
 
 [node name="AmbientPlayer" type="AudioStreamPlayer2D" parent="."]
+
+[node name="SfxPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_4dwyx")
+volume_db = 15.616

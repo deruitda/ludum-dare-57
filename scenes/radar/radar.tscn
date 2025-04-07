@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bn8aora34gik4" path="res://scenes/radar/ping_ring.png" id="7_kpnah"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fyqjv"]
-radius = 273.31
+radius = 13.0384
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ho7nn"]
 atlas = ExtResource("3_4i2j4")
@@ -264,6 +264,7 @@ shape = SubResource("CircleShape2D_fyqjv")
 debug_color = Color(0.967241, 0, 0.475498, 0.42)
 
 [node name="CircleDrawer" type="Node2D" parent="."]
+visible = false
 script = ExtResource("2_fyqjv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

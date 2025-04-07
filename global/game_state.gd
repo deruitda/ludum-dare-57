@@ -64,7 +64,7 @@ func sell_cargo() -> void:
 	add_money_collected(current_cargo_value)
 	current_cargo_value = 0
 	current_cargo_weight = 0
-	SignalBus.cargo_updated.emit()
+	SignalBus.sell_cargo.emit()
 
 func _on_purchase_upgrade(shop_item_resource: ShopItemResource) -> void:
 	assert(money_collected >= shop_item_resource.price)

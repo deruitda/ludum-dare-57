@@ -1,5 +1,5 @@
 extends CanvasLayer
-
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _on_close_shop_button_pressed() -> void:
 	SignalBus.close_shop.emit()
