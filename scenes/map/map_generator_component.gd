@@ -53,7 +53,7 @@ func generate_world(tile_map_layer: WorldTileMapLayer) -> void:
 					tile_resource = tile_map_layer.base_tile_resource
 			
 			if tile_resource is TileResource:
-				tile_map_layer.set_tile_resource(tile_resource, coords)
+				tile_map_layer.set_tile_resource(tile_resource, coords, 0)
 
 		
 			
