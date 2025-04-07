@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ShopItemResource" load_steps=3 format=3 uid="uid://wtrfeqkuieiq"]
+
+[ext_resource type="Script" uid="uid://dq388fj72n7ck" path="res://scenes/shop/shop_items/shop_item.gd" id="1_c5u6b"]
+[ext_resource type="Resource" uid="uid://dofmdn87thb45" path="res://scenes/radar/radar_resources/radar_resource_1.tres" id="1_y2y1a"]
+
+[resource]
+script = ExtResource("1_c5u6b")
+price = 40
+tooltip = "Highlights valuables around you"
+is_infinitely_purchaseable = false
+item_resource = ExtResource("1_y2y1a")
+is_initially_disabled = false
+metadata/_custom_type_script = "uid://dq388fj72n7ck"
