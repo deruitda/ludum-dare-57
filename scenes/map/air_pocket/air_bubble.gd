@@ -6,6 +6,9 @@ class_name AirBubble
 @onready var frozen_self_destruct_time = 1.0 # how long after being Vector2.ZERO before self popping
 @onready var current_self_destruct_time = 0.0
 
+@onready var total_number_of_collisions_with_player_allowed: int = 3
+@onready var number_of_collisions_with_player: int = 0
+
 func _ready() -> void:
 	frozen_self_destruct_time = randf_range(0.5, 2.0)
 func _process(delta: float):
@@ -43,3 +46,6 @@ func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, lo
 		var burst_velocity = direction * linear_velocity.length() * collision_velocity  # Apply the velocity
 		# Call the custom function on the Player class
 		body._on_bubble_collision(burst_velocity)  # This assumes `handle_bubble_collision` exists in the Player class
+		number_of_collisions_with_player += 1
+		if number_of_collisions_with_player >= total_number_of_collisions_with_player_allowed:
+			pop_self()
