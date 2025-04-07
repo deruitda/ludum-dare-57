@@ -35,6 +35,9 @@ func set_collision_direction(_direction: Vector2) -> void:
 			velocity.y = 0.0
 	
 
+func apply_gravity(delta: float):
+	velocity.y += (9.8 * GameState.PIXEL_SIZE * delta)
+
 func do_character_move(character_body: CharacterBody2D):
 	
 	character_body.velocity = velocity
