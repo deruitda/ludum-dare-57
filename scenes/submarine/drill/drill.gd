@@ -16,6 +16,7 @@ class_name Drill
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D		
 @onready var audio_player: AudioStreamPlayer2D = $AudioPlayer
+@onready var material_break: AudioStreamPlayer2D = $MaterialBreak
 
 @onready var current_direction_input: Vector2
 @onready var drilling_direction: Vector2
@@ -34,6 +35,7 @@ func set_current_input_direction(_direction_input: Vector2):
 func _physics_process(delta: float) -> void:
 	var input_is_valid = current_direction_input.length() > 0.0 and Helpers.is_a_cardinal_direction(current_direction_input)
 	var drilling_and_original_direction_is_the_same = get_drilling_direction() == drilling_direction and drillable_tile_rid == drill_ray_cast.get_collider_rid()
+	#var drilling_and_original_direction_is_the_same = get_drilling_direction() == drilling_direction
 	
 	if drill_ray_cast.is_colliding() and drill_ray_cast.get_collider() is WorldTileMapLayer:
 		
@@ -43,13 +45,17 @@ func _physics_process(delta: float) -> void:
 			else:
 				start_drilling()
 		elif is_actively_drilling:
+			print("aborting because actively drilling")
 			abort_drilling()
 		elif input_is_valid and not drilling_and_original_direction_is_the_same:
+			print("starting because input is valid and direction is same")
 			start_drilling()
 	elif is_actively_drilling:
+		print("aborting because not colliding anymore")
 		abort_drilling()
 	
 	if not input_is_valid and is_actively_drilling:
+		print("aborting because invalid input")
 		abort_drilling()
 
 func _on_purchase_completed(purchased_shop_item_resource: ShopItemResource) -> void:
@@ -72,6 +78,7 @@ func get_drilling_direction() -> Vector2:
 	return _direction
 	
 func start_drilling() -> void:
+	print("start drill")
 	drillable_world_tile_map_player = drill_ray_cast.get_collider()
 	drillable_tile_rid = drill_ray_cast.get_collider_rid()
 	drilling_direction = get_drilling_direction()
@@ -90,9 +97,12 @@ func start_drilling() -> void:
 	animated_sprite_2d.play("start_drilling")
 
 func _drilling_is_finished() -> void:
+	print("finish drill")
 	if is_actively_drilling == false:
 		pass
 	is_actively_drilling = false
+	
+	material_break.play()
 	
 	var tile_resource = drillable_world_tile_map_player.get_tile_resource_from_rid(drillable_tile_rid)
 	if (tile_resource is ValuableTileResource):
@@ -105,6 +115,7 @@ func _drilling_is_finished() -> void:
 
 
 func abort_drilling():
+	print("aborting")
 	if is_actively_drilling == false:
 		pass
 	is_actively_drilling = false

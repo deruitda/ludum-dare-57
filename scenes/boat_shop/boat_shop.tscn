@@ -1,62 +1,65 @@
 [gd_scene load_steps=17 format=3 uid="uid://cwaak0mkvaijg"]
 
 [ext_resource type="Script" path="res://scenes/boat_shop/boat_shop.gd" id="1_7jtu6"]
-[ext_resource type="Texture2D" uid="uid://c10bjpxo1v4nq" path="res://assets/png_files/surface_ship_foreground01.png" id="2_lvddt"]
+[ext_resource type="Texture2D" uid="uid://bephgi742uv50" path="res://assets/png_files/surface_ship_only01.png" id="2_lvddt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hbei0"]
 size = Vector2(640, 192)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvddt"]
+atlas = ExtResource("2_lvddt")
+region = Rect2(0, 0, 320, 248)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_evv60"]
 atlas = ExtResource("2_lvddt")
-region = Rect2(0, 0, 640, 384)
+region = Rect2(325, 0, 320, 248)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_83yoy"]
 atlas = ExtResource("2_lvddt")
-region = Rect2(645, 0, 640, 384)
+region = Rect2(650, 0, 320, 248)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_otxdn"]
 atlas = ExtResource("2_lvddt")
-region = Rect2(1290, 0, 640, 384)
+region = Rect2(975, 0, 320, 248)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dbtc0"]
 atlas = ExtResource("2_lvddt")
-region = Rect2(1935, 0, 640, 384)
+region = Rect2(1300, 0, 320, 248)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_80egu"]
 atlas = ExtResource("2_lvddt")
-region = Rect2(2580, 0, 640, 384)
+region = Rect2(1625, 0, 320, 248)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3v31s"]
 atlas = ExtResource("2_lvddt")
-region = Rect2(3225, 0, 640, 384)
+region = Rect2(1950, 0, 320, 248)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6babk"]
 atlas = ExtResource("2_lvddt")
-region = Rect2(3870, 0, 640, 384)
+region = Rect2(2275, 0, 320, 248)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7bemo"]
 atlas = ExtResource("2_lvddt")
-region = Rect2(4515, 0, 640, 384)
+region = Rect2(2600, 0, 320, 248)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0xxil"]
 atlas = ExtResource("2_lvddt")
-region = Rect2(5160, 0, 640, 384)
+region = Rect2(2925, 0, 320, 248)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2a7p"]
 atlas = ExtResource("2_lvddt")
-region = Rect2(5805, 0, 640, 384)
+region = Rect2(3250, 0, 320, 248)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_apide"]
 atlas = ExtResource("2_lvddt")
-region = Rect2(6450, 0, 640, 384)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mbscr"]
-atlas = ExtResource("2_lvddt")
-region = Rect2(7095, 0, 640, 384)
+region = Rect2(3575, 0, 320, 248)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hmasf"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvddt")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_evv60")
 }, {
@@ -89,9 +92,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_apide")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mbscr")
 }],
 "loop": true,
 "name": &"default",
@@ -106,11 +106,13 @@ position = Vector2(0, 215)
 collision_layer = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4, -102)
 shape = SubResource("RectangleShape2D_hbei0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hmasf")
-frame_progress = 0.0709544
+autoplay = "default"
+frame_progress = 0.174562
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
