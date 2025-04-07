@@ -1,6 +1,6 @@
 extends Node
 
-@export var money_collected: int = 0
+@export var money_collected: int = 100000000
 @export var max_cargo_weight: int = 10
 var current_cargo_weight: int = 0
 var current_cargo_value: int = 0
@@ -67,12 +67,23 @@ func sell_cargo() -> void:
 	SignalBus.sell_cargo.emit()
 
 func _on_purchase_upgrade(shop_item_resource: ShopItemResource) -> void:
-	assert(money_collected >= shop_item_resource.price)
 	assert(shop_item_resource.item_resource != null)
+	# If an item in the shop somehow allows you to purchase an item you can't afford, skip purchase
+	if money_collected < shop_item_resource.price:
+		pass
+	
 	money_collected -= shop_item_resource.price
+	
+	if shop_item_resource.item_resource is CargoCapacityResource and shop_item_resource.item_resource.new_cargo_capacity is int:
+		max_cargo_weight = shop_item_resource.item_resource.new_cargo_capacity
+		SignalBus.cargo_updated.emit()
+	
 	# If the purchase is an "unlockable" item, unlock it
 	if shop_item_resource.item_resource is UpgradeResource and !shop_item_resource.item_resource.is_unlocked:
 		shop_item_resource.item_resource.is_unlocked = true
+	
+	
+	
 	SignalBus.money_collected_updated.emit()
 	SignalBus.purchase_completed.emit(shop_item_resource)
 

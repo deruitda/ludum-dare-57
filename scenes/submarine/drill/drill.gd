@@ -34,7 +34,8 @@ func _physics_process(delta: float) -> void:
 	var input_is_valid = current_direction_input.length() > 0.0 and Helpers.is_a_cardinal_direction(current_direction_input)
 	var drilling_and_original_direction_is_the_same = get_drilling_direction() == drilling_direction and drillable_tile_rid == drill_ray_cast.get_collider_rid()
 	
-	if drill_ray_cast.is_colliding():
+	if drill_ray_cast.is_colliding() and drill_ray_cast.get_collider() is WorldTileMapLayer:
+		
 		if input_is_valid and drilling_and_original_direction_is_the_same:
 			if is_actively_drilling:
 				battery.consume_power(power_consuption_component.power_consumption_per_use * delta)

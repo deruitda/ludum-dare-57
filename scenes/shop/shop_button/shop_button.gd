@@ -15,6 +15,7 @@ func _ready():
 	SignalBus.hull_health_updated.connect(_on_hull_health_updated)
 	SignalBus.battery_updated.connect(_on_battery_updated)
 	
+	set_price_label_tooltip()
 	set_price_label_text()	
 	set_price_label_color()
 	set_button_disabled_conditionally()
@@ -81,7 +82,12 @@ func is_player_unable_to_purchase_item() -> bool:
 func set_button_disabled_conditionally() -> void:
 	disabled = is_player_unable_to_purchase_item()
 
+func set_price_label_tooltip() -> void:
+	if shop_item_resource and shop_item_resource.tooltip:
+		tooltip_text = shop_item_resource.tooltip
+
 func set_price_label_text() -> void:
+	assert(shop_item_resource != null)
 	var new_price_text = "$" + str(shop_item_resource.price)
 	if shop_item_resource and new_price_text != price_label.text:
 		price_label.text = new_price_text

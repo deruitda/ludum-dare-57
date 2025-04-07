@@ -6,5 +6,3 @@ class_name ShopItemResource
 @export var is_infinitely_purchaseable: bool = false
 @export var unlocked_by_item_resource: Resource
 @export var item_resource: Resource
-@export var is_initially_disabled = false
-		
