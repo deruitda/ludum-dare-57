@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_4euyh")
 weight = 1
-price = 5
+price = 1
 drill_speed = 1.0
 name = "valuable_1"
 atlas_coordinates = Vector2(4, 0)

@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_rsgur")
-max_power_level = 100.0
+max_power_level = 67.0
 is_unlocked = true
 metadata/_custom_type_script = "uid://lplghhp5ejtj"
