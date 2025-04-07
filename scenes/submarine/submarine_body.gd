@@ -47,26 +47,35 @@ func _physics_process(delta: float):
 		if drill.is_actively_drilling:
 			move_to_center_component.set_current_input_direction(Vector2.ZERO)
 			move_to_center_component.set_must_move_to_center()
-		elif not drill.drilling_direction == direction_input:
-			var edge_directions: Array[Vector2] = edge_detector.get_edge_directions()
-			for edge_direction in edge_directions:
-				velocity_component.set_collision_direction(edge_direction)
 			
-				if edge_directions.size() > 0:
-					move_to_center_component.set_must_move_to_center()
+		var edge_directions: Array[Vector2] = edge_detector.get_edge_directions()
 		
-		hull.update_depth(current_depth, delta)
-		GameState.update_depth(current_depth)
-		modulate_jet_light()
-		velocity_component.set_current_rotation(rotation_degrees)
+		if edge_directions.size() > 0:
+			move_to_center_component.start_timer()
 		
 		if move_to_center_component.is_currently_centering:
 			var move_to_center_velocity: Vector2 = move_to_center_component.get_velocity_to_center()
 			velocity_component.set_velocity(move_to_center_velocity)
 		elif not drill.is_actively_drilling:
 			velocity_component.apply_move(direction_input, delta)
+			
+		#set_edge_detection()
+		
+		hull.update_depth(current_depth, delta)
+		GameState.update_depth(current_depth)
+		modulate_jet_light()
+		velocity_component.set_current_rotation(rotation_degrees)
+		
 		
 	velocity_component.do_character_move(self)
+
+#func set_edge_detection():
+	#var edge_directions: Array[Vector2] = edge_detector.get_edge_directions()
+	##for edge_direction in edge_directions:
+		##velocity_component.set_collision_direction(edge_direction)
+	#
+		#if edge_directions.size() > 0:
+			#move_to_center_component.set_must_move_to_center()
 
 func do_respawn():
 	if checkpoint:
@@ -76,6 +85,11 @@ func do_respawn():
 		global_position = checkpoint.get_spawn_position()
 
 func apply_movement_effects():
+	
+	if velocity_component.velocity.length() > 0:
+		jet_light.energy = velocity_component.velocity.length() / 100
+	elif velocity_component.velocity.length() == 0:
+		jet_light.energy = 0.0	
 	
 	# the player is stopped, set the sustained sound
 	if audio_stream_player_2d.stream == null || audio_stream_player_2d.stream == audio[2]:
