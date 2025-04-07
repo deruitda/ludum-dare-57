@@ -75,10 +75,12 @@ func _on_decay_health_pulse_timer_timeout() -> void:
 
 func repair_hull():
 	set_health(hull_resource.max_health)
-	
+
+func respawn():
+	repair_hull()
+	is_destroyed = false
 
 func upgrade_hull(new_hull_resource: HullResource) -> void:
-	print("upgrading")
 	hull_resource = new_hull_resource
 	repair_hull()
 	

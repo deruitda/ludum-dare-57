@@ -38,24 +38,15 @@ func _physics_process(delta: float) -> void:
 	if drill_ray_cast.is_colliding():
 		#var tile_resource = drill_ray_cast.get_collider().get_tile_resource_from_rid(drill_ray_cast.get_collider_rid())
 		#if  tile_resource is DrillableTileResource and drilling_direction == get_drilling_direction():
-		if drilling_direction == get_drilling_direction():
-			
+		if current_direction_input.length() > 0.0 and current_direction_input == get_drilling_direction():
+			print(drilling_direction.length())
 			if is_actively_drilling:
 				battery.consume_power(power_consuption_component.power_consumption_per_use * delta)
 			else:
 				start_drilling()
-
-	if drilling_direction != get_drilling_direction() and is_actively_drilling:
-		# We've turned somewhere
+	
+	if ((current_direction_input != get_drilling_direction()) or (drilling_direction != get_drilling_direction())) and is_actively_drilling:
 		abort_drilling()
-		
-	#if  (not current_direction_input == Vector2.ZERO) and current_direction_input == drilling_direction and has_drillable_position_tile:
-		#if is_actively_drilling:
-		#elif not is_actively_drilling:
-			#start_drilling()
-	#else:
-		#if is_actively_drilling:
-			#abort_drilling()
 func set_colliding_state():
 	is_colliding = drill_ray_cast.is_colliding()
 		
@@ -89,7 +80,6 @@ func start_drilling() -> void:
 	
 	animated_sprite_2d.play("start_drilling")
 
-
 func _drilling_is_finished() -> void:
 	if is_actively_drilling == false:
 		pass
@@ -106,7 +96,6 @@ func _drilling_is_finished() -> void:
 
 
 func abort_drilling():
-	print("abort drilling")
 	has_drillable_position_tile = false
 	drill_timer.stop()
 	is_actively_drilling = false
