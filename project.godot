@@ -67,7 +67,8 @@ move_down={
 2d_physics/layer_7="rock"
 2d_physics/layer_8="bedrock"
 2d_physics/layer_9="shop"
-2d_physics/layer_11="air"
+2d_physics/layer_11="bubble"
+2d_physics/layer_12="air_spout"
 
 [rendering]
 

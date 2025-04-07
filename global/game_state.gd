@@ -1,9 +1,21 @@
 extends Node
 
-@export var money_collected: int = 0
-@export var max_cargo_weight: int = 10
-var current_cargo_weight: int = 0
-var current_cargo_value: int = 0
+@export var INITIAL_MONEY_COLLECTED = 0
+@export var INITIAL_MAX_CARGO_WEIGHT = 10
+var INITIAL_CARGO_WEIGHT = 0
+var INITIAL_CARGO_VALUE = 0
+
+## The total money ever collected by the player, used for final game stats
+var total_money_collected = INITIAL_MONEY_COLLECTED
+## The current amount of money the player has available to spend
+var money_collected: int = INITIAL_MONEY_COLLECTED
+var max_cargo_weight: int = INITIAL_MAX_CARGO_WEIGHT
+var current_cargo_weight: int = INITIAL_CARGO_WEIGHT
+var current_cargo_value: int = INITIAL_CARGO_VALUE
+
+@export var TOTAL_ALLOWED_BUBBLES:int = 1000
+@onready var total_bubbles: int = 0
+
 @export var is_shop_opened: bool = false
 var is_player_in_shop_area: bool = false
 
@@ -11,6 +23,9 @@ var depth: float = 0.0
 
 const TOTAL_DEPTH: float = 11800.0
 const PIXEL_SIZE: int = 64
+
+# Winning information
+var total_play_time_in_seconds = 0
 
 func _ready() -> void:
 	SignalBus.new_game.connect(_on_new_game)
@@ -22,11 +37,13 @@ func _ready() -> void:
 	SignalBus.player_exited_shop_area.connect(_on_player_exited_shop_area)
 	SignalBus.hull_destroyed.connect(die)
 	SignalBus.submarine_lost_power.connect(die)
+	SignalBus.player_has_won.connect(_on_player_has_won)
 
 func _on_new_game() -> void:
-	current_cargo_value = 0
-	current_cargo_weight = 0
-	money_collected = 0
+	current_cargo_value = INITIAL_CARGO_VALUE
+	current_cargo_weight = INITIAL_CARGO_WEIGHT
+	max_cargo_weight = INITIAL_MAX_CARGO_WEIGHT
+	money_collected = INITIAL_MONEY_COLLECTED
 	SignalBus.cargo_updated.emit()
 	SignalBus.money_collected_updated.emit()
 
@@ -40,6 +57,7 @@ func update_depth(new_depth: float):
 	depth = new_depth
 	
 func add_money_collected(money_paid: int) -> void:
+	total_money_collected += money_paid
 	money_collected += money_paid
 	SignalBus.money_collected_updated.emit()
 		
@@ -103,3 +121,6 @@ func _on_player_exited_shop_area() -> void:
 	is_player_in_shop_area = false
 	if is_shop_opened:
 		is_shop_opened = false
+
+func _on_player_has_won(_total_play_time: float) -> void:
+	total_play_time_in_seconds = _total_play_time

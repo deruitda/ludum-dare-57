@@ -1,15 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://5v7lre2y0xoa"]
+[gd_scene load_steps=6 format=3 uid="uid://5v7lre2y0xoa"]
 
 [ext_resource type="Texture2D" uid="uid://bclge6b41vytt" path="res://assets/png_files/edmund_fitzgerald01.png" id="1_0rqyc"]
 [ext_resource type="Script" uid="uid://bqj2dlck4ifgu" path="res://scenes/winning_scene.gd" id="1_m1si2"]
 [ext_resource type="PackedScene" uid="uid://cws16jfeq8cd2" path="res://scenes/submarine/submarine.tscn" id="2_fpoli"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fpoli"]
-content_margin_left = 24.0
-content_margin_top = 12.0
-content_margin_right = 24.0
-content_margin_bottom = 12.0
-bg_color = Color(0, 0.480457, 0.197984, 1)
+[ext_resource type="StyleBox" uid="uid://dorrudh666oa4" path="res://style_resources/green_game_button.tres" id="4_7jntl"]
+[ext_resource type="PackedScene" uid="uid://ce0kl0dk0xdtq" path="res://scenes/core/audio_controller.tscn" id="4_dt531"]
 
 [node name="WinningScene" type="CanvasLayer"]
 script = ExtResource("1_m1si2")
@@ -35,29 +30,143 @@ texture = ExtResource("1_0rqyc")
 expand_mode = 3
 
 [node name="sub_body" parent="Control" instance=ExtResource("2_fpoli")]
-position = Vector2(200, 220)
+position = Vector2(342, 296)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
-layout_mode = 0
-offset_left = 36.0
-offset_right = 474.0
-offset_bottom = 156.0
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 216.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 69
+theme_override_constants/margin_top = 69
+theme_override_constants/margin_right = 69
+theme_override_constants/margin_bottom = 69
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 36
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(457, 0)
+layout_mode = 2
+size_flags_horizontal = 0
 theme_override_font_sizes/normal_font_size = 28
 text = "Congratulations, you have found the SS Edmund Fitzgerald"
 fit_content = true
 vertical_alignment = 1
 
-[node name="PlayAgainButton" type="Button" parent="Control"]
+[node name="PlayAgainButton" type="Button" parent="Control/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 32.0
-offset_top = 140.0
-offset_right = 199.0
-offset_bottom = 198.0
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
 mouse_default_cursor_shape = 2
-theme_override_constants/outline_size = 8
+theme_override_colors/font_color = Color(0.701595, 1, 0.661679, 1)
 theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_fpoli")
+theme_override_styles/normal = ExtResource("4_7jntl")
 text = "Play Again"
 
-[connection signal="pressed" from="Control/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
+[node name="Control" type="Control" parent="Control/MarginContainer"]
+custom_minimum_size = Vector2(320, 161)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="Control/MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.908596, 0.82021, 0.582341, 0.85098)
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 36
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/Control/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/MarginContainer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Game Stats"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Control/MarginContainer/Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 16
+text = "Time"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="PlayTimeText" type="RichTextLabel" parent="Control/MarginContainer/Control/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 16
+text = "0s"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/MarginContainer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Control/MarginContainer/Control/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 16
+text = "Money Made"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="MoneyMadeText" type="RichTextLabel" parent="Control/MarginContainer/Control/MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 16
+text = "$0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 2
+
+[node name="audio_controller" parent="." instance=ExtResource("4_dt531")]
+
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
