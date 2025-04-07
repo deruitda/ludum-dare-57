@@ -1,17 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dp8awkes7pu8s"]
+[gd_scene load_steps=3 format=3 uid="uid://dp8awkes7pu8s"]
 
-[ext_resource type="Texture2D" uid="uid://1ge0w2hp7shc" path="res://icon.svg" id="1_a1rrm"]
 [ext_resource type="Script" uid="uid://ctibgkxn146u5" path="res://scenes/map/air_pocket/air_bubble_spout.gd" id="1_j6iir"]
-
-[sub_resource type="Gradient" id="Gradient_j6iir"]
-offsets = PackedFloat32Array(0.9941, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_8q2f4"]
-gradient = SubResource("Gradient_j6iir")
+[ext_resource type="Texture2D" uid="uid://4aexvb561bqs" path="res://assets/png_files/vent_tile01.png" id="2_j6iir"]
 
 [node name="AirBubbleSpout" type="Node2D"]
+position = Vector2(-1, -33)
 script = ExtResource("1_j6iir")
-particle_texture = SubResource("GradientTexture2D_8q2f4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_a1rrm")
+texture = ExtResource("2_j6iir")

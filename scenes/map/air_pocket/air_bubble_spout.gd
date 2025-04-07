@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var particle_texture: Texture
+@onready var particle_texture: Texture = preload("res://assets/png_files/bubble_sprite01.png")
 @export var max_air_particles: int = 1000
 
 @export var spawn_in_seconds: float = 1.0

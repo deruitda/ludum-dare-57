@@ -110,5 +110,6 @@ shape = SubResource("RectangleShape2D_trceg")
 
 [node name="AirBubbleSpout" parent="." instance=ExtResource("6_8rgfq")]
 position = Vector2(3842, 369)
+spawn_in_seconds = 0.1
 
 [connection signal="body_entered" from="WinningArea" to="." method="_on_winning_area_body_entered"]
