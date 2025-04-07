@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cws16jfeq8cd2"]
+[gd_scene load_steps=20 format=3 uid="uid://cws16jfeq8cd2"]
 
 [ext_resource type="Script" uid="uid://d1v1uwdcnmi7d" path="res://scenes/submarine/submarine_body.gd" id="2_tnxgy"]
 [ext_resource type="PackedScene" uid="uid://cpi5qsqbo0r0x" path="res://scenes/radar/radar.tscn" id="3_77ovh"]
@@ -31,6 +31,9 @@ radial_velocity_min = 10.1
 radial_velocity_max = 26.94
 gravity = Vector3(0, -397.645, 0)
 scale_min = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q1rah"]
+radius = 286.711
 
 [node name="sub_body" type="CharacterBody2D" node_paths=PackedStringArray("move_to_center_component", "velocity_component", "edge_detector", "hull", "drill")]
 scale = Vector2(0.8, 0.8)
@@ -140,7 +143,16 @@ bus = &"death"
 stream = ExtResource("16_q1rah")
 bus = &"death"
 
+[node name="BubbleCollider" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 1024
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BubbleCollider"]
+shape = SubResource("CircleShape2D_q1rah")
+
 [connection signal="hull_done_dying" from="Hull" to="." method="_on_hull_hull_done_dying"]
 [connection signal="hull_upgraded" from="Hull" to="." method="_on_hull_hull_upgraded"]
 [connection signal="timeout" from="MoveToCenterComponent/MoveToCenterCountdownTimer" to="MoveToCenterComponent" method="_on_move_to_center_countdown_timer_timeout"]
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
+[connection signal="body_entered" from="BubbleCollider" to="." method="_on_bubble_collider_body_entered"]
+[connection signal="body_exited" from="BubbleCollider" to="." method="_on_bubble_collider_body_exited"]
