@@ -35,7 +35,7 @@ func _on_new_game() -> void:
 	
 func die():
 	current_cargo_value = 0
-	current_cargo_weight = 0	
+	current_cargo_weight = 0
 	SignalBus.cargo_updated.emit()
 
 func update_depth(new_depth: float):
