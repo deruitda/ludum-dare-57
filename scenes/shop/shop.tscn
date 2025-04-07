@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ng3xa25mlxkb"]
+[gd_scene load_steps=14 format=3 uid="uid://ng3xa25mlxkb"]
 
 [ext_resource type="Script" uid="uid://d48c851g4ll6" path="res://scenes/shop/shop.gd" id="1_100s2"]
 [ext_resource type="PackedScene" uid="uid://cy1wj7klhfd73" path="res://scenes/shop/shop_button/shop_button.tscn" id="2_qaxay"]
@@ -8,7 +8,9 @@
 [ext_resource type="Resource" uid="uid://wat7m0b4ias4" path="res://scenes/shop/shop_items/recharge_power.tres" id="6_ptf86"]
 [ext_resource type="Resource" uid="uid://crlc6yobu7bau" path="res://scenes/shop/shop_items/battery_upgrade_extended.tres" id="6_xcdpw"]
 [ext_resource type="Resource" uid="uid://c7vo8imaw6ari" path="res://scenes/shop/shop_items/battery_upgrade_extended_2.tres" id="7_tp26b"]
+[ext_resource type="Resource" uid="uid://blkrympbkkbkx" path="res://scenes/shop/shop_items/flashlight_upgrade_1.tres" id="9_8qn5i"]
 [ext_resource type="Resource" uid="uid://co2umhba5ghsu" path="res://scenes/shop/shop_items/repair_hull.tres" id="9_tp26b"]
+[ext_resource type="Resource" uid="uid://oamge6kiq2jc" path="res://scenes/shop/shop_items/flashlight_upgrade_2.tres" id="10_dww4p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_100s2"]
 content_margin_left = 12.0
@@ -167,15 +169,15 @@ layout_mode = 2
 text = "Flashlight"
 horizontal_alignment = 1
 
-[node name="FlashlightLevel2Button" type="Button" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/FlashlightUpgradesVBoxContainer2"]
-custom_minimum_size = Vector2(0, 64)
+[node name="Flashlight" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/FlashlightUpgradesVBoxContainer2" instance=ExtResource("2_qaxay")]
 layout_mode = 2
-text = "Level 2"
+text = "Flashlight"
+shop_item_resource = ExtResource("9_8qn5i")
 
-[node name="FlashlightLevel3Button" type="Button" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/FlashlightUpgradesVBoxContainer2"]
-custom_minimum_size = Vector2(0, 64)
+[node name="FlashlightUpgrade" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/FlashlightUpgradesVBoxContainer2" instance=ExtResource("2_qaxay")]
 layout_mode = 2
-text = "Level 3"
+text = "Upgraded"
+shop_item_resource = ExtResource("10_dww4p")
 
 [node name="RadarUpgradesVBoxContainer3" type="VBoxContainer" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer"]
 layout_mode = 2

@@ -41,7 +41,8 @@ edge_detector = NodePath("EdgeDetector")
 hull = NodePath("Hull")
 drill = NodePath("Drill")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="HullSprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 texture = ExtResource("2_77ovh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -134,5 +135,6 @@ lifetime = 1.63
 randomness = 0.61
 process_material = SubResource("ParticleProcessMaterial_q1rah")
 
+[connection signal="hull_upgraded" from="Hull" to="." method="_on_hull_hull_upgraded"]
 [connection signal="timeout" from="MoveToCenterComponent/MoveToCenterCountdownTimer" to="MoveToCenterComponent" method="_on_move_to_center_countdown_timer_timeout"]
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

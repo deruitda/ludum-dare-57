@@ -12,6 +12,8 @@ class_name Hull
 @onready var is_beyond_depth_threshold: bool = false
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
+signal hull_upgraded(hull: Hull)
+
 func _ready() -> void:
 	SignalBus.purchase_completed.connect(_shop_item_purchased)
 
@@ -87,6 +89,9 @@ func respawn():
 func upgrade_hull(new_hull_resource: HullResource) -> void:
 	hull_resource = new_hull_resource
 	repair_hull()
+	print("in hull")
+	hull_upgraded.emit(self)
+	
 	
 func get_hull_health_percentage() -> float:
 	return health / hull_resource.max_health

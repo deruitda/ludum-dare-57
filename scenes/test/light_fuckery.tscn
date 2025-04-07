@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://btknplgeb70by" path="res://scenes/map/tile_map_layer.tscn" id="1_riuvw"]
 [ext_resource type="Texture2D" uid="uid://1ge0w2hp7shc" path="res://icon.svg" id="1_s4wa2"]
-[ext_resource type="Script" path="res://scenes/map/tile_resource/zone_resource_list_layer.gd" id="2_rm33y"]
+[ext_resource type="Script" uid="uid://b0wmy2qe6hygq" path="res://scenes/map/tile_resource/zone_resource_list_layer.gd" id="2_rm33y"]
 [ext_resource type="Resource" uid="uid://v3xrbcr0u4i6" path="res://scenes/map/zone_resource_list_layers/zone_1_resource_list_layer.tres" id="3_6dlvb"]
 [ext_resource type="PackedScene" uid="uid://chdm7yhy0aeyf" path="res://scenes/submarine/flashlight/flashlight.tscn" id="3_ke3jo"]
-[ext_resource type="Texture2D" uid="uid://dcrgetdsnr3rx" path="res://scenes/submarine/flashlight/flashlight_light_texture.png" id="3_ul0e1"]
+[ext_resource type="Texture2D" uid="uid://dcrgetdsnr3rx" path="res://scenes/submarine/flashlight/flashlight_resources/flashlight_light_texture_1.png" id="3_ul0e1"]
 [ext_resource type="Resource" uid="uid://cljheb83ftod6" path="res://scenes/map/zone_resource_list_layers/zone_2_resource_list_layer.tres" id="4_jvj3o"]
 [ext_resource type="Resource" uid="uid://5woomv2ypgi3" path="res://scenes/map/zone_resource_list_layers/zone_3_resource_list_layer.tres" id="5_ytm43"]
 [ext_resource type="PackedScene" uid="uid://cwaak0mkvaijg" path="res://scenes/boat_shop/boat_shop.tscn" id="6_ipukm"]
