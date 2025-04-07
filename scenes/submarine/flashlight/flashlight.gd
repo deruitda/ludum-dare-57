@@ -11,6 +11,9 @@ var audio = [
 	preload("res://assets/audio/sfx/radar_arm.wav")
 ]
 
+func _ready() -> void:
+	SignalBus.toggle_flashlight.connect(_on_toggle_flashlight)
+
 func _process(delta: float) -> void:
 	if light.enabled:
 		battery.consume_power(power_consumption_component.power_consumption_per_use * delta)
@@ -19,6 +22,10 @@ func _unhandled_input(event):
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_F and !animated_sprite.is_playing():
 			toggle_flashlight()
+
+# Handler of toggle flashlight signal
+func _on_toggle_flashlight():
+	toggle_flashlight()
 
 func toggle_flashlight():
 	if !light.enabled:
