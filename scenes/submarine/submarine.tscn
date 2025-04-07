@@ -26,10 +26,8 @@ emission_shape_offset = Vector3(36.035, 0, 0)
 angle_min = 1.07288e-05
 angle_max = 557.6
 inherit_velocity_ratio = 0.945
-angular_velocity_min = -1.60933e-05
-angular_velocity_max = 431.52
-radial_velocity_min = -2.23517e-05
-radial_velocity_max = 57.24
+radial_velocity_min = 10.1
+radial_velocity_max = 26.94
 gravity = Vector3(0, -397.645, 0)
 scale_min = 0.0
 
@@ -113,8 +111,8 @@ position = Vector2(1.25, -60)
 battery = NodePath("../Battery")
 
 [node name="ShipLight" type="PointLight2D" parent="."]
-position = Vector2(-4.0625, -2.5)
-scale = Vector2(1.31836, 1.16374)
+position = Vector2(0, 1.25)
+scale = Vector2(2.08984, 1.84474)
 enabled = false
 color = Color(0.54076, 0.614041, 0.89648, 1)
 energy = 0.0
