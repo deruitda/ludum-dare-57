@@ -1,0 +1,103 @@
+[gd_scene load_steps=15 format=3 uid="uid://ds5eamg4g8geo"]
+
+[ext_resource type="Texture2D" uid="uid://dq8j4rv1ocjx7" path="res://assets/png_files/screen_crack_animation1.png" id="1_lkx7m"]
+[ext_resource type="Script" uid="uid://burbgk6vilhna" path="res://cracks.gd" id="1_pfpp2"]
+[ext_resource type="Texture2D" uid="uid://cqoypkmcwncy1" path="res://assets/png_files/screen_crack_animation2.png" id="2_pfpp2"]
+[ext_resource type="Texture2D" uid="uid://mudaarss2ofw" path="res://assets/png_files/screen_crack_animation11.png" id="3_teymw"]
+[ext_resource type="Texture2D" uid="uid://c6lr58nufrmn8" path="res://assets/png_files/screen_crack_animation12.png" id="4_toevd"]
+[ext_resource type="Texture2D" uid="uid://bf2amwdccwnct" path="res://assets/png_files/screen_crack_animation3.png" id="5_4rb4i"]
+[ext_resource type="Texture2D" uid="uid://bv3xy6qf8hpxe" path="res://assets/png_files/screen_crack_animation4.png" id="6_h77um"]
+[ext_resource type="Texture2D" uid="uid://cqfukw8y0530b" path="res://assets/png_files/screen_crack_animation5.png" id="7_j0d62"]
+[ext_resource type="Texture2D" uid="uid://bco5wkrs7i8on" path="res://assets/png_files/screen_crack_animation6.png" id="8_v4xsc"]
+[ext_resource type="Texture2D" uid="uid://025fhxw8yr2" path="res://assets/png_files/screen_crack_animation7.png" id="9_wyasa"]
+[ext_resource type="Texture2D" uid="uid://dhm6wxekk40u5" path="res://assets/png_files/screen_crack_animation8.png" id="10_b8lyt"]
+[ext_resource type="Texture2D" uid="uid://cmihjpwjj55u1" path="res://assets/png_files/screen_crack_animation9.png" id="11_fp68t"]
+[ext_resource type="Texture2D" uid="uid://d265cnilm2fks" path="res://assets/png_files/screen_crack_animation10.png" id="12_n3hxr"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_xei1x"]
+frames = 12
+pause = true
+one_shot = true
+frame_0/texture = ExtResource("1_lkx7m")
+frame_0/duration = 0.1
+frame_1/texture = ExtResource("2_pfpp2")
+frame_1/duration = 0.1
+frame_2/texture = ExtResource("5_4rb4i")
+frame_2/duration = 0.1
+frame_3/texture = ExtResource("6_h77um")
+frame_3/duration = 0.1
+frame_4/texture = ExtResource("7_j0d62")
+frame_4/duration = 0.1
+frame_5/texture = ExtResource("8_v4xsc")
+frame_5/duration = 0.1
+frame_6/texture = ExtResource("9_wyasa")
+frame_6/duration = 0.1
+frame_7/texture = ExtResource("10_b8lyt")
+frame_7/duration = 0.1
+frame_8/texture = ExtResource("11_fp68t")
+frame_8/duration = 0.1
+frame_9/texture = ExtResource("12_n3hxr")
+frame_9/duration = 0.1
+frame_10/texture = ExtResource("3_teymw")
+frame_10/duration = 0.1
+frame_11/texture = ExtResource("4_toevd")
+frame_11/duration = 0.1
+
+[node name="Node2D" type="CanvasLayer"]
+script = ExtResource("1_pfpp2")
+
+[node name="TextureRect1" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.352941)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 347.0
+offset_top = 113.0
+offset_right = -997.0
+offset_bottom = -531.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AnimatedTexture_xei1x")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.352941)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 739.0
+offset_top = 477.0
+offset_right = -605.0
+offset_bottom = -167.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AnimatedTexture_xei1x")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.352941)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 188.0
+offset_top = 586.0
+offset_right = -1156.0
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AnimatedTexture_xei1x")
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.352941)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1068.0
+offset_top = 177.0
+offset_right = -276.0
+offset_bottom = -467.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AnimatedTexture_xei1x")
