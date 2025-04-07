@@ -1,4 +1,6 @@
 extends CharacterBody2D
+class_name SubmarineBody
+
 @export var speed = 400
 
 @export var move_to_center_component: MoveToCenterComponent
@@ -201,3 +203,6 @@ func _on_up_ray_cast_2d_on_collision() -> void:
 	pass # Replace with function body.
 func _on_drilling_aborted() -> void:
 	pass
+
+func _on_bubble_collision(collision_velocity: Vector2):
+	velocity_component.add_burst_velocity(collision_velocity)

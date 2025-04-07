@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://5v7lre2y0xoa"]
+[gd_scene load_steps=6 format=3 uid="uid://5v7lre2y0xoa"]
 
 [ext_resource type="Texture2D" uid="uid://bclge6b41vytt" path="res://assets/png_files/edmund_fitzgerald01.png" id="1_0rqyc"]
 [ext_resource type="Script" uid="uid://bqj2dlck4ifgu" path="res://scenes/winning_scene.gd" id="1_m1si2"]
 [ext_resource type="PackedScene" uid="uid://cws16jfeq8cd2" path="res://scenes/submarine/submarine.tscn" id="2_fpoli"]
+[ext_resource type="PackedScene" uid="uid://ce0kl0dk0xdtq" path="res://scenes/core/audio_controller.tscn" id="4_dt531"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fpoli"]
 content_margin_left = 24.0
@@ -59,5 +60,7 @@ theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_fpoli")
 text = "Play Again"
+
+[node name="audio_controller" parent="." instance=ExtResource("4_dt531")]
 
 [connection signal="pressed" from="Control/PlayAgainButton" to="." method="_on_play_again_button_pressed"]

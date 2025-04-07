@@ -14,6 +14,7 @@ var edmund_audio = [
 
 func _ready():
 	SignalBus.sell_cargo.connect(play_money)
+	SignalBus.player_has_won.connect(_on_player_has_won)
 	
 	if not mute:
 		play_music()
@@ -34,4 +35,7 @@ func _process(delta: float) -> void:
 		ambient_player.play()
 	if GameState.depth > 175:
 		audio_stream_player.stop()
-		
+
+func _on_player_has_won() -> void:
+	ambient_player.stream = edmund_audio[0]
+	ambient_player.play()
