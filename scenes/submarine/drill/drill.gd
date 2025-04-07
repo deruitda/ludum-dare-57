@@ -102,7 +102,7 @@ func _drilling_is_finished() -> void:
 	drillable_world_tile_map_player.drill_tile(drillable_tile_rid)
 	
 	animated_sprite_2d.play("end_drilling")
-	audio_listener_2d.play()
+	audio_player.play()
 
 
 func abort_drilling():
