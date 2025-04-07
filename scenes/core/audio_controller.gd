@@ -8,6 +8,9 @@ extends Node2D
 var surface_audio = [
 	preload("res://assets/audio/sfx/waves.wav")
 ]
+var edmund_audio = [
+	preload("res://assets/audio/music/Final_whistle.wav")
+]
 
 func _ready():
 	SignalBus.sell_cargo.connect(play_money)
@@ -26,3 +29,9 @@ func _process(delta: float) -> void:
 	if GameState.depth < 4 and !ambient_player.playing:
 		ambient_player.stream = surface_audio[0]
 		ambient_player.play()	
+	if GameState.depth > 182.0 and !ambient_player.playing:
+		ambient_player.stream = edmund_audio[0]
+		ambient_player.play()
+	if GameState.depth > 175:
+		audio_stream_player.stop()
+		

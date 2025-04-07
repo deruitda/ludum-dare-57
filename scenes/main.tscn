@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d201f6lfjqx1v" path="res://scenes/hud/ping_pointer/ping_pointer.tscn" id="3_p07le"]
 [ext_resource type="PackedScene" uid="uid://ng3xa25mlxkb" path="res://scenes/shop/shop.tscn" id="4_6uobj"]
 [ext_resource type="PackedScene" uid="uid://btknplgeb70by" path="res://scenes/map/tile_map_layer.tscn" id="5_4xcqp"]
-[ext_resource type="Script" path="res://scenes/map/tile_resource/zone_resource_list_layer.gd" id="6_6qnuo"]
+[ext_resource type="Script" uid="uid://b0wmy2qe6hygq" path="res://scenes/map/tile_resource/zone_resource_list_layer.gd" id="6_6qnuo"]
 [ext_resource type="Resource" uid="uid://v3xrbcr0u4i6" path="res://scenes/map/zone_resource_list_layers/zone_1_resource_list_layer.tres" id="7_g5njp"]
 [ext_resource type="Resource" uid="uid://cljheb83ftod6" path="res://scenes/map/zone_resource_list_layers/zone_2_resource_list_layer.tres" id="8_82res"]
 [ext_resource type="Resource" uid="uid://5woomv2ypgi3" path="res://scenes/map/zone_resource_list_layers/zone_3_resource_list_layer.tres" id="9_2ocyq"]
@@ -51,6 +51,7 @@ num_tiles_deep = 200
 zone_resource_list_layers = Array[ExtResource("6_6qnuo")]([ExtResource("7_g5njp"), ExtResource("8_82res"), ExtResource("9_2ocyq")])
 
 [node name="water" type="PointLight2D" parent="."]
+visible = false
 show_behind_parent = true
 z_index = 1
 position = Vector2(3921, 7950.17)
@@ -63,6 +64,7 @@ range_z_max = -1
 texture = SubResource("GradientTexture2D_6nhnn")
 
 [node name="rock-subtract" type="PointLight2D" parent="."]
+visible = false
 show_behind_parent = true
 z_index = -1
 position = Vector2(3255, 9487.48)
