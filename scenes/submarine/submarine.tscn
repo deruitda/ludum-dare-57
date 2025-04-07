@@ -111,4 +111,8 @@ scale = Vector2(0.22749, 0.0878906)
 texture = ExtResource("13_7x5j0")
 offset = Vector2(257.025, 0)
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = 6.871
+
 [connection signal="timeout" from="MoveToCenterComponent/MoveToCenterCountdownTimer" to="MoveToCenterComponent" method="_on_move_to_center_countdown_timer_timeout"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
