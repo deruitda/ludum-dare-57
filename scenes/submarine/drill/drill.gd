@@ -14,7 +14,8 @@ class_name Drill
 @onready var drill_ray_cast: RayCastCollider = $DrillRayCast
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D		
-@onready var audio_listener_2d: AudioStreamPlayer2D = $AudioListener2D
+@onready var audio_player: AudioStreamPlayer2D = $AudioPlayer
+
 
 @onready var current_direction_input: Vector2
 @onready var drilling_direction: Vector2
@@ -72,6 +73,7 @@ func start_drilling() -> void:
 	drill_timer.timeout.connect(_drilling_is_finished)
 	is_actively_drilling = true
 	_on_drilling_started.emit()
+	audio_player.play()
 	
 	animated_sprite_2d.play("start_drilling")
 
@@ -88,8 +90,6 @@ func _drilling_is_finished() -> void:
 		SignalBus.add_cargo.emit(tile_resource)
 	
 	animated_sprite_2d.play("end_drilling")
-	audio_listener_2d.play()
-	
 
 
 func abort_drilling():
@@ -106,5 +106,5 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		animated_sprite_2d.play("end_drilling")
 	elif animated_sprite_2d.animation == "end_drilling":
 		animated_sprite_2d.play("idle")
-		audio_listener_2d.stop()
+		audio_player.stop()
 		
