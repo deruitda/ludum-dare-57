@@ -1,7 +1,8 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bq1vfvf7i4bby"]
+[gd_resource type="Resource" script_class="DrillResource" load_steps=2 format=3 uid="uid://bq1vfvf7i4bby"]
 
 [ext_resource type="Script" uid="uid://2tqrwm86qlfo" path="res://scenes/submarine/drill/drill_resources/drill_resource.gd" id="1_yhtnh"]
 
 [resource]
 script = ExtResource("1_yhtnh")
-drill_speed = 0.75
+speed_factor = 2.0
+is_unlocked = false

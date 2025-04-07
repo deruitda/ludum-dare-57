@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ShopItemResource" load_steps=4 format=3 uid="uid://gpfad4uspbf1"]
+
+[ext_resource type="Script" uid="uid://dq388fj72n7ck" path="res://scenes/shop/shop_items/shop_item.gd" id="1_3qmln"]
+[ext_resource type="Resource" uid="uid://bq1vfvf7i4bby" path="res://scenes/submarine/drill/drill_resources/drill_resource_2.tres" id="1_n3edw"]
+[ext_resource type="Resource" uid="uid://blvbx87ro403o" path="res://scenes/submarine/drill/drill_resources/drill_resource_1.tres" id="3_t3txr"]
+
+[resource]
+script = ExtResource("1_3qmln")
+price = 30
+tooltip = "Drill 2x faster"
+is_infinitely_purchaseable = false
+unlocked_by_item_resource = ExtResource("3_t3txr")
+item_resource = ExtResource("1_n3edw")
+metadata/_custom_type_script = "uid://dq388fj72n7ck"
