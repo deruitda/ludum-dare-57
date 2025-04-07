@@ -85,15 +85,15 @@ func repair_hull():
 	set_health(hull_resource.max_health)
 
 func begin_die():
-	if hull_resource.hull_level == 0:
-		animated_sprite_2d.play("0_die")
 	if hull_resource.hull_level == 1:
+		animated_sprite_2d.play("0_die")
+	if hull_resource.hull_level == 2:
 		animated_sprite_2d.play("1_die")
 		
-	if hull_resource.hull_level == 2:
+	if hull_resource.hull_level == 3:
 		animated_sprite_2d.play("2_die")
 		
-	if hull_resource.hull_level == 3:
+	if hull_resource.hull_level == 4:
 		animated_sprite_2d.play("3_die")
 
 func respawn():
