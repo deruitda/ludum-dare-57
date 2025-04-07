@@ -69,17 +69,6 @@ func is_player_unable_to_purchase_item() -> bool:
 		if price_label.text == full_integrity_string:
 			set_price_label_text()
 		return is_player_unable_to_afford_item()
-	
-	if shop_item_resource.item_resource is RechargeBatteryResource:
-		# If battery is new or fully charged, button is disabled
-		if (battery == null or battery.current_power_level >= battery.battery_resource.max_power_level):
-			if price_label.text != full_charge_string:
-				price_label.text = full_charge_string
-			return true
-			
-		if price_label.text == full_charge_string:
-			set_price_label_text()
-		return is_player_unable_to_afford_item()
 
 	var is_shop_item_locked = shop_item_resource.unlocked_by_item_resource and shop_item_resource.unlocked_by_item_resource.is_unlocked != true
 

@@ -1,10 +1,6 @@
 extends CanvasLayer
 
 
-func _on_sell_cargo_button_pressed() -> void:
-	SignalBus.sell_cargo.emit()
-
-
 func _on_close_shop_button_pressed() -> void:
 	SignalBus.close_shop.emit()
 
