@@ -122,14 +122,16 @@ animations = [{
 script = ExtResource("1_f3xsa")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(25, 28)
 rotation = 3.14159
+scale = Vector2(1, 0.943338)
 enabled = false
 color = Color(0.554724, 0.614032, 1, 1)
 energy = 1.89
 shadow_enabled = true
 shadow_item_cull_mask = 1024
 texture = ExtResource("2_txavb")
-offset = Vector2(716.84, 5.64)
+offset = Vector2(709.855, 5.64)
 texture_scale = 2.73
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
