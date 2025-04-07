@@ -14,6 +14,8 @@ class_name MoveToCenterComponent
 @onready var must_move_to_center: bool = false
 @onready var is_currently_centering: bool = false
 
+@export var center_offset_allowed: float = 0.1
+
 func _ready() -> void:
 	move_to_center_countdown_timer.timeout.connect(_on_move_to_center_countdown_timer_timeout)
 
@@ -23,9 +25,9 @@ func _process(delta: float) -> void:
 	elif is_currently_centering:
 		pass
 	
-	if get_could_move_to_center_based_on_inputs() :
+	if get_could_move_to_center_based_on_inputs()  and use_move_to_center_on_no_input:
 		start_timer()
-	else:
+	elif not get_could_move_to_center_based_on_inputs():
 		cancel_timer()
 		
 func get_could_move_to_center_based_on_inputs() -> bool:
@@ -73,7 +75,7 @@ func get_velocity_to_center() -> Vector2:
 
 func get_position_lerped_to_center(position: Vector2, lerp_amount: float) -> Vector2:
 	var center = get_closest_center(position)
-	if position.distance_to(center) < 1.0:
+	if position.distance_to(center) < center_offset_allowed:
 		return center
 	return position.lerp(center, lerp_amount)
 
