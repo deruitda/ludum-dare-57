@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://cwaak0mkvaijg"]
 
-[ext_resource type="Script" path="res://scenes/boat_shop/boat_shop.gd" id="1_7jtu6"]
+[ext_resource type="Script" uid="uid://w7kfyo0fwf7g" path="res://scenes/boat_shop/boat_shop.gd" id="1_7jtu6"]
 [ext_resource type="Texture2D" uid="uid://c10bjpxo1v4nq" path="res://assets/png_files/surface_ship_foreground01.png" id="2_lvddt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hbei0"]
