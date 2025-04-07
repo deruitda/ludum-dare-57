@@ -1,0 +1,10 @@
+[gd_resource type="GradientTexture2D" load_steps=2 format=3 uid="uid://biip8h3spl7he"]
+
+[sub_resource type="Gradient" id="Gradient_sclgi"]
+
+[resource]
+gradient = SubResource("Gradient_sclgi")
+width = 2000
+height = 2000
+fill_from = Vector2(0.465812, 0.41453)
+fill_to = Vector2(0.458689, 0)
