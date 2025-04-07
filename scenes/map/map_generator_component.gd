@@ -3,7 +3,7 @@ class_name WorldGeneratorComponent
 
 var rng: RandomNumberGenerator
 @export var seed: String
-@export var root_position: Vector2 = Vector2.ZERO
+@export var root_position: Vector2 = Vector2(-50, 0.0)
 
 func _ready() -> void:
 	
