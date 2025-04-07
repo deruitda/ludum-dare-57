@@ -9,6 +9,8 @@ extends Node2D
 @onready var current_particle_count = 0
 @onready var air_particles: Array = []
 
+@export var gravity: float = -2.0
+
 const AIR_LAYER: int = 11
 const CONNECTION_MASKS: Array[int] = [2, 4, 5, 7, 8] 
 
@@ -31,7 +33,7 @@ func create_particle():
 	
 	particle_server.body_set_param(air_col, PhysicsServer2D.BODY_PARAM_FRICTION, 0.0)
 	particle_server.body_set_param(air_col, PhysicsServer2D.BODY_PARAM_MASS, 0.05)
-	particle_server.body_set_param(air_col, PhysicsServer2D.BODY_PARAM_GRAVITY_SCALE, -2.0)
+	particle_server.body_set_param(air_col, PhysicsServer2D.BODY_PARAM_GRAVITY_SCALE, gravity)
 	
 	particle_server.body_set_state(air_col, PhysicsServer2D.BODY_STATE_TRANSFORM, trans)
 	
@@ -56,10 +58,11 @@ func _physics_process(delta: float) -> void:
 		var trans = PhysicsServer2D.body_get_state(col[0], PhysicsServer2D.BODY_STATE_TRANSFORM)
 		trans.origin = trans.origin - global_position
 		RenderingServer.canvas_item_set_transform(col[1], trans)
-		if trans.origin.y > 0.0:
+		if trans.origin.y + global_position.y < 0.0:
 			PhysicsServer2D.free_rid(col[0])
 			RenderingServer.free_rid(col[1])
 			air_particles.erase(col)
+			current_particle_count -= 1
 			
 
 func _on_spawn_timer_timeout() -> void:
