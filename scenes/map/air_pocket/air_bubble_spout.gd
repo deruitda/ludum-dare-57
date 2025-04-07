@@ -41,7 +41,7 @@ func can_create_bubbles() -> bool:
 	return not is_spout_smothered() and current_particle_count < max_air_particles and GameState.TOTAL_ALLOWED_BUBBLES > GameState.total_bubbles
 
 func _on_bubble_popped():
-	max_air_particles -= 1
+	current_particle_count -= 1
 	GameState.total_bubbles -= 1
 
 func _on_spawn_timer_timeout() -> void:
@@ -57,4 +57,4 @@ func is_spout_smothered() -> bool:
 		if bubble.position.distance_to(global_position) < range:
 			bubble_count += 1
 	
-	return bubble_count >= 3  # Or however many is "too many"
+	return bubble_count >= 5  # Or however many is "too many"
