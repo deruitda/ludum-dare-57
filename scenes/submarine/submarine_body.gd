@@ -105,8 +105,6 @@ func do_respawn():
 
 func apply_movement_effects():
 	
-	print("direction input: " + str(direction_input))
-	
 	if current_depth > 1 and velocity_component.velocity.length() > 0:
 		jet_light.energy = velocity_component.velocity.length() / 100
 		gpu_particles_2d.emitting = true

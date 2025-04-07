@@ -3,14 +3,20 @@ extends Node2D
 @export var mute: bool = false
 @export var audio_stream_player: AudioStreamPlayer2D
 @onready var ambient_player: AudioStreamPlayer2D = $AmbientPlayer
+@onready var sfx_player: AudioStreamPlayer2D = $SfxPlayer
 
 var surface_audio = [
 	preload("res://assets/audio/sfx/waves.wav")
 ]
 
 func _ready():
+	SignalBus.sell_cargo.connect(play_money)
+	
 	if not mute:
 		play_music()
+		
+func play_money():
+	sfx_player.play()
 		
 func play_music():
 	if not mute:

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ValuableTileResource" load_steps=2 format=3 uid="uid://b2cxj38jb0l61"]
+
+[ext_resource type="Script" uid="uid://0c1n7pgole5p" path="res://scenes/map/tile_resource/valuable_tile_resource.gd" id="1_0502e"]
+
+[resource]
+script = ExtResource("1_0502e")
+weight = 1
+price = 100
+drill_speed = 1.0
+name = "valuable_6"
+atlas_coordinates = Vector2(6, 1)
+metadata/_custom_type_script = "uid://joiabccf67iw"
