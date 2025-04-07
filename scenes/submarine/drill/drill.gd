@@ -19,6 +19,8 @@ class_name Drill
 @onready var current_direction_input: Vector2
 @onready var drilling_direction: Vector2
 
+@onready var is_colliding: bool = false
+
 signal _on_drilling_aborted
 signal _on_drilling_started
 signal _on_drilling_finished
@@ -31,21 +33,30 @@ func set_current_input_direction(_direction_input: Vector2):
 
 func _physics_process(delta: float) -> void:
 	set_colliding_state()
+	
+	if drill_ray_cast.is_colliding():
+		#var tile_resource = drill_ray_cast.get_collider().get_tile_resource_from_rid(drill_ray_cast.get_collider_rid())
+		#if  tile_resource is DrillableTileResource and drilling_direction == get_drilling_direction():
+		if drilling_direction == get_drilling_direction():
+			
+			if is_actively_drilling:
+				battery.consume_power(power_consuption_component.power_consumption_per_use * delta)
+			else:
+				start_drilling()
+
 	if drilling_direction != get_drilling_direction() and is_actively_drilling:
 		# We've turned somewhere
 		abort_drilling()
-	if  (not current_direction_input == Vector2.ZERO) and current_direction_input == drilling_direction:
-		if is_actively_drilling:
-			battery.consume_power(power_consuption_component.power_consumption_per_use * delta)
-		elif has_drillable_position_tile and not is_actively_drilling:
-			start_drilling()
-	else:
-		if is_actively_drilling:
-			abort_drilling()
+		
+	#if  (not current_direction_input == Vector2.ZERO) and current_direction_input == drilling_direction and has_drillable_position_tile:
+		#if is_actively_drilling:
+		#elif not is_actively_drilling:
+			#start_drilling()
+	#else:
+		#if is_actively_drilling:
+			#abort_drilling()
 func set_colliding_state():
-	if not drill_ray_cast.is_colliding() and is_actively_drilling:
-		has_drillable_position_tile = false
-		abort_drilling()
+	is_colliding = drill_ray_cast.is_colliding()
 		
 func get_drilling_direction() -> Vector2:
 	# Default direction (90 degrees to the left, which is -90 degrees)
@@ -62,9 +73,15 @@ func get_drilling_direction() -> Vector2:
 	return _direction
 	
 func start_drilling() -> void:
-	drill_timer.wait_time = drill_resource.drill_speed
+	drillable_world_tile_map_player = drill_ray_cast.get_collider()
+	drillable_tile_rid = drill_ray_cast.get_collider_rid()
+	var tile_resource = drillable_world_tile_map_player.get_tile_resource_from_rid(drillable_tile_rid)
+	if not tile_resource is DrillableTileResource:
+		return
+	drill_timer.wait_time = tile_resource.drill_speed
 	drill_timer.start()
 	drill_timer.timeout.connect(_drilling_is_finished)
+	
 	is_actively_drilling = true
 	_on_drilling_started.emit()
 	
@@ -75,12 +92,12 @@ func _drilling_is_finished() -> void:
 	if is_actively_drilling == false:
 		pass
 	is_actively_drilling = false
-	has_drillable_position_tile = false
 	
 	var tile_resource = drillable_world_tile_map_player.get_tile_resource_from_rid(drillable_tile_rid)
-	drillable_world_tile_map_player.drill_tile(drillable_tile_rid)
 	if (tile_resource is ValuableTileResource):
-		SignalBus.add_cargo.emit(tile_resource)
+		SignalBus.add_cargo.emit(drill_resource)
+		
+	drillable_world_tile_map_player.drill_tile(drillable_tile_rid)
 	
 	animated_sprite_2d.play("end_drilling")
 	audio_listener_2d.play()

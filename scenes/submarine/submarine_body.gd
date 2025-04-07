@@ -37,7 +37,7 @@ func _physics_process(delta: float):
 	if drill.is_actively_drilling:
 		move_to_center_component.set_current_input_direction(Vector2.ZERO)
 		move_to_center_component.set_must_move_to_center()
-	else:
+	elif not drill.drilling_direction == direction_input:
 		var edge_directions: Array[Vector2] = edge_detector.get_edge_directions()
 		for edge_direction in edge_directions:
 			velocity_component.set_collision_direction(edge_direction)
