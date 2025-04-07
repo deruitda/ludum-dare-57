@@ -107,6 +107,12 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_constants/separation = 12
 
+[node name="ToggleFlashlightButton" type="Button" parent="MarginContainer/ActionButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "[F] Toggle Flashlight"
+script = ExtResource("4_0bx4p")
+
 [node name="ActivateRadarButton" type="Button" parent="MarginContainer/ActionButtonsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -120,5 +126,6 @@ layout_mode = 2
 text = "[E] Open Store"
 script = ExtResource("4_0bx4p")
 
+[connection signal="pressed" from="MarginContainer/ActionButtonsContainer/ToggleFlashlightButton" to="." method="_on_toggle_flashlight_button_pressed"]
 [connection signal="pressed" from="MarginContainer/ActionButtonsContainer/ActivateRadarButton" to="." method="_on_activate_radar_button_pressed"]
 [connection signal="pressed" from="MarginContainer/ActionButtonsContainer/OpenStoreButton" to="." method="_on_open_store_button_pressed"]

@@ -27,3 +27,10 @@ func _on_player_exited_shop_area() -> void:
 
 func set_collected_money_rich_text():
 	collected_money_rich_text.set_text("$" + str(GameState.money_collected))
+
+func _on_toggle_flashlight_button_pressed() -> void:
+	SignalBus.toggle_flashlight.emit()
+
+
+func _on_activate_radar_button_pressed() -> void:
+	SignalBus.ping_sonar.emit()
