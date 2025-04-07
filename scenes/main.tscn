@@ -75,7 +75,7 @@ texture = SubResource("GradientTexture2D_ovew5")
 
 [node name="BoatShop" parent="." instance=ExtResource("10_gads5")]
 z_index = -1
-position = Vector2(4066, -627)
+position = Vector2(4010, -737)
 scale = Vector2(3.92, 3.92)
 
 [node name="Submarine" parent="." node_paths=PackedStringArray("checkpoint") instance=ExtResource("11_r5pac")]
@@ -90,3 +90,5 @@ position = Vector2(-1408, -40)
 
 [node name="Checkpoint" parent="." instance=ExtResource("13_trceg")]
 position = Vector2(4168, 20)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
