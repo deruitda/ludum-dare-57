@@ -10,6 +10,7 @@ class_name Hull
 @onready var is_destroyed: bool = false
 @onready var decaying_potential_health_loss: float = 0.0
 @onready var is_beyond_depth_threshold: bool = false
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 signal hull_upgraded(hull: Hull)
 
@@ -62,6 +63,7 @@ func remove_health(amount: float) -> void:
 		# Subtract from health
 		var _health = health - amount
 		set_health(_health)
+		audio_stream_player_2d.play()
 
 func set_health(_health: float):
 	health = max(min(_health, hull_resource.max_health), 0.0)
