@@ -21,15 +21,16 @@ var is_scanning = false
 var is_cooling_down = false
 var current_rad: float
 
+func _ready() -> void:
+	SignalBus.ping_sonar.connect(_on_ping_sonar)
+
 func _unhandled_input(event):
 	if event is InputEventKey:
-		if event.pressed and event.keycode == KEY_R and !is_scanning and !animated_sprite.is_playing():
+		if event.pressed and event.keycode == KEY_R and is_ready_to_scan():
 			start_scan()
 
 func _physics_process(_delta):
-	
 	if is_scanning:
-		
 		if animated_sprite.is_playing() && animated_sprite.animation == "begin_scan":
 			return
 		else:
@@ -51,6 +52,14 @@ func _physics_process(_delta):
 		circle_collider.shape.radius = current_rad
 
 		circle_drawer.circle_draw(current_rad)
+
+# Handle ping sonar from SignalBus
+func _on_ping_sonar() -> void:
+	if is_ready_to_scan():
+		start_scan()
+
+func is_ready_to_scan() -> bool:
+	return !is_scanning and !animated_sprite.is_playing()
 
 func start_scan():
 	if not battery.has_enough_power_for(power_consumption_component.power_consumption_per_use):
@@ -76,11 +85,11 @@ func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_ind
 	SignalBus.resource_pinged.emit(coords, tile_resource)
 
 func _on_animated_sprite_2d_frame_changed() -> void:
-		if animated_sprite.animation == "blink":
-			if animated_sprite.frame == 0:
-				light.enabled = true
-			else:
-				light.enabled = false
+	if animated_sprite.animation == "blink":
+		if animated_sprite.frame == 0:
+			light.enabled = true
+		else:
+			light.enabled = false
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
