@@ -16,6 +16,9 @@ func spawn_ping(coords: Vector2, tile_resource: TileResource):
 	
 	if tile_resource.name == "valuable_3":
 		instance.light_color = Color.GOLD
+		
+	if tile_resource.name == "valuable_4" or "valuable_5" or "valuable_6":
+		instance.light_color = Color.REBECCA_PURPLE
 	
 	instance.global_position = coords
 		

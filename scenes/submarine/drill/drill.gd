@@ -11,7 +11,6 @@ class_name Drill
 @onready var has_drillable_position_tile: bool = false
 
 @onready var drill_timer: Timer = $DrillTimer
-@onready var drill_ray_cast: RayCastCollider = $DrillRayCast
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var audio_player: AudioStreamPlayer2D = $AudioPlayer
@@ -22,6 +21,8 @@ class_name Drill
 
 var prev_direction: Vector2
 var current_tile_target_coords: Vector2
+var current_rid: RID
+var prev_rid: RID
 
 signal _on_drilling_aborted
 signal _on_drilling_started
@@ -36,33 +37,45 @@ func set_current_input_direction(_direction_input: Vector2):
 	current_direction = _direction_input
 	
 func do_drill():
+	var space_state = get_world_2d().direct_space_state
+	var x_end = global_position.x + (current_direction.x * 10)
+	var y_end = global_position.y + (current_direction.y * 10)
+	var end_vec = Vector2(x_end, y_end)
 	
-	# instantiate world tile map
-	var tile_map = drill_ray_cast.get_collider()
+	var query = PhysicsRayQueryParameters2D.create(global_position, end_vec)
+	var result: Dictionary = space_state.intersect_ray(query)
 	
 	# we aren't colliding with anything
-	if tile_map == null:
+	if !result.has("collider"):
 		return
+		
+	# instantiate world tile map
+	var tile_map = result.collider
+	
 	if tile_map is WorldTileMapLayer:
 		drillable_world_tile_map_player = tile_map
 			
 	# Don't do this if drillable tile map isn't set
 	else:
 		return
-		
-	if is_actively_drilling && (current_direction == Vector2.ZERO || !Helpers.is_a_cardinal_direction(current_direction) || current_direction != prev_direction):
+	
+	current_rid = result.rid
+	
+	print("current rid: " + str(current_rid) + "prev rid: " + str(prev_rid))
+	
+	if is_actively_drilling && (current_direction == Vector2.ZERO || !Helpers.is_a_cardinal_direction(current_direction) || current_direction != prev_direction || current_rid != prev_rid):
 		print("changing input while drilling, aborting." + "current: " + str(current_direction) + "prev" + str(prev_direction))
 		abort_drilling()
 	
 	# if not drilling and have a current_direction, start drilling and save the coords from the tile map
 	if !is_actively_drilling && Helpers.is_a_cardinal_direction(current_direction):
-		current_tile_target_coords = get_drill_target_coodinates()
+		current_tile_target_coords = get_drill_target_coodinates(result.rid)
 		var tile_resource = drillable_world_tile_map_player.get_tile_resource(current_tile_target_coords)
 		
 		if not tile_resource is DrillableTileResource:
 			return
 		print("starting " + "current: " + str(current_direction) + "prev" + str(prev_direction))
-		start_drilling(tile_resource)
+		start_drilling(tile_resource, result.rid)
 	
 	# if drilling and current_direction == prev_direction, return because we are still drilling
 	if is_actively_drilling && current_direction == prev_direction:
@@ -96,9 +109,10 @@ func get_drilling_direction() -> Vector2:
 	# Return the resulting direction
 	return _direction
 	
-func start_drilling(tile_resource: TileResource) -> void:
+func start_drilling(tile_resource: TileResource, rid: RID) -> void:
 	prev_direction = current_direction
-	current_tile_target_coords = get_drill_target_coodinates()
+	prev_rid = rid
+	current_tile_target_coords = get_drill_target_coodinates(rid)
 	print("drilling tile coords: " + str(current_tile_target_coords))
 	drill_timer.wait_time = tile_resource.drill_speed / drill_speed_factor
 	drill_timer.start()
@@ -111,9 +125,8 @@ func start_drilling(tile_resource: TileResource) -> void:
 	
 	animated_sprite_2d.play("start_drilling")
 
-func get_drill_target_coodinates() -> Vector2:
-	var drillable_tile_rid = drill_ray_cast.get_collider_rid()
-	return drillable_world_tile_map_player.get_coords_for_body_rid(drillable_tile_rid)
+func get_drill_target_coodinates(rid: RID) -> Vector2:
+	return drillable_world_tile_map_player.get_coords_for_body_rid(rid)
 	
 func _drilling_is_finished() -> void:
 	print("finish drill")
