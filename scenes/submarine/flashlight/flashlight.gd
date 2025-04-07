@@ -4,6 +4,12 @@ extends Node2D
 @onready var light: PointLight2D = $PointLight2D
 @export var battery: Battery
 @onready var power_consumption_component: PowerConsumptionComponent = $PowerConsumptionComponent
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+
+var audio = [
+	preload("res://assets/audio/sfx/flashlight.wav"),
+	preload("res://assets/audio/sfx/radar_arm.wav")
+]
 
 func _process(delta: float) -> void:
 	if light.enabled:
@@ -19,10 +25,15 @@ func toggle_flashlight():
 		animated_sprite.play("open")
 	else:
 		animated_sprite.play("close")
+	
+	audio_stream_player_2d.stream = audio[1]
+	audio_stream_player_2d.play()
 		
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite.animation == "open":
 		light.enabled = true
+		audio_stream_player_2d.stream = audio[0]
+		audio_stream_player_2d.play()
 
 
 func _on_animated_sprite_2d_animation_changed() -> void:
