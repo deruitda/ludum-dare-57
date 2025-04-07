@@ -16,6 +16,7 @@ extends Node2D
 @onready var light: PointLight2D = $PointLight2D2
 @onready var arm_audio_player: AudioStreamPlayer2D = $AudioArm 
 @onready var call_audio_player: AudioStreamPlayer2D = $AudioCall
+@onready var ping_ring_light: PointLight2D = $ping_ring_light
 
 var is_scanning = false
 var is_cooling_down = false
@@ -36,6 +37,7 @@ func _physics_process(_delta):
 		else:
 			animated_sprite.play("blink")
 		
+		ping_ring_light.enabled = true
 		current_rad = circle_collider.shape.radius
 		var new_rad = 0
 	
@@ -43,6 +45,7 @@ func _physics_process(_delta):
 			new_rad = current_rad + increment
 		else:
 			is_scanning = false
+			ping_ring_light.enabled = false
 			circle_drawer.visible = false
 			area2d.monitoring = false
 			light.enabled = false
@@ -50,6 +53,8 @@ func _physics_process(_delta):
 
 		current_rad = new_rad
 		circle_collider.shape.radius = current_rad
+		ping_ring_light.scale.x = current_rad * .016
+		ping_ring_light.scale.y = current_rad * .016
 
 		circle_drawer.circle_draw(current_rad)
 
