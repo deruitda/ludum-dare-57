@@ -77,6 +77,14 @@ func do_respawn():
 
 func apply_movement_effects():
 	
+	if velocity_component.velocity.length() > 0:
+		jet_light.energy = velocity_component.velocity.length() / 100
+	elif velocity_component.velocity.length() == 0:
+		jet_light.energy = 0.0	
+	
+	
+	print("velocity len: " + str(velocity_component.velocity.length()))
+	
 	# the player is stopped, set the sustained sound
 	if audio_stream_player_2d.stream == null || audio_stream_player_2d.stream == audio[2]:
 		if velocity_component.is_moving() && !audio_stream_player_2d.playing:
