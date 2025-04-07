@@ -5,6 +5,7 @@ class_name Drill
 @export var power_consuption_component: PowerConsumptionComponent
 @export var drill_resource: DrillResource
 
+@export var drill_speed_factor = 1
 @onready var is_actively_drilling: bool = false
 @onready var drillable_tile_rid: RID
 @onready var drillable_world_tile_map_player: WorldTileMapLayer
@@ -16,7 +17,6 @@ class_name Drill
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D		
 @onready var audio_player: AudioStreamPlayer2D = $AudioPlayer
 
-
 @onready var current_direction_input: Vector2
 @onready var drilling_direction: Vector2
 
@@ -25,6 +25,7 @@ signal _on_drilling_started
 signal _on_drilling_finished
 
 func _ready() -> void:
+	SignalBus.purchase_completed.connect(_on_purchase_completed)
 	animated_sprite_2d.play("idle")
 
 func set_current_input_direction(_direction_input: Vector2):
@@ -50,7 +51,12 @@ func _physics_process(delta: float) -> void:
 	
 	if not input_is_valid and is_actively_drilling:
 		abort_drilling()
-		
+
+func _on_purchase_completed(purchased_shop_item_resource: ShopItemResource) -> void:
+	if purchased_shop_item_resource.item_resource is DrillResource:
+		drill_resource = purchased_shop_item_resource.item_resource
+		drill_speed_factor = drill_resource.speed_factor
+
 func get_drilling_direction() -> Vector2:
 	# Default direction (90 degrees to the left, which is -90 degrees)
 	var default_direction = Vector2(0.0, -1.0)  # Upward direction in the local coordinate system
@@ -72,8 +78,9 @@ func start_drilling() -> void:
 	var tile_resource = drillable_world_tile_map_player.get_tile_resource_from_rid(drillable_tile_rid)
 	if not tile_resource is DrillableTileResource:
 		return
-	drill_timer.wait_time = tile_resource.drill_speed
+	drill_timer.wait_time = tile_resource.drill_speed / drill_speed_factor
 	drill_timer.start()
+	drillable_world_tile_map_player.drilling_tile(drillable_tile_rid)
 	drill_timer.timeout.connect(_drilling_is_finished)
 	
 	is_actively_drilling = true
@@ -102,6 +109,7 @@ func abort_drilling():
 		pass
 	is_actively_drilling = false
 	drill_timer.stop()
+	drillable_world_tile_map_player.abort_drilling(drillable_tile_rid)
 	_on_drilling_aborted.emit()
 	if animated_sprite_2d.animation == "active_drilling":
 		animated_sprite_2d.play("end_drilling")

@@ -1,6 +1,6 @@
 extends Node
 
-@export var money_collected: int = 100000000
+@export var money_collected: int = 5000
 @export var max_cargo_weight: int = 10
 var current_cargo_weight: int = 0
 var current_cargo_value: int = 0
@@ -64,7 +64,7 @@ func sell_cargo() -> void:
 	add_money_collected(current_cargo_value)
 	current_cargo_value = 0
 	current_cargo_weight = 0
-	SignalBus.sell_cargo.emit()
+	SignalBus.cargo_updated.emit()
 
 func _on_purchase_upgrade(shop_item_resource: ShopItemResource) -> void:
 	assert(shop_item_resource.item_resource != null)

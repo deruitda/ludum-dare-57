@@ -1,10 +1,11 @@
 [gd_resource type="Resource" script_class="DrillableTileResource" load_steps=2 format=3 uid="uid://ddv73pvyli3gs"]
 
-[ext_resource type="Script" uid="uid://c75hjhocl3c7k" path="res://scenes/map/tile_resource/drillable_tile_resource.gd" id="1_yxren"]
+[ext_resource type="Script" path="res://scenes/map/tile_resource/drillable_tile_resource.gd" id="1_yxren"]
 
 [resource]
 script = ExtResource("1_yxren")
 drill_speed = 0.5
 name = "dirt"
+anim_source_index = 1
 atlas_coordinates = Vector2(1, 0)
 metadata/_custom_type_script = "uid://joiabccf67iw"

@@ -23,6 +23,7 @@ func generate_world(tile_map_layer: WorldTileMapLayer) -> void:
 	if current_variable_tile_resource_list:
 		
 		weights = current_variable_tile_resource_list.get_tile_resource_percentage_weight_list(true)
+		print(weights)
 		tile_resources = current_variable_tile_resource_list.get_tile_resource_list()
 		number_of_tile_resources = tile_resources.size()
 		max_depth = tile_map_layer.num_tiles_deep / current_zone_resource_list_layer.max_depth_percentage
@@ -34,7 +35,10 @@ func generate_world(tile_map_layer: WorldTileMapLayer) -> void:
 			current_variable_tile_resource_list = current_zone_resource_list_layer.variable_tile_resource_list
 			weights = current_variable_tile_resource_list.get_tile_resource_percentage_weight_list(true)
 			tile_resources = current_variable_tile_resource_list.get_tile_resource_list()
+			
+			number_of_tile_resources = tile_resources.size()
 			max_depth = tile_map_layer.num_tiles_deep / current_zone_resource_list_layer.max_depth_percentage
+			print(weights)
 			
 		for x in tile_map_layer.num_tiles_wide:
 			var coords = Vector2(x, y) + root_position
@@ -53,7 +57,7 @@ func generate_world(tile_map_layer: WorldTileMapLayer) -> void:
 					tile_resource = tile_map_layer.base_tile_resource
 			
 			if tile_resource is TileResource:
-				tile_map_layer.set_tile_resource(tile_resource, coords)
+				tile_map_layer.set_tile_resource(tile_resource, coords, 0)
 
 		
 			

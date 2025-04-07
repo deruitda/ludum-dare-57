@@ -5,9 +5,8 @@
 
 [resource]
 script = ExtResource("1_c5u6b")
-price = 40
+price = 10
 tooltip = "Highlights valuables around you"
 is_infinitely_purchaseable = false
 item_resource = ExtResource("1_y2y1a")
-is_initially_disabled = false
 metadata/_custom_type_script = "uid://dq388fj72n7ck"

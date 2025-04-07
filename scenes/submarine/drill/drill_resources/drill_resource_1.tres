@@ -4,4 +4,5 @@
 
 [resource]
 script = ExtResource("1_iaxvg")
-drill_speed = 1.0
+speed_factor = 1.0
+is_unlocked = true
