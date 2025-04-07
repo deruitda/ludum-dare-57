@@ -61,7 +61,9 @@ func remove_health(amount: float) -> void:
 		# Subtract from health
 		var _health = health - amount
 		set_health(_health)
-		audio_stream_player_2d.play()
+		
+		if !audio_stream_player_2d.playing:
+			audio_stream_player_2d.play()
 
 func set_health(_health: float):
 	health = max(min(_health, hull_resource.max_health), 0.0)
