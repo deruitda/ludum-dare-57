@@ -19,8 +19,12 @@ func create_particle():
 
 	var bubble := bubble_scene.instantiate()
 
+	# Random X offset within -16 to +16
+	var x_offset := randf_range(-16, 16)
+	var spawn_position := global_position + Vector2(x_offset, 0)
+	
 	bubble.name = "Bubble"
-	bubble.global_position = global_position  # or wherever you want it to spawn
+	bubble.global_position = spawn_position  # or wherever you want it to spawn
 
 	get_tree().current_scene.add_child(bubble)
 	
