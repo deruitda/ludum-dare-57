@@ -1,23 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://ng3xa25mlxkb"]
+[gd_scene load_steps=12 format=3 uid="uid://ng3xa25mlxkb"]
 
 [ext_resource type="Script" uid="uid://d48c851g4ll6" path="res://scenes/shop/shop.gd" id="1_100s2"]
 [ext_resource type="PackedScene" uid="uid://cy1wj7klhfd73" path="res://scenes/shop/shop_button/shop_button.tscn" id="2_qaxay"]
 [ext_resource type="Resource" uid="uid://dmpoqxglxk5uf" path="res://scenes/shop/shop_items/hull_upgrade_zone_2.tres" id="3_7lxhl"]
 [ext_resource type="Resource" uid="uid://4pvlb17qoys7" path="res://scenes/shop/shop_items/hull_upgrade_zone_3.tres" id="4_jp048"]
 [ext_resource type="Resource" uid="uid://3fksypnf7kqw" path="res://scenes/shop/shop_items/hull_upgrade_zone_4.tres" id="5_ctpgp"]
-[ext_resource type="Resource" uid="uid://wat7m0b4ias4" path="res://scenes/shop/shop_items/recharge_power.tres" id="6_ptf86"]
 [ext_resource type="Resource" uid="uid://crlc6yobu7bau" path="res://scenes/shop/shop_items/battery_upgrade_extended.tres" id="6_xcdpw"]
 [ext_resource type="Resource" uid="uid://c7vo8imaw6ari" path="res://scenes/shop/shop_items/battery_upgrade_extended_2.tres" id="7_tp26b"]
 [ext_resource type="Resource" uid="uid://blkrympbkkbkx" path="res://scenes/shop/shop_items/flashlight_upgrade_1.tres" id="9_8qn5i"]
 [ext_resource type="Resource" uid="uid://co2umhba5ghsu" path="res://scenes/shop/shop_items/repair_hull.tres" id="9_tp26b"]
 [ext_resource type="Resource" uid="uid://oamge6kiq2jc" path="res://scenes/shop/shop_items/flashlight_upgrade_2.tres" id="10_dww4p"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_100s2"]
-content_margin_left = 12.0
-content_margin_top = 6.0
-content_margin_right = 12.0
-content_margin_bottom = 6.0
-bg_color = Color(0, 0.480457, 0.197984, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7r02r"]
 content_margin_left = 12.0
@@ -74,31 +66,43 @@ theme_override_constants/margin_bottom = 24
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_vertical = 3
 
-[node name="SellCargoButton" type="Button" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-theme_override_styles/normal = SubResource("StyleBoxFlat_100s2")
-text = "Sell Cargo"
-
-[node name="Title" type="RichTextLabel" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Title" type="RichTextLabel" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/Control"]
 clip_contents = false
-layout_mode = 2
-size_flags_horizontal = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -276.0
+offset_top = -11.5
+offset_right = 276.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 4
 text = "Welcome to the Shop"
 fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="CloseShopButton" type="Button" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="CloseShopButton" type="Button" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/Control"]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -17.5
+offset_bottom = 17.5
+grow_horizontal = 0
+grow_vertical = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 theme_override_styles/normal = SubResource("StyleBoxFlat_7r02r")
@@ -240,13 +244,4 @@ layout_mode = 2
 text = "Repair Hull"
 shop_item_resource = ExtResource("9_tp26b")
 
-[node name="RechargePowerButton" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopActionsContainer" instance=ExtResource("2_qaxay")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-tooltip_text = "Survive Zone 2"
-text = "Recharge Power"
-shop_item_resource = ExtResource("6_ptf86")
-
-[connection signal="pressed" from="ShopContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/SellCargoButton" to="." method="_on_sell_cargo_button_pressed"]
-[connection signal="pressed" from="ShopContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/CloseShopButton" to="." method="_on_close_shop_button_pressed"]
+[connection signal="pressed" from="ShopContainer/ColorRect/MarginContainer/VBoxContainer/Control/CloseShopButton" to="." method="_on_close_shop_button_pressed"]

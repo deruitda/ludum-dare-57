@@ -14,9 +14,7 @@ const PIXEL_SIZE: int = 64
 
 func _ready() -> void:
 	SignalBus.new_game.connect(_on_new_game)
-	SignalBus.add_money_collected.connect(_on_add_money_collected)
 	SignalBus.add_cargo.connect(_on_add_cargo)
-	SignalBus.sell_cargo.connect(_on_sell_cargo)
 	SignalBus.purchase_upgrade.connect(_on_purchase_upgrade)
 	SignalBus.close_shop.connect(_on_close_shop)
 	SignalBus.open_shop.connect(_on_open_shop)
@@ -41,7 +39,7 @@ func die():
 func update_depth(new_depth: float):
 	depth = new_depth
 	
-func _on_add_money_collected(money_paid: int) -> void:
+func add_money_collected(money_paid: int) -> void:
 	money_collected += money_paid
 	SignalBus.money_collected_updated.emit()
 		
@@ -62,8 +60,8 @@ func _on_add_cargo(tile_resource: ValuableTileResource) -> void:
 	SignalBus.cargo_updated.emit()
 	
 
-func _on_sell_cargo() -> void:
-	SignalBus.add_money_collected.emit(current_cargo_value)
+func sell_cargo() -> void:
+	add_money_collected(current_cargo_value)
 	current_cargo_value = 0
 	current_cargo_weight = 0
 	SignalBus.cargo_updated.emit()
@@ -83,6 +81,8 @@ func _on_close_shop() -> void:
 
 func _on_open_shop() -> void:
 	if is_player_in_shop_area:
+		sell_cargo()
+		SignalBus.recharge_battery.emit()
 		is_shop_opened = true
 
 func _on_player_entered_shop_area() -> void:
