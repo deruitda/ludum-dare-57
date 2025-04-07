@@ -17,8 +17,8 @@ func set_tile_resource(tile_resource: TileResource, coords: Vector2, source_tile
 	var atlas_coords = tile_resource.atlas_coordinates
 	self.set_cell(coords, source_tile_set_id, tile_resource.atlas_coordinates, 0)
 
-func get_tile_resource_from_rid(rid: RID) -> TileResource:
-	var coords = self.get_coords_for_body_rid(rid)
+func get_tile_resource(coords: Vector2) -> TileResource:
+	#var coords = self.get_coords_for_body_rid(rid)
 	var tileData = self.get_cell_tile_data(coords)
 	var tile_resource = tileData.get_custom_data("tile_resource")
 	
@@ -30,18 +30,17 @@ func get_tile_global_position(rid: RID) -> Vector2:
 	
 	return global_coords
 
-func drill_tile(rid: RID) -> void:
-	var coords = self.get_coords_for_body_rid(rid)
+func drill_tile(coords: Vector2) -> void:
 	set_tile_resource(drilled_tile_space, coords, 0)
 	
-func drilling_tile(rid: RID) -> void:
-	var coords = self.get_coords_for_body_rid(rid)
-	var resource = get_tile_resource_from_rid(rid)
+func drilling_tile(coords: Vector2) -> void:
+	#var coords = self.get_coords_for_body_rid(rid)
+	var resource = get_tile_resource(coords)
 	
 	set_tile_resource(drilling_resource, coords, resource.anim_source_index)
 	
-func abort_drilling(rid: RID) -> void:
-	var coords = self.get_coords_for_body_rid(rid)
-	var resource = get_tile_resource_from_rid(rid)
+func abort_drilling(coords: Vector2) -> void:
+	#var coords = self.get_coords_for_body_rid(rid)
+	var resource = get_tile_resource(coords)
 	
 	set_tile_resource(resource, coords, 0)

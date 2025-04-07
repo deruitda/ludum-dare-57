@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://wvkicmmhwtbc"]
+
+[ext_resource type="PackedScene" uid="uid://bo7a0rkm5vbi6" path="res://scenes/submarine/submarine.tscn" id="1_i4u5b"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="sub_body" parent="." instance=ExtResource("1_i4u5b")]
+position = Vector2(810, 505)
+scale = Vector2(10.965, 10.965)
