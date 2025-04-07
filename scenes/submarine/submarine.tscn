@@ -148,7 +148,6 @@ collision_layer = 0
 collision_mask = 1024
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="BubbleCollider"]
-scale = Vector2(1, 1)
 shape = SubResource("CircleShape2D_q1rah")
 
 [connection signal="hull_done_dying" from="Hull" to="." method="_on_hull_hull_done_dying"]
