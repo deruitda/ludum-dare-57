@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("1_ereq5")
-price = 3
+price = 100
 tooltip = "Upgraded flashlight"
 is_infinitely_purchaseable = false
 unlocked_by_item_resource = ExtResource("3_hngt0")

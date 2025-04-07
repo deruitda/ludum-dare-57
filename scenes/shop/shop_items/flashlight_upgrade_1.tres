@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_2musp")
-price = 2
+price = 10
 tooltip = "Flashlight helps you see"
 is_infinitely_purchaseable = false
 item_resource = ExtResource("1_ukgpg")
