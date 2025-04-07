@@ -112,11 +112,11 @@ theme_override_constants/separation = 12
 
 [node name="ToggleFlashlightButton" type="TextureButton" parent="MarginContainer/ActionButtonsContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("8_mq0y1")
-script = ExtResource("4_0bx4p")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/ActionButtonsContainer/ToggleFlashlightButton"]
 layout_mode = 1
