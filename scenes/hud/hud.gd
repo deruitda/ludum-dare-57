@@ -3,6 +3,7 @@ extends Node
 @onready var collected_money_rich_text = %CollectedMoneyRichText
 @onready var open_store_button = %OpenStoreButton
 @onready var toggle_flashlight_button: TextureButton = %ToggleFlashlightButton
+@onready var ping_sonar_button: TextureButton = %ActivateRadarButton
 
 func _ready() -> void:
 	SignalBus.money_collected_updated.connect(_on_signal_money_collected_updated)
@@ -14,12 +15,11 @@ func _ready() -> void:
 func _on_purchase_complete(shop_item: ShopItemResource):
 	if shop_item.item_resource is FlashlightResource:
 		toggle_flashlight_button.visible = true
+	elif shop_item.item_resource is RadarResource:
+		ping_sonar_button.visible = true
+
 func _on_signal_money_collected_updated() -> void:
 	set_collected_money_rich_text()
-
-func _on_open_store_button_pressed() -> void:
-	if GameState.is_player_in_shop_area:
-		SignalBus.open_shop.emit()
 
 func _on_player_entered_shop_area() -> void:
 	if !open_store_button.visible:
@@ -32,9 +32,12 @@ func _on_player_exited_shop_area() -> void:
 func set_collected_money_rich_text():
 	collected_money_rich_text.set_text("$" + str(GameState.money_collected))
 
+func _on_open_store_button_pressed() -> void:
+	if GameState.is_player_in_shop_area:
+		SignalBus.open_shop.emit()
+
 func _on_toggle_flashlight_button_pressed() -> void:
 	SignalBus.toggle_flashlight.emit()
-
 
 func _on_activate_radar_button_pressed() -> void:
 	SignalBus.ping_sonar.emit()

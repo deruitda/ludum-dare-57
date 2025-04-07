@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CargoCapacityResource" load_steps=2 format=3 uid="uid://bai2j8stk8clp"]
+
+[ext_resource type="Script" uid="uid://1dyqir7fui4t" path="res://scenes/submarine/cargo_capacity_resources/cargo_capacity_resource.gd" id="1_2rkbo"]
+
+[resource]
+script = ExtResource("1_2rkbo")
+new_cargo_capacity = 25
+is_unlocked = false
+metadata/_custom_type_script = "uid://1dyqir7fui4t"

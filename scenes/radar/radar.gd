@@ -5,6 +5,7 @@ extends Node2D
 @export var increment: float = 10
 @export var cooldown_time: int = 5
 
+@export var radar_resource: RadarResource
 @export var battery: Battery
 @onready var power_consumption_component: PowerConsumptionComponent = $PowerConsumptionComponent
 
@@ -24,6 +25,7 @@ var current_rad: float
 
 func _ready() -> void:
 	SignalBus.ping_sonar.connect(_on_ping_sonar)
+	SignalBus.purchase_completed.connect(_on_purchase_completed)
 
 func _unhandled_input(event):
 	if event is InputEventKey:
@@ -58,13 +60,17 @@ func _physics_process(_delta):
 
 		circle_drawer.circle_draw(current_rad)
 
+func _on_purchase_completed(purchased_shop_item_resource: ShopItemResource) -> void:
+	if purchased_shop_item_resource.item_resource is RadarResource:
+		radar_resource = purchased_shop_item_resource.item_resource
+
 # Handle ping sonar from SignalBus
 func _on_ping_sonar() -> void:
 	if is_ready_to_scan():
 		start_scan()
 
 func is_ready_to_scan() -> bool:
-	return !is_scanning and !animated_sprite.is_playing()
+	return radar_resource and !is_scanning and !animated_sprite.is_playing()
 
 func start_scan():
 	if not battery.has_enough_power_for(power_consumption_component.power_consumption_per_use):

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dofmdn87thb45"]
+
+[ext_resource type="Script" uid="uid://cckmuxnja2yia" path="res://scenes/radar/radar_resources/radar_resource.gd" id="1_uxmra"]
+
+[resource]
+script = ExtResource("1_uxmra")
+is_unlocked = false
+metadata/_custom_type_script = "uid://c1fcd7xi8ywc2"
