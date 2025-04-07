@@ -18,7 +18,7 @@ func _on_player_exited_shop_area() -> void:
 		shop.visible = false
 
 
-func _on_winning_area_body_entered(body: Node2D) -> void:
+func _on_winning_area_2d_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D:
 		get_tree().change_scene_to_file("res://scenes/winning_scene.tscn")
 		SignalBus.player_has_won.emit()

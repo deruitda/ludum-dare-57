@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://ba37xei3d3pef"]
+[gd_scene load_steps=20 format=4 uid="uid://ba37xei3d3pef"]
 
 [ext_resource type="Script" uid="uid://bjtv52svxk5hf" path="res://scenes/main.gd" id="1_25pwl"]
 [ext_resource type="PackedScene" uid="uid://y7i0qucf3p8i" path="res://scenes/hud/hud.tscn" id="2_gt6bt"]
@@ -32,6 +32,9 @@ width = 2000
 height = 2000
 fill_from = Vector2(0.592593, 0.247863)
 fill_to = Vector2(0.592593, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a8y0u"]
+size = Vector2(4582, 2433)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_25pwl")
@@ -122,3 +125,11 @@ position = Vector2(4001, 11489)
 position = Vector2(5920, 9889)
 max_air_particles = 300
 spawn_in_seconds = 3.0
+
+[node name="WinningArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WinningArea2D"]
+position = Vector2(4241, 17610.5)
+shape = SubResource("RectangleShape2D_a8y0u")
+
+[connection signal="body_entered" from="WinningArea2D" to="." method="_on_winning_area_2d_body_entered"]
