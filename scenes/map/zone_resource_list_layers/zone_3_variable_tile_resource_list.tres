@@ -22,7 +22,7 @@ metadata/_custom_type_script = "uid://csumtewo3g8r6"
 
 [sub_resource type="Resource" id="Resource_guhfe"]
 script = ExtResource("2_whfgn")
-percent_chance_of_spawn = 0.4
+percent_chance_of_spawn = 0.5
 tile_resource = ExtResource("5_nqxlr")
 metadata/_custom_type_script = "uid://csumtewo3g8r6"
 

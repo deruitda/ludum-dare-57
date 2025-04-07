@@ -7,12 +7,6 @@
 [ext_resource type="Resource" uid="uid://b76rsc71db2gl" path="res://scenes/map/tiles/rock.tres" id="5_wg003"]
 [ext_resource type="Resource" uid="uid://dq2iilo33ojj3" path="res://scenes/map/tiles/valuable_2.tres" id="6_fdoqb"]
 
-[sub_resource type="Resource" id="Resource_dp4oo"]
-script = ExtResource("2_fdoqb")
-percent_chance_of_spawn = 0.05
-tile_resource = ExtResource("3_nd0t2")
-metadata/_custom_type_script = "uid://csumtewo3g8r6"
-
 [sub_resource type="Resource" id="Resource_qrr3e"]
 script = ExtResource("2_fdoqb")
 percent_chance_of_spawn = 0.1
@@ -31,7 +25,13 @@ percent_chance_of_spawn = 0.2
 tile_resource = ExtResource("6_fdoqb")
 metadata/_custom_type_script = "uid://csumtewo3g8r6"
 
+[sub_resource type="Resource" id="Resource_fdoqb"]
+script = ExtResource("2_fdoqb")
+percent_chance_of_spawn = 0.08
+tile_resource = ExtResource("3_nd0t2")
+metadata/_custom_type_script = "uid://csumtewo3g8r6"
+
 [resource]
 script = ExtResource("1_85r35")
-variable_tile_resources = Array[ExtResource("2_fdoqb")]([SubResource("Resource_dp4oo"), SubResource("Resource_qrr3e"), SubResource("Resource_guhfe"), SubResource("Resource_nd0t2")])
+variable_tile_resources = Array[ExtResource("2_fdoqb")]([SubResource("Resource_qrr3e"), SubResource("Resource_guhfe"), SubResource("Resource_nd0t2"), SubResource("Resource_fdoqb")])
 metadata/_custom_type_script = "uid://dq5ymjjof67y1"
