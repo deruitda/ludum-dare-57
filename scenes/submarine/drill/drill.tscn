@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://f231crs35mvv"]
+[gd_scene load_steps=20 format=3 uid="uid://f231crs35mvv"]
 
 [ext_resource type="Texture2D" uid="uid://bqngpq1j0yl5m" path="res://assets/png_files/drill01.png" id="1_vu58k"]
 [ext_resource type="Script" uid="uid://kds00okft8db" path="res://scenes/submarine/drill/drill.gd" id="1_xmfwo"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cd2rjeotnol5v" path="res://assets/png_files/drill_animation01.png" id="4_4omm4"]
 [ext_resource type="Script" uid="uid://cut54ox6u58st" path="res://scenes/submarine/ray_cast_collider.gd" id="4_ejuc6"]
 [ext_resource type="AudioStream" uid="uid://bm8o0rbepie6i" path="res://assets/audio/sfx/drill.wav" id="6_km5jr"]
+[ext_resource type="AudioStream" uid="uid://dc5g01i0cogkh" path="res://assets/audio/sfx/material_break.wav" id="7_k1mxd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_62lld"]
 atlas = ExtResource("4_4omm4")
@@ -137,6 +138,11 @@ collision_mask = 8
 hit_from_inside = true
 script = ExtResource("4_ejuc6")
 metadata/_custom_type_script = "uid://cut54ox6u58st"
+
+[node name="MaterialBreak" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_k1mxd")
+volume_db = -10.46
+pitch_scale = 0.86
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="child_entered_tree" from="DrillRayCast" to="." method="_on_area_2d_body_shape_entered"]
