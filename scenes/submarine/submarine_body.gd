@@ -14,9 +14,16 @@ extends CharacterBody2D
 @onready var jet_light: PointLight2D = $JetLight
 @onready var battery: Battery = $Battery
 @onready var ship_light: PointLight2D = $ShipLight
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 var min_light_energy = 1.0
 var max_light_energy = 5.0
+
+var audio = [
+	preload("res://assets/audio/sfx/prop_start.wav"),
+	preload("res://assets/audio/sfx/prop_sustain.wav"),
+	preload("res://assets/audio/sfx/prop_end.wav"),
+]
 
 func _process(delta: float) -> void:
 	direction_input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -25,8 +32,10 @@ func _process(delta: float) -> void:
 	SignalBus.set_current_depth.emit(current_depth)
 func _physics_process(delta: float):
 	apply_rotation()
+	apply_movement_effects()
 	
-	if current_depth < 0.4:
+	# stream check is a hack to prevent gravity from being applied at the beginning of the game
+	if current_depth < 0.4 && audio_stream_player_2d.stream != null:
 		velocity_component.apply_gravity(delta)
 	else:
 		apply_depth_effects()
@@ -48,7 +57,6 @@ func _physics_process(delta: float):
 	
 		hull.update_depth(current_depth, delta)
 		GameState.update_depth(current_depth)
-		modulate_jet_light()
 		apply_rotation()
 		velocity_component.set_current_rotation(rotation_degrees)
 	
@@ -63,6 +71,24 @@ func _physics_process(delta: float):
 func apply_depth_effects():
 	apply_ship_light()
 
+func apply_movement_effects():
+	
+	# the player is stopped, set the sustained sound
+	if audio_stream_player_2d.stream == null || audio_stream_player_2d.stream == audio[2]:
+		if velocity_component.is_moving() && !audio_stream_player_2d.playing:
+			audio_stream_player_2d.stream = audio[0]
+			audio_stream_player_2d.play()
+			
+	# if we've played the start sound and are moving, play sustained
+	if audio_stream_player_2d.stream == audio[0] && !audio_stream_player_2d.playing && velocity_component.is_moving():
+		audio_stream_player_2d.stream = audio[1]
+		audio_stream_player_2d.play()
+		
+	# if we're moving and are now stopped, play the stop sound
+	if audio_stream_player_2d.stream == audio[1] && !velocity_component.is_moving():
+		audio_stream_player_2d.stream = audio[2]
+		audio_stream_player_2d.play()
+	
 
 func apply_ship_light():
 	if current_depth >= 20:
@@ -79,10 +105,6 @@ func do_respawn():
 		hull.repair_hull()
 		battery.fully_charge_battery()
 		global_position = checkpoint.get_spawn_position()
-
-func modulate_jet_light():
-	pass
-	#var current_energy = jet_light.energy
 
 func apply_rotation() -> void:
 	var normal_x = direction_input.x
@@ -137,3 +159,8 @@ func _on_up_ray_cast_2d_on_collision() -> void:
 	pass # Replace with function body.
 func _on_drilling_aborted() -> void:
 	pass
+
+
+func _on_audio_stream_player_2d_finished() -> void:
+	if(audio_stream_player_2d.stream == audio[1]):
+		audio_stream_player_2d.play()
