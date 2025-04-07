@@ -6,5 +6,6 @@
 [resource]
 script = ExtResource("2_e8qhe")
 light_texture = ExtResource("1_vubwd")
+is_upgraded = true
 is_unlocked = false
 metadata/_custom_type_script = "uid://b2lx2tpjf8cd8"

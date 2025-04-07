@@ -15,7 +15,9 @@ var audio = [
 
 func _ready() -> void:
 	SignalBus.toggle_flashlight.connect(_on_toggle_flashlight)
-	light.texture = flashlight_resource.light_texture
+	SignalBus.purchase_completed.connect(_on_purchase_completed)
+	if flashlight_resource:
+		light.texture = flashlight_resource.light_texture
 
 func _process(delta: float) -> void:
 	if light.enabled:
@@ -31,6 +33,8 @@ func _on_toggle_flashlight():
 	toggle_flashlight()
 
 func toggle_flashlight():
+	if not flashlight_resource:
+		return
 	if !light.enabled:
 		animated_sprite.play("open")
 	else:
@@ -49,3 +53,9 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 func _on_animated_sprite_2d_animation_changed() -> void:
 	if animated_sprite.animation == "close":
 		light.enabled = false
+
+func _on_purchase_completed(purchased_shop_item_resource: ShopItemResource) -> void:
+	if purchased_shop_item_resource.item_resource is FlashlightResource:
+		flashlight_resource = purchased_shop_item_resource.item_resource
+		light.texture = flashlight_resource.light_texture
+		
