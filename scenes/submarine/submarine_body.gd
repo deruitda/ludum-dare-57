@@ -32,7 +32,6 @@ var max_light_energy = 2.0
 func _process(delta: float) -> void:
 	direction_input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	current_depth = global_position.y / GameState.PIXEL_SIZE
-	
 	SignalBus.set_current_depth.emit(current_depth)
 
 func _physics_process(delta: float):
@@ -89,6 +88,8 @@ func do_respawn():
 
 func apply_movement_effects():
 	
+	print("direction input: " + str(direction_input))
+	
 	if current_depth > 1 and velocity_component.velocity.length() > 0:
 		jet_light.energy = velocity_component.velocity.length() / 100
 		gpu_particles_2d.emitting = true
@@ -97,20 +98,14 @@ func apply_movement_effects():
 	elif velocity_component.velocity.length() == 0 or current_depth < 0.4:
 		jet_light.energy = 0.0	
 		gpu_particles_2d.emitting = false
-	
-	# the player is stopped, set the sustained sound
-	if audio_stream_player_2d.stream == null || audio_stream_player_2d.stream == audio[2]:
-		if velocity_component.is_moving() && !audio_stream_player_2d.playing:
-			audio_stream_player_2d.stream = audio[0]
-			audio_stream_player_2d.play()
-			
-	# if we've played the start sound and are moving, play sustained
-	if audio_stream_player_2d.stream == audio[0] && !audio_stream_player_2d.playing && velocity_component.is_moving():
+
+	# if moving, play sustained prop sound
+	if direction_input != Vector2.ZERO && velocity_component.is_moving() && !audio_stream_player_2d.playing:
 		audio_stream_player_2d.stream = audio[1]
 		audio_stream_player_2d.play()
 		
-	# if we're moving and are now stopped, play the stop sound
-	if audio_stream_player_2d.stream == audio[1] && !velocity_component.is_moving():
+	# if was moving but now no direction stop
+	if direction_input == Vector2.ZERO && audio_stream_player_2d.playing && audio_stream_player_2d.stream == audio[1]:
 		audio_stream_player_2d.stream = audio[2]
 		audio_stream_player_2d.play()
 
