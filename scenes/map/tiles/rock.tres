@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="MineralResource" load_steps=2 format=3 uid="uid://b76rsc71db2gl"]
+[gd_resource type="Resource" script_class="DrillableTileResource" load_steps=2 format=3 uid="uid://b76rsc71db2gl"]
 
-[ext_resource type="Script" uid="uid://joiabccf67iw" path="res://scenes/map/tile_resource/tile_resource.gd" id="1_iar5l"]
+[ext_resource type="Script" uid="uid://c75hjhocl3c7k" path="res://scenes/map/tile_resource/drillable_tile_resource.gd" id="1_nu4y0"]
 
 [resource]
-script = ExtResource("1_iar5l")
+script = ExtResource("1_nu4y0")
+drill_speed = 5.0
 name = "rock"
 atlas_coordinates = Vector2(0, 0)
 metadata/_custom_type_script = "uid://joiabccf67iw"
