@@ -1,12 +1,12 @@
 extends Node
 class_name VelocityComponent
 @export var acceleration = 1000.0
-@export var deceleration = 2000.0
+@export var deceleration =  1000.0
 @export var max_speed: float = 1000.0
 
 @onready var velocity: Vector2
 @onready var current_rotation: float = 0.0
-@onready var drag_resistance: float = 800.0
+@onready var drag_resistance: float = 500.0
 func set_current_rotation(_rotation: float) -> void:
 	current_rotation = _rotation
 
@@ -35,6 +35,12 @@ func apply_move(direction: Vector2, delta: float) -> void:
 	else:
 		# Otherwise, apply regular acceleration
 		velocity.y = clamp(velocity.y + (direction.y * acceleration_metric * delta), -max_speed, max_speed)
+	
+	if direction.x == 0.0:
+		velocity.x = move_toward(velocity.x, 0, drag_resistance * delta)
+	
+	if direction.y == 0.0:
+		velocity.y = move_toward(velocity.y, 0, drag_resistance * delta)
 
 func set_collision_direction(_direction: Vector2) -> void:
 	if _direction.x != 0.0:

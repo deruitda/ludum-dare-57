@@ -40,10 +40,12 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float):
 	drill.set_current_input_direction(direction_input)
+	drill.set_current_velocity(velocity_component.velocity)
+	
 	apply_rotation()
 	apply_depth_effects()
 	apply_movement_effects()
-
+	set_edge_detection()
 	# stream check is a hack to prevent gravity from being applied at the beginning of the game
 	if current_depth < 0.4 && audio_stream_player_2d.stream != null:
 		velocity_component.apply_gravity(delta)
@@ -64,9 +66,11 @@ func _physics_process(delta: float):
 			var move_to_center_velocity: Vector2 = move_to_center_component.get_velocity_to_center()
 			velocity_component.set_velocity(move_to_center_velocity)
 		elif not drill.is_actively_drilling:
+			#if direction_input == Vector2.ZERO:
+				#velocity_component.apply_idle(delta)
+			#else:
 			velocity_component.apply_move(direction_input, delta)
 			
-		#set_edge_detection()
 		
 		hull.update_depth(current_depth, delta)
 		GameState.update_depth(current_depth)
@@ -75,11 +79,11 @@ func _physics_process(delta: float):
 	if !is_dead:
 		velocity_component.do_character_move(self)
 
-#func set_edge_detection():
-	#var edge_directions: Array[Vector2] = edge_detector.get_edge_directions()
-	##for edge_direction in edge_directions:
-		##velocity_component.set_collision_direction(edge_direction)
-	#
+func set_edge_detection():
+	var edge_directions: Array[Vector2] = edge_detector.get_edge_directions()
+	for edge_direction in edge_directions:
+		velocity_component.set_collision_direction(edge_direction)
+	
 		#if edge_directions.size() > 0:
 			#move_to_center_component.set_must_move_to_center()
 

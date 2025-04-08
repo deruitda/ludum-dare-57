@@ -20,6 +20,8 @@ class_name Drill
 
 @onready var current_direction_input: Vector2
 @onready var drilling_direction: Vector2
+@onready var current_velocity: Vector2
+@onready var velocity_threshold: float = 100.0
 
 signal _on_drilling_aborted
 signal _on_drilling_started
@@ -32,22 +34,24 @@ func _ready() -> void:
 func set_current_input_direction(_direction_input: Vector2):
 	current_direction_input = _direction_input
 
+func set_current_velocity(_velocity: Vector2):
+	current_velocity = _velocity
+
 func _physics_process(delta: float) -> void:
 	var input_is_valid = current_direction_input.length() > 0.0 and Helpers.is_a_cardinal_direction(current_direction_input)
 	var drilling_and_original_direction_is_the_same = get_drilling_direction() == drilling_direction and drillable_tile_rid == drill_ray_cast.get_collider_rid()
-	#var drilling_and_original_direction_is_the_same = get_drilling_direction() == drilling_direction
-	
+	var is_going_too_fast: bool = is_perpendicular_velocity_too_fast()
 	if drill_ray_cast.is_colliding() and drill_ray_cast.get_collider() is WorldTileMapLayer:
 		
 		if input_is_valid and drilling_and_original_direction_is_the_same:
 			if is_actively_drilling:
 				battery.consume_power(power_consuption_component.power_consumption_per_use * delta)
-			else:
+			elif not is_going_too_fast:
 				start_drilling()
 		elif is_actively_drilling:
 			print("aborting because actively drilling")
 			abort_drilling()
-		elif input_is_valid and not drilling_and_original_direction_is_the_same:
+		elif input_is_valid and not drilling_and_original_direction_is_the_same and not is_going_too_fast:
 			print("starting because input is valid and direction is same")
 			start_drilling()
 	elif is_actively_drilling:
@@ -57,6 +61,16 @@ func _physics_process(delta: float) -> void:
 	if not input_is_valid and is_actively_drilling:
 		print("aborting because invalid input")
 		abort_drilling()
+
+func is_perpendicular_velocity_too_fast() -> bool:
+	# Find the perpendicular direction
+	var perpendicular_direction = Vector2(-current_direction_input.y, current_direction_input.x).normalized()
+
+	# Get the velocity component in the perpendicular direction
+	var perpendicular_velocity = current_velocity.dot(perpendicular_direction)
+
+	# Check if the perpendicular velocity exceeds the threshold
+	return abs(perpendicular_velocity) > velocity_threshold
 
 func _on_purchase_completed(purchased_shop_item_resource: ShopItemResource) -> void:
 	if purchased_shop_item_resource.item_resource is DrillResource:
