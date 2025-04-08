@@ -30,7 +30,7 @@ func _ready() -> void:
 
 func _unhandled_input(event):
 	if event is InputEventKey:
-		if event.pressed and event.keycode == KEY_R and is_ready_to_scan():
+		if event.pressed and event.keycode == KEY_R and is_ready_to_scan() and  battery.has_enough_power_for(power_consumption_component.power_consumption_per_use):
 			start_scan()
 
 func _physics_process(_delta):
@@ -70,9 +70,6 @@ func is_ready_to_scan() -> bool:
 	return radar_resource and !is_scanning and !animated_sprite.is_playing()
 
 func start_scan():
-	if not battery.has_enough_power_for(power_consumption_component.power_consumption_per_use):
-		reject_scan_for_lack_of_power()
-		pass
 	battery.consume_power(power_consumption_component.power_consumption_per_use)
 	animated_sprite.play("begin_scan")
 	arm_audio_player.play()
