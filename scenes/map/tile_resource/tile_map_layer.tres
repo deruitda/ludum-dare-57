@@ -269,6 +269,7 @@ texture_region_size = Vector2i(64, 64)
 texture = ExtResource("17_86pjd")
 texture_region_size = Vector2i(64, 64)
 0:0/animation_columns = 12
+0:0/animation_speed = 0.1
 0:0/animation_frame_0/duration = 0.1
 0:0/animation_frame_1/duration = 0.1
 0:0/animation_frame_2/duration = 0.1

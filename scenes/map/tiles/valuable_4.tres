@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_1eyic")
 weight = 1
-price = 100
+price = 50
 ping_color = Color(0.4, 0.2, 0.6, 1)
 is_special = true
 is_semi_special = false
