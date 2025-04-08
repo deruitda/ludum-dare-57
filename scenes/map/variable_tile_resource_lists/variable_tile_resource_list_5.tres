@@ -8,19 +8,19 @@
 
 [sub_resource type="Resource" id="Resource_y6deb"]
 script = ExtResource("2_72qo5")
-percent_chance_of_spawn = 0.18
+percent_chance_of_spawn = 0.008
 tile_resource = ExtResource("3_potai")
 metadata/_custom_type_script = "uid://csumtewo3g8r6"
 
 [sub_resource type="Resource" id="Resource_2wyq8"]
 script = ExtResource("2_72qo5")
-percent_chance_of_spawn = 0.6
+percent_chance_of_spawn = 0.65
 tile_resource = ExtResource("4_s11o7")
 metadata/_custom_type_script = "uid://csumtewo3g8r6"
 
 [sub_resource type="Resource" id="Resource_vxglm"]
 script = ExtResource("2_72qo5")
-percent_chance_of_spawn = 0.1
+percent_chance_of_spawn = 0.2
 tile_resource = ExtResource("5_7x0e8")
 metadata/_custom_type_script = "uid://csumtewo3g8r6"
 

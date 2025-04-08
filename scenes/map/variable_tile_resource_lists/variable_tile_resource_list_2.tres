@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="VariableTileResourceList" load_steps=9 format=3 uid="uid://dd7xf1meeoyh5"]
+[gd_resource type="Resource" script_class="VariableTileResourceList" load_steps=11 format=3 uid="uid://dd7xf1meeoyh5"]
 
 [ext_resource type="Script" uid="uid://dq5ymjjof67y1" path="res://scenes/map/tile_resource/variable_tile_resource_list.gd" id="1_gf5g5"]
 [ext_resource type="Script" uid="uid://csumtewo3g8r6" path="res://scenes/map/tile_resource/variable_tile_resource.gd" id="2_eva5h"]
 [ext_resource type="Resource" uid="uid://dq2iilo33ojj3" path="res://scenes/map/tiles/valuable_2.tres" id="3_afbcw"]
 [ext_resource type="Resource" uid="uid://b76rsc71db2gl" path="res://scenes/map/tiles/rock.tres" id="4_xw2n8"]
 [ext_resource type="Resource" uid="uid://npe5ukvneqfy" path="res://scenes/map/tiles/valuable_1.tres" id="5_5pjka"]
+[ext_resource type="Resource" uid="uid://c44hk3trh8alv" path="res://scenes/map/tiles/water.tres" id="6_eva5h"]
 
 [sub_resource type="Resource" id="Resource_2wyq8"]
 script = ExtResource("2_eva5h")
-percent_chance_of_spawn = 0.05
+percent_chance_of_spawn = 0.01
 tile_resource = ExtResource("3_afbcw")
 metadata/_custom_type_script = "uid://csumtewo3g8r6"
 
@@ -20,11 +21,17 @@ metadata/_custom_type_script = "uid://csumtewo3g8r6"
 
 [sub_resource type="Resource" id="Resource_2f3dj"]
 script = ExtResource("2_eva5h")
-percent_chance_of_spawn = 0.03
+percent_chance_of_spawn = 0.005
 tile_resource = ExtResource("5_5pjka")
+metadata/_custom_type_script = "uid://csumtewo3g8r6"
+
+[sub_resource type="Resource" id="Resource_afbcw"]
+script = ExtResource("2_eva5h")
+percent_chance_of_spawn = 0.5
+tile_resource = ExtResource("6_eva5h")
 metadata/_custom_type_script = "uid://csumtewo3g8r6"
 
 [resource]
 script = ExtResource("1_gf5g5")
-variable_tile_resources = Array[ExtResource("2_eva5h")]([SubResource("Resource_2wyq8"), SubResource("Resource_vxglm"), SubResource("Resource_2f3dj")])
+variable_tile_resources = Array[ExtResource("2_eva5h")]([SubResource("Resource_2wyq8"), SubResource("Resource_vxglm"), SubResource("Resource_2f3dj"), SubResource("Resource_afbcw")])
 metadata/_custom_type_script = "uid://dq5ymjjof67y1"
