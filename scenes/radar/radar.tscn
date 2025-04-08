@@ -1,7 +1,7 @@
 [gd_scene load_steps=42 format=3 uid="uid://cpi5qsqbo0r0x"]
 
 [ext_resource type="Script" uid="uid://cxlkesrm3r21" path="res://scenes/radar/radar.gd" id="1_fsxrm"]
-[ext_resource type="Script" path="res://scenes/radar/circle_drawer.gd" id="2_fyqjv"]
+[ext_resource type="Script" uid="uid://c72o8vscbnl8a" path="res://scenes/radar/circle_drawer.gd" id="2_fyqjv"]
 [ext_resource type="Texture2D" uid="uid://dt30ny048ivsg" path="res://assets/png_files/radar_dish_animation01.png" id="3_4i2j4"]
 [ext_resource type="Script" uid="uid://c7thp3o46sxrj" path="res://scenes/submarine/power_consumption_component.gd" id="4_ho7nn"]
 [ext_resource type="AudioStream" uid="uid://div4n4x24jeij" path="res://assets/audio/sfx/radar_arm.wav" id="5_niuob"]
