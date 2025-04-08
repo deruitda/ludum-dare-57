@@ -1,68 +1,62 @@
-[gd_scene load_steps=19 format=3 uid="uid://rjgvt64lr83n"]
+[gd_scene load_steps=20 format=3 uid="uid://rjgvt64lr83n"]
 
 [ext_resource type="Script" uid="uid://d3788qglhp3jk" path="res://scenes/starting_scene.gd" id="1_jjbkj"]
 [ext_resource type="Texture2D" uid="uid://cmwbtjko1gkck" path="res://assets/png_files/sun_background01.png" id="2_dxoqs"]
-[ext_resource type="Texture2D" uid="uid://c10bjpxo1v4nq" path="res://assets/png_files/surface_ship_foreground01.png" id="3_dxoqs"]
+[ext_resource type="Texture2D" uid="uid://bephgi742uv50" path="res://assets/png_files/surface_ship_only01.png" id="3_ileah"]
 [ext_resource type="Texture2D" uid="uid://dvh2njl3u72sy" path="res://assets/png_files/orb_ship_hull00.png" id="4_gnn8k"]
 [ext_resource type="StyleBox" uid="uid://dorrudh666oa4" path="res://style_resources/green_game_button.tres" id="5_ileah"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gnn8k"]
-atlas = ExtResource("3_dxoqs")
-region = Rect2(0, 0, 640, 384)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ileah"]
-atlas = ExtResource("3_dxoqs")
-region = Rect2(645, 0, 640, 384)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_8rk36"]
-atlas = ExtResource("3_dxoqs")
-region = Rect2(1290, 0, 640, 384)
+atlas = ExtResource("3_ileah")
+region = Rect2(0, 0, 320, 248)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oemso"]
-atlas = ExtResource("3_dxoqs")
-region = Rect2(1935, 0, 640, 384)
+atlas = ExtResource("3_ileah")
+region = Rect2(325, 0, 320, 248)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eq0bj"]
-atlas = ExtResource("3_dxoqs")
-region = Rect2(2580, 0, 640, 384)
+atlas = ExtResource("3_ileah")
+region = Rect2(650, 0, 320, 248)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p1fr0"]
-atlas = ExtResource("3_dxoqs")
-region = Rect2(3225, 0, 640, 384)
+atlas = ExtResource("3_ileah")
+region = Rect2(975, 0, 320, 248)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y3y55"]
-atlas = ExtResource("3_dxoqs")
-region = Rect2(3870, 0, 640, 384)
+atlas = ExtResource("3_ileah")
+region = Rect2(1300, 0, 320, 248)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_12scp"]
-atlas = ExtResource("3_dxoqs")
-region = Rect2(4515, 0, 640, 384)
+atlas = ExtResource("3_ileah")
+region = Rect2(1625, 0, 320, 248)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ac4wd"]
-atlas = ExtResource("3_dxoqs")
-region = Rect2(5160, 0, 640, 384)
+atlas = ExtResource("3_ileah")
+region = Rect2(1950, 0, 320, 248)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lajwj"]
-atlas = ExtResource("3_dxoqs")
-region = Rect2(5805, 0, 640, 384)
+atlas = ExtResource("3_ileah")
+region = Rect2(2275, 0, 320, 248)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_txwfh"]
-atlas = ExtResource("3_dxoqs")
-region = Rect2(6450, 0, 640, 384)
+atlas = ExtResource("3_ileah")
+region = Rect2(2600, 0, 320, 248)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dw1fe"]
-atlas = ExtResource("3_dxoqs")
-region = Rect2(7095, 0, 640, 384)
+atlas = ExtResource("3_ileah")
+region = Rect2(2925, 0, 320, 248)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwuru"]
+atlas = ExtResource("3_ileah")
+region = Rect2(3250, 0, 320, 248)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qq7x8"]
+atlas = ExtResource("3_ileah")
+region = Rect2(3575, 0, 320, 248)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xwuru"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gnn8k")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ileah")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8rk36")
 }, {
@@ -92,11 +86,25 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dw1fe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwuru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qq7x8")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ileah"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
 
 [node name="StartingScene" type="CanvasLayer"]
 script = ExtResource("1_jjbkj")
@@ -109,6 +117,20 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_dxoqs")
 
+[node name="Sprite2D" type="Sprite2D" parent="TextureRect"]
+position = Vector2(495, 345)
+texture = ExtResource("4_gnn8k")
+centered = false
+
+[node name="ShipAnimatedSprite2D" type="AnimatedSprite2D" parent="TextureRect"]
+unique_name_in_owner = true
+position = Vector2(495, 345)
+scale = Vector2(2.5, 2.34375)
+sprite_frames = SubResource("SpriteFrames_xwuru")
+autoplay = "default"
+frame_progress = 0.390513
+centered = false
+
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -118,18 +140,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="ShipAnimatedSprite2D" type="AnimatedSprite2D" parent="Control"]
-unique_name_in_owner = true
-scale = Vector2(2.5, 2.34375)
-sprite_frames = SubResource("SpriteFrames_xwuru")
-autoplay = "default"
-centered = false
-
-[node name="Sprite2D" type="Sprite2D" parent="Control"]
-position = Vector2(436, 821)
-texture = ExtResource("4_gnn8k")
-centered = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
@@ -158,9 +168,20 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 mouse_default_cursor_shape = 2
-theme_override_colors/font_color = Color(0.594315, 1, 0.736489, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = ExtResource("5_ileah")
 text = "Start Game"
 
+[node name="Tutorial" type="Button" parent="Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_ileah")
+text = "       Tutorial      "
+
 [connection signal="pressed" from="Control/VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]

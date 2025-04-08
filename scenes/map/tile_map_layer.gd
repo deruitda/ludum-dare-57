@@ -13,7 +13,8 @@ class_name WorldTileMapLayer
 @export var drilling_resource: TileResource
 
 func _ready() -> void:
-	world_generator_component.generate_world(self)
+	if world_generator_component != null:
+		world_generator_component.generate_world(self)
 
 func set_tile_resource(tile_resource: TileResource, coords: Vector2, source_tile_set_id: int) -> void:
 	var atlas_coords = tile_resource.atlas_coordinates
