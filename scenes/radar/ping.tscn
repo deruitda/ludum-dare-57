@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://4i5hdw8u381c" path="res://scenes/radar/ping.gd" id="1_l8n85"]
 [ext_resource type="AudioStream" uid="uid://jjfl8p4ljuin" path="res://assets/audio/sfx/Radar_response.wav" id="2_l8n85"]
-[ext_resource type="Texture2D" uid="uid://c220t7v01apje" path="res://scenes/radar/radar_resources/off_screen_circle_ping_light_texture.tres" id="3_1gwnw"]
+
+[sub_resource type="CurveTexture" id="CurveTexture_l8n85"]
 
 [node name="Ping" type="Node2D"]
 script = ExtResource("1_l8n85")
@@ -15,9 +16,13 @@ pitch_scale = 3.3
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(0.851774, 0.943908, 0, 1)
 energy = 3.32
-texture = ExtResource("3_1gwnw")
+texture = SubResource("CurveTexture_l8n85")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="ArrowPolygon" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-21, -99.5)
+uv = PackedVector2Array(-21, -99.5)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

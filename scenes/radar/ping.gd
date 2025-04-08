@@ -40,18 +40,18 @@ func _physics_process(_delta: float) -> void:
 		var distance = camera_pos.distance_to(target_position)
 
 		# Optional: define a range for fading
-		var min_distance = 0.0  # close to camera
-		var max_distance = 10000 # far away
+		var min_distance = 200.0  # close to camera
+		var max_distance = 1500.0  # far away
 		var clamped_distance = clamp(distance, min_distance, max_distance)
 
 		# Interpolate brightness: close = dim, far = bright
 		var t = inverse_lerp(min_distance, max_distance, clamped_distance)
-		light.energy = lerp(0.1, 0.6, t)
+		light.energy = lerp(.1, 3.32, t)
 	else:
 		global_position = target_position
 		light.texture = FULL_BOX_PING_LIGHT_TEXTURE
 		#light.range = 128  # full size when onscreen
-		light.energy = 1.0  # full brightness
+		light.energy = 3.32
 
 func _on_timer_timeout() -> void:
 	stop_ping()
