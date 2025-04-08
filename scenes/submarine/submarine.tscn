@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://cws16jfeq8cd2"]
+[gd_scene load_steps=21 format=3 uid="uid://cws16jfeq8cd2"]
 
 [ext_resource type="Script" uid="uid://d1v1uwdcnmi7d" path="res://scenes/submarine/submarine_body.gd" id="2_tnxgy"]
 [ext_resource type="PackedScene" uid="uid://cpi5qsqbo0r0x" path="res://scenes/radar/radar.tscn" id="3_77ovh"]
+[ext_resource type="Resource" uid="uid://dofmdn87thb45" path="res://scenes/radar/radar_resources/radar_resource_1.tres" id="3_cgquy"]
 [ext_resource type="PackedScene" uid="uid://f231crs35mvv" path="res://scenes/submarine/drill/drill.tscn" id="4_tnxgy"]
 [ext_resource type="Resource" uid="uid://blvbx87ro403o" path="res://scenes/submarine/drill/drill_resources/drill_resource_1.tres" id="6_641nr"]
 [ext_resource type="PackedScene" uid="uid://rcwc7cd67g8x" path="res://scenes/core/velocity_component.tscn" id="6_efdjn"]
@@ -53,6 +54,7 @@ shape = SubResource("CircleShape2D_77ovh")
 [node name="Radar" parent="." node_paths=PackedStringArray("battery") instance=ExtResource("3_77ovh")]
 position = Vector2(35, -51.25)
 rotation = 0.396715
+radar_resource = ExtResource("3_cgquy")
 battery = NodePath("../Battery")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("6_efdjn")]

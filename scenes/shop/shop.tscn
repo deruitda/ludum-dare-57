@@ -164,6 +164,7 @@ text = "Flashlight"
 shop_item_resource = ExtResource("9_8qn5i")
 
 [node name="Sonar" parent="ShopContainer/ColorRect/MarginContainer/VBoxContainer/ShopItemsContainer/FlashlightUpgradesVBoxContainer2" instance=ExtResource("2_qaxay")]
+visible = false
 layout_mode = 2
 text = "Sonar"
 shop_item_resource = ExtResource("9_dww4p")
