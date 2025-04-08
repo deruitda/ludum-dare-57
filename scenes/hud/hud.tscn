@@ -265,7 +265,6 @@ vertical_alignment = 1
 
 [node name="ActivateRadarButton" type="TextureButton" parent="MarginContainer/ActionButtonsContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
