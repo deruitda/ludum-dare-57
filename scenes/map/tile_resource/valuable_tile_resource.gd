@@ -5,3 +5,4 @@ class_name ValuableTileResource
 @export var price: int
 @export var ping_color: Color
 @export var is_special: bool
+@export var is_semi_special: bool

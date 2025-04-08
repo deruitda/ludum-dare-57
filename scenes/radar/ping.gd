@@ -10,6 +10,9 @@ const FULL_BOX_PING_LIGHT_TEXTURE = preload("res://scenes/radar/radar_resources/
 const OFF_SCREEN_CIRCLE_PING_LIGHT_TEXTURE = preload("res://scenes/radar/radar_resources/off_screen_circle_ping_light_texture.tres")
 const EDGE_PADDING := 50
 
+@export var is_special: bool = false
+@export var is_semi_special: bool = false
+
 @export var target_position: Vector2 = Vector2.ZERO
 var light_color: Color = Color.WHITE
 var is_offscreen: bool = false
@@ -49,15 +52,21 @@ func _physics_process(_delta: float) -> void:
 		var clamped_distance = clamp(distance, min_distance, max_distance)
 		var t = inverse_lerp(min_distance, max_distance, clamped_distance)
 
-		if special:
-			# Make it pop: higher base energy and add pulsing effect
-			var pulse = sin(Time.get_ticks_msec() / 100.0) * 0.5 + 0.5  # 0–1
-			light.energy = lerp(2.0, 6.0, pulse)
-			#light.color = light_color.lightened(0.5)  # Optional tint
-			scale = Vector2.ONE * 1.5
-		else:
-			light.energy = lerp(.1, 3.32, t)
-			scale = OFFSCREEN_SCALE
+		match true:
+			is_special:
+				var pulse = sin(Time.get_ticks_msec() / 100.0) * 0.5 + 0.5
+				light.energy = lerp(2.0, 6.0, pulse)
+				scale = Vector2.ONE * 1.5
+
+			is_semi_special:
+				# Semi-special ping (moderate pulse)
+				var pulse = sin(Time.get_ticks_msec() / 150.0) * 0.5 + 0.5
+				light.energy = lerp(2.0, 4.0, pulse)  # Moderate brightness
+				scale = Vector2.ONE * 1.2
+
+			_:
+				light.energy = lerp(0.1, 3.32, t)
+				scale = OFFSCREEN_SCALE
 
 	else:
 		global_position = target_position
