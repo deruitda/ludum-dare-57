@@ -7,6 +7,7 @@ script = ExtResource("1_1eyic")
 weight = 1
 price = 50
 ping_color = Color(0.4, 0.2, 0.6, 1)
+is_special = true
 drill_speed = 1.0
 name = "valuable_4"
 anim_source_index = 6
