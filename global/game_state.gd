@@ -111,6 +111,7 @@ func _on_close_shop() -> void:
 func _on_open_shop() -> void:
 	if is_player_in_shop_area:
 		sell_cargo()
+		SignalBus.sell_cargo.emit()
 		SignalBus.recharge_battery.emit()
 		is_shop_opened = true
 
