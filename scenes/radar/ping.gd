@@ -8,6 +8,7 @@ class_name Ping
 
 const FULL_BOX_PING_LIGHT_TEXTURE = preload("res://scenes/radar/radar_resources/full_box_ping_light_texture.tres")
 const OFF_SCREEN_CIRCLE_PING_LIGHT_TEXTURE = preload("res://scenes/radar/radar_resources/off_screen_circle_ping_light_texture.tres")
+const EDGE_PADDING := 50
 
 @export var target_position: Vector2 = Vector2.ZERO
 var light_color: Color = Color.WHITE
@@ -33,7 +34,10 @@ func _physics_process(_delta: float) -> void:
 	is_offscreen = not screen_rect.has_point(target_position)
 
 	if is_offscreen:
-		global_position = target_position.clamp(top_left + Vector2.ONE * 16.0, bottom_right - Vector2.ONE * 16.0)
+		global_position = target_position.clamp(
+			top_left + Vector2(EDGE_PADDING, EDGE_PADDING),
+			bottom_right - Vector2(EDGE_PADDING, EDGE_PADDING)
+		)
 		light.texture = OFF_SCREEN_CIRCLE_PING_LIGHT_TEXTURE
 
 		# Distance from camera
