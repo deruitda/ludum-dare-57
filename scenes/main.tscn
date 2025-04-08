@@ -162,7 +162,6 @@ variable_tile_resource_list = ExtResource("17_pm3ni")
 metadata/_custom_type_script = "uid://cgc72byt7klxr"
 
 [node name="water" type="PointLight2D" parent="."]
-visible = false
 show_behind_parent = true
 z_index = 1
 scale = Vector2(10, 10)
@@ -174,7 +173,6 @@ texture = ExtResource("11_muem4")
 offset = Vector2(500, 1000)
 
 [node name="rock-subtract" type="PointLight2D" parent="."]
-visible = false
 show_behind_parent = true
 z_index = -1
 scale = Vector2(10, 10)
