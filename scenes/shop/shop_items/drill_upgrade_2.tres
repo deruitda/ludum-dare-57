@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_drl0m")
 price = 175
-tooltip = "Drill 3x faster"
+tooltip = "Drill 5x faster"
 is_infinitely_purchaseable = false
 unlocked_by_item_resource = ExtResource("3_sn8qt")
 item_resource = ExtResource("1_o5yft")
