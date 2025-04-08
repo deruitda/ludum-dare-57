@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_hlhd0")
-speed_factor = 3.0
+speed_factor = 5.0
 is_unlocked = false
