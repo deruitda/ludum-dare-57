@@ -1,12 +1,11 @@
-[gd_scene load_steps=42 format=3 uid="uid://cpi5qsqbo0r0x"]
+[gd_scene load_steps=41 format=3 uid="uid://cpi5qsqbo0r0x"]
 
 [ext_resource type="Script" uid="uid://cxlkesrm3r21" path="res://scenes/radar/radar.gd" id="1_fsxrm"]
-[ext_resource type="Script" path="res://scenes/radar/circle_drawer.gd" id="2_fyqjv"]
+[ext_resource type="Script" uid="uid://c72o8vscbnl8a" path="res://scenes/radar/circle_drawer.gd" id="2_fyqjv"]
 [ext_resource type="Texture2D" uid="uid://dt30ny048ivsg" path="res://assets/png_files/radar_dish_animation01.png" id="3_4i2j4"]
 [ext_resource type="Script" uid="uid://c7thp3o46sxrj" path="res://scenes/submarine/power_consumption_component.gd" id="4_ho7nn"]
 [ext_resource type="AudioStream" uid="uid://div4n4x24jeij" path="res://assets/audio/sfx/radar_arm.wav" id="5_niuob"]
 [ext_resource type="AudioStream" uid="uid://c7efuqdkoa0ev" path="res://assets/audio/sfx/Radar_call.wav" id="6_kpnah"]
-[ext_resource type="Texture2D" uid="uid://bn8aora34gik4" path="res://scenes/radar/ping_ring.png" id="7_kpnah"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fyqjv"]
 radius = 13.0384
@@ -251,8 +250,8 @@ fill_to = Vector2(0, 0.962963)
 
 [node name="Radar" type="Node2D"]
 script = ExtResource("1_fsxrm")
-max_radius = 1000.0
-increment = 5.0
+max_radius = 10000.0
+increment = 30.0
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -295,13 +294,6 @@ bus = &"Radar Arm"
 stream = ExtResource("6_kpnah")
 volume_db = 10.619
 pitch_scale = 0.56
-
-[node name="ping_ring_light" type="PointLight2D" parent="."]
-scale = Vector2(0.145, 0.145)
-enabled = false
-color = Color(0.811765, 0.823529, 0.372549, 1)
-energy = 3.4
-texture = ExtResource("7_kpnah")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]

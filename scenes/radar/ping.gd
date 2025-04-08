@@ -6,6 +6,8 @@ class_name Ping
 @onready var timer: Timer = $Timer
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
+@onready var _ping_global_position: Vector2
+
 var light_color: Color = Color.WHITE
 
 func _ready() -> void:
