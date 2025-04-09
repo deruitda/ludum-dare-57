@@ -30,7 +30,7 @@ func fully_charge_battery() -> void:
 func _set_current_power_level(power_amount: float) -> void:
 	current_power_level = power_amount
 	SignalBus.battery_updated.emit(self)
-	if current_power_level == 0.0:
+	if current_power_level <= 0.0:
 		SignalBus.submarine_lost_power.emit()
 
 func upgrade_battery(_battery_resource: BatteryResource):
