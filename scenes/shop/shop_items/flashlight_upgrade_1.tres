@@ -9,5 +9,4 @@ price = 10
 tooltip = "Flashlight helps you see"
 is_infinitely_purchaseable = false
 item_resource = ExtResource("1_ukgpg")
-is_initially_disabled = false
 metadata/_custom_type_script = "uid://dq388fj72n7ck"
