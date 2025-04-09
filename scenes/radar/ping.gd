@@ -55,17 +55,17 @@ func _physics_process(_delta: float) -> void:
 		match true:
 			is_special:
 				var pulse = sin(Time.get_ticks_msec() / 100.0) * 0.5 + 0.5
-				light.energy = lerp(2.0, 6.0, pulse)
+				light.energy = lerp(2.0, 10.0, pulse)
 				scale = Vector2.ONE * 1.5
 
 			is_semi_special:
 				# Semi-special ping (moderate pulse)
 				var pulse = sin(Time.get_ticks_msec() / 150.0) * 0.5 + 0.5
-				light.energy = lerp(2.0, 4.0, pulse)  # Moderate brightness
+				light.energy = lerp(2.0, 6.0, pulse)  # Moderate brightness
 				scale = Vector2.ONE * 1.2
 
 			_:
-				light.energy = lerp(0.1, 3.32, t)
+				light.energy = lerp(0.01, 1.0, t)
 				scale = OFFSCREEN_SCALE
 
 	else:
