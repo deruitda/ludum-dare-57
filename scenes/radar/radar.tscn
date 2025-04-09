@@ -250,7 +250,7 @@ fill_to = Vector2(0, 0.962963)
 
 [node name="Radar" type="Node2D"]
 script = ExtResource("1_fsxrm")
-max_radius = 10000.0
+max_radius = 2000.0
 increment = 30.0
 
 [node name="Area2D" type="Area2D" parent="."]

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ZoneResourceListLayer" load_steps=3 format=3 uid="uid://cljheb83ftod6"]
 
-[ext_resource type="Script" uid="uid://b0wmy2qe6hygq" path="res://scenes/map/tile_resource/zone_resource_list_layer.gd" id="1_f6ph2"]
+[ext_resource type="Script" path="res://scenes/map/tile_resource/zone_resource_list_layer.gd" id="1_f6ph2"]
 [ext_resource type="Resource" uid="uid://eq3jauf2hgov" path="res://scenes/map/zone_resource_list_layers/zone_2_variable_tile_resource_list.tres" id="2_f6ph2"]
 
 [resource]
